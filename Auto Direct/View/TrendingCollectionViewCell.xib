@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="gTV-IL-0wX" customClass="TrendingCollectionViewCell" customModule="Auto_Direct" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="292" height="61"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="292" height="61"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mDE-IN-dqz">
+                        <rect key="frame" x="0.0" y="0.0" width="292" height="61"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pil-Mo-TzG">
+                                <rect key="frame" x="28" y="13" width="236" height="35"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottomMargin" secondItem="Pil-Mo-TzG" secondAttribute="bottom" constant="5" id="aHB-IV-hyp"/>
+                            <constraint firstItem="Pil-Mo-TzG" firstAttribute="leading" secondItem="mDE-IN-dqz" secondAttribute="leadingMargin" constant="20" id="bYA-JQ-thg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Pil-Mo-TzG" secondAttribute="trailing" constant="20" id="nyG-hJ-Qo4"/>
+                            <constraint firstItem="Pil-Mo-TzG" firstAttribute="top" secondItem="mDE-IN-dqz" secondAttribute="topMargin" constant="5" id="rbi-mI-1vt"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="mDE-IN-dqz" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="GlY-VX-6O0"/>
+                <constraint firstItem="mDE-IN-dqz" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="topMargin" id="Hqv-vb-Hyk"/>
+                <constraint firstAttribute="bottomMargin" secondItem="mDE-IN-dqz" secondAttribute="bottom" id="MGO-YC-33B"/>
+                <constraint firstItem="mDE-IN-dqz" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" id="Nno-E5-cY1"/>
+                <constraint firstItem="mDE-IN-dqz" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="o7r-ma-zMv"/>
+            </constraints>
+            <size key="customSize" width="292" height="61"/>
+            <connections>
+                <outlet property="containerView" destination="mDE-IN-dqz" id="g5C-Td-UoV"/>
+                <outlet property="lblItemName" destination="Pil-Mo-TzG" id="PiB-aU-0M1"/>
+            </connections>
+            <point key="canvasLocation" x="311.59420289855075" y="147.65625"/>
+        </collectionViewCell>
+    </objects>
+</document>

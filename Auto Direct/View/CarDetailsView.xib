@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CarDetailsView" customModule="Auto_Direct" customModuleProvider="target">
+            <connections>
+                <outlet property="cardView" destination="iN0-l3-epB" id="Hrd-BH-u8K"/>
+                <outlet property="imgCar" destination="Qjk-qW-mRH" id="hdw-qf-pgz"/>
+                <outlet property="lblAmount" destination="Lrz-oe-cL6" id="2YG-aG-yfO"/>
+                <outlet property="lblCarDescription" destination="qB1-ai-aJJ" id="jzX-LQ-b5g"/>
+                <outlet property="lblCarName" destination="2SC-ZZ-O9e" id="r8T-Lg-mhV"/>
+                <outlet property="viewFeature1" destination="6xi-gL-mhs" id="D35-9w-Nq3"/>
+                <outlet property="viewFeature2" destination="9dm-GH-KUF" id="NG7-T7-zAr"/>
+                <outlet property="viewFeature3" destination="KC8-88-Und" id="G1s-3i-STN"/>
+                <outlet property="viewFeature4" destination="ilL-EW-bGm" id="ubw-QC-D1L"/>
+                <outlet property="viewFeature5" destination="ZNZ-1i-Xnc" id="mfQ-cl-ZCz"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="504"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="wbT-DF-kAG">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="504"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Audi Q2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2SC-ZZ-O9e">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="133.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sport 30 TDI 116 PS S tronic Automatic" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qB1-ai-aJJ">
+                            <rect key="frame" x="0.0" y="135.5" width="414" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="car_01" translatesAutoresizingMaskIntoConstraints="NO" id="Qjk-qW-mRH">
+                            <rect key="frame" x="0.0" y="158" width="414" height="199"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MONTHLY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Td9-jB-eUl">
+                            <rect key="frame" x="0.0" y="359" width="414" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LKR 52,300" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lrz-oe-cL6">
+                            <rect key="frame" x="0.0" y="381.5" width="414" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="64J-Gt-QuU">
+                            <rect key="frame" x="0.0" y="404" width="414" height="100"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6xi-gL-mhs" customClass="CarItemFeature" customModule="Auto_Direct" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="67" height="100"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="100" id="UUS-xO-iio"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9dm-GH-KUF" customClass="CarItemFeature" customModule="Auto_Direct" customModuleProvider="target">
+                                    <rect key="frame" x="87" y="0.0" width="66.5" height="100"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KC8-88-Und" customClass="CarItemFeature" customModule="Auto_Direct" customModuleProvider="target">
+                                    <rect key="frame" x="173.5" y="0.0" width="67" height="100"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ilL-EW-bGm" customClass="CarItemFeature" customModule="Auto_Direct" customModuleProvider="target">
+                                    <rect key="frame" x="260.5" y="0.0" width="66.5" height="100"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZNZ-1i-Xnc" customClass="CarItemFeature" customModule="Auto_Direct" customModuleProvider="target">
+                                    <rect key="frame" x="347" y="0.0" width="67" height="100"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="ZNZ-1i-Xnc" firstAttribute="height" secondItem="6xi-gL-mhs" secondAttribute="height" id="ESE-35-cYP"/>
+                                <constraint firstItem="9dm-GH-KUF" firstAttribute="height" secondItem="6xi-gL-mhs" secondAttribute="height" id="GZP-AO-UmX"/>
+                                <constraint firstItem="ilL-EW-bGm" firstAttribute="height" secondItem="6xi-gL-mhs" secondAttribute="height" id="Ln0-N5-cKr"/>
+                                <constraint firstItem="ilL-EW-bGm" firstAttribute="width" secondItem="6xi-gL-mhs" secondAttribute="width" id="Rtk-Sh-oPx"/>
+                                <constraint firstItem="ZNZ-1i-Xnc" firstAttribute="top" secondItem="64J-Gt-QuU" secondAttribute="topMargin" id="bQe-5J-Dfu"/>
+                                <constraint firstItem="ZNZ-1i-Xnc" firstAttribute="trailing" secondItem="64J-Gt-QuU" secondAttribute="trailingMargin" id="jh1-OC-GqQ"/>
+                                <constraint firstItem="KC8-88-Und" firstAttribute="width" secondItem="6xi-gL-mhs" secondAttribute="width" id="scK-EZ-eKd"/>
+                                <constraint firstItem="KC8-88-Und" firstAttribute="height" secondItem="6xi-gL-mhs" secondAttribute="height" id="tye-Qd-IE9"/>
+                                <constraint firstItem="ZNZ-1i-Xnc" firstAttribute="width" secondItem="6xi-gL-mhs" secondAttribute="width" id="vM2-Uk-jt8"/>
+                                <constraint firstItem="9dm-GH-KUF" firstAttribute="width" secondItem="6xi-gL-mhs" secondAttribute="width" id="y0n-ve-Ecr"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="Td9-jB-eUl" firstAttribute="trailing" secondItem="wbT-DF-kAG" secondAttribute="trailingMargin" id="0EG-5O-cIb"/>
+                        <constraint firstItem="64J-Gt-QuU" firstAttribute="leading" secondItem="wbT-DF-kAG" secondAttribute="leadingMargin" id="5CH-oF-HmH"/>
+                        <constraint firstItem="Qjk-qW-mRH" firstAttribute="trailing" secondItem="wbT-DF-kAG" secondAttribute="trailingMargin" id="6JO-Kc-s5X"/>
+                        <constraint firstItem="qB1-ai-aJJ" firstAttribute="leading" secondItem="wbT-DF-kAG" secondAttribute="leadingMargin" id="9bA-sJ-ubZ"/>
+                        <constraint firstItem="2SC-ZZ-O9e" firstAttribute="leading" secondItem="wbT-DF-kAG" secondAttribute="leadingMargin" id="LcZ-bH-58n"/>
+                        <constraint firstItem="2SC-ZZ-O9e" firstAttribute="trailing" secondItem="wbT-DF-kAG" secondAttribute="trailingMargin" id="XS0-eg-sJc"/>
+                        <constraint firstItem="Lrz-oe-cL6" firstAttribute="leading" secondItem="wbT-DF-kAG" secondAttribute="leadingMargin" id="cD6-aN-8gf"/>
+                        <constraint firstItem="Td9-jB-eUl" firstAttribute="leading" secondItem="wbT-DF-kAG" secondAttribute="leadingMargin" id="cI5-5e-Uhf"/>
+                        <constraint firstItem="Lrz-oe-cL6" firstAttribute="trailing" secondItem="wbT-DF-kAG" secondAttribute="trailingMargin" id="hSl-wb-W5W"/>
+                        <constraint firstItem="64J-Gt-QuU" firstAttribute="trailing" secondItem="wbT-DF-kAG" secondAttribute="trailingMargin" id="hle-zc-QMc"/>
+                        <constraint firstItem="Qjk-qW-mRH" firstAttribute="leading" secondItem="wbT-DF-kAG" secondAttribute="leadingMargin" id="ouj-kR-bQy"/>
+                        <constraint firstItem="64J-Gt-QuU" firstAttribute="bottom" secondItem="wbT-DF-kAG" secondAttribute="bottomMargin" id="vc7-ym-5IX"/>
+                        <constraint firstItem="qB1-ai-aJJ" firstAttribute="trailing" secondItem="wbT-DF-kAG" secondAttribute="trailingMargin" id="y84-e8-gXB"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="wbT-DF-kAG" secondAttribute="trailing" id="4AA-UA-xhD"/>
+                <constraint firstItem="wbT-DF-kAG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="hw6-Mn-2fO"/>
+                <constraint firstAttribute="bottom" secondItem="wbT-DF-kAG" secondAttribute="bottom" id="kVV-wJ-9o0"/>
+                <constraint firstItem="wbT-DF-kAG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="vom-1I-Fet"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="137.68115942028987" y="271.20535714285711"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="car_01" width="144" height="199"/>
+    </resources>
+</document>
