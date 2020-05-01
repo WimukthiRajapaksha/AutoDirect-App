@@ -25,23 +25,23 @@ class NewVehiclesTableViewCell: UITableViewCell {
         
         viewFeature1.imgFeature.image = UIImage(named: "petrol")
         viewFeature1.lblFeature.text = "Petrol"
-        viewFeature1.imgFeature.backgroundColor = .gray
+   //     viewFeature1.viewImage.backgroundColor = .clear
         
         viewFeature2.imgFeature.image = UIImage(named: "engine")
         viewFeature2.lblFeature.text = "1.3L"
-        viewFeature2.imgFeature.backgroundColor = .gray
+   //     viewFeature2.viewImage.backgroundColor = .clear
         
         viewFeature3.imgFeature.image = UIImage(named: "transmission")
         viewFeature3.lblFeature.text = "Auto"
-        viewFeature3.imgFeature.backgroundColor = .gray
+ //       viewFeature3.viewImage.backgroundColor = .clear
         
         viewFeature4.imgFeature.image = UIImage(named: "year")
         viewFeature4.lblFeature.text = "2019"
-        viewFeature4.imgFeature.backgroundColor = .gray
+ //       viewFeature4.viewImage.backgroundColor = .clear
         
         viewFeature5.imgFeature.image = UIImage(named: "readyToShipSk")
         viewFeature5.lblFeature.text = "Ready to\nShip"
-        viewFeature5.imgFeature.backgroundColor = .green
+//        viewFeature5.viewImage.backgroundColor = .green
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

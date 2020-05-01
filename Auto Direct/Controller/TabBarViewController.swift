@@ -9,52 +9,31 @@
 import UIKit
 import SideMenuSwift
 
-class TabBarViewController: UITabBarController {
-    @IBOutlet weak var barButtonRight: UIBarButtonItem!
-    @IBOutlet weak var barButtonLeft: UIBarButtonItem!
-    @IBOutlet var homeTabBar: UITabBar!
-    
+class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.setNavigationBarHidden(true, animated: false)
         
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.view.backgroundColor = .clear
+        self.tabBar.layer.borderWidth = 1
+        self.tabBar.layer.borderColor = UIColor(rgb: 0x353b4a).cgColor
         
-        let button = UIButton.init(type: .custom)
-        button.setImage(UIImage(named: "call"), for: .normal)
-        button.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
-        button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        button.layer.borderWidth = 1
-        button.layer.cornerRadius = 22
-        button.backgroundColor = .gray
-        button.addTarget(self, action: #selector(self.handleButton), for: .touchUpInside)
+  //      UITabBar.appearance().shadowImage = UIImage.colorForNavBar(color: .red)
+//        let font = UIFont(name: "SF Compact Text", size: 11).
         
-        barButtonRight.customView = button
+        var descriptor = UIFontDescriptor(name: "SFCompactText", size: 11)
+        descriptor = descriptor.addingAttributes([UIFontDescriptor.AttributeName.traits : [UIFontDescriptor.TraitKey.weight : UIFont.Weight.light]])
+        let font = UIFont(descriptor: descriptor, size: 11.0)
         
-        var searchTab : UITabBarItem = self.homeTabBar.items?[2] as! UITabBarItem
-        searchTab.imageInsets = UIEdgeInsets(top: -40, left: 0, bottom: 0, right: 0)
-        searchTab.standardAppearance?.backgroundColor = .green
-        searchTab.badgeColor = .blue
-        searchTab.standardAppearance?.selectionIndicatorTintColor = .red
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(rgb: 0x6f7587)], for: .normal)
+        
+        // selected colors
+        UITabBar.appearance().tintColor = UIColor(rgb: 0x63b946)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.strokeColor: UIColor(rgb: 0x63b946)], for: .normal)
 
+        
+//        UITabBarItem.appearance().set([NSAttributedString.Key.foregroundColor: UIColor(rgb: 0x6f7587)], for: .normal)
+        
+//        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.green.cgColor], for:.normal)
     }
-    
-    @objc func handleButton( sender : UIButton ) {
-        print("clicked")
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-//        navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.view.backgroundColor = .clear
-    }
-    @IBAction func onBarButtonLeftTouch(_ sender: Any) {
-        sideMenuController?.revealMenu()
-    }
-    
 }

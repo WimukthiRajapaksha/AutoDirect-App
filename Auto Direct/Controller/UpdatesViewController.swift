@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UpdatesViewController: UIViewController {
+class UpdatesViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

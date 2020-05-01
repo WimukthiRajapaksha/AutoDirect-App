@@ -43,6 +43,10 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.alwaysBounceVertical = false
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sidebarItemsList.getItemsList()[section].getSubItems().count
     }

@@ -19,7 +19,7 @@
                                 <rect key="frame" x="52" y="380.5" width="310.5" height="135"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.019607843137254902" green="0.031372549019607843" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.10588235294117647" green="0.12156862745098039" blue="0.16470588235294117" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="ZDI-Bu-1YM" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="f9p-aC-ghI"/>
                             <constraint firstItem="ZDI-Bu-1YM" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="w9G-pk-gDF"/>

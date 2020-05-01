@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import ImageSlideshow
 
-class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    @IBOutlet weak var imgCar: UIImageView!
+class HomeViewController: BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    @IBOutlet var lblTrending: UILabel!
+    @IBOutlet var imgSlideShow: ImageSlideshow!
     @IBOutlet weak var newVehiclesCategoryItem: HomeCategoryItemView!
     @IBOutlet weak var preOwnedVehiclesCategoryItem: HomeCategoryItemView!
     @IBOutlet weak var readyToShipCategoryItem: HomeCategoryItemView!
@@ -33,18 +35,60 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         trendingCollectionView.allowsMultipleSelection = false
         trendingCollectionView.register(UINib(nibName: trendingCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: trendingCollectionViewCell)
         setCardItems()
+        
+        imgSlideShow.setImageInputs([
+            ImageSource(image: UIImage(named: "car-1")!),
+            ImageSource(image: UIImage(named: "car-2")!),
+            ImageSource(image: UIImage(named: "car-3")!),
+            ImageSource(image: UIImage(named: "car-4")!),
+            ImageSource(image: UIImage(named: "car-5")!),
+            ImageSource(image: UIImage(named: "car-6")!),
+            ImageSource(image: UIImage(named: "car-7")!),
+            ImageSource(image: UIImage(named: "car-8")!),
+            ImageSource(image: UIImage(named: "car-9")!),
+            ImageSource(image: UIImage(named: "car-10")!),
+            ImageSource(image: UIImage(named: "car-11")!),
+            ImageSource(image: UIImage(named: "car-12")!),
+            ImageSource(image: UIImage(named: "car-13")!),
+            ImageSource(image: UIImage(named: "car-14")!)
+        ])
+        
+        imgSlideShow.pageIndicatorPosition = PageIndicatorPosition(horizontal: .center, vertical: .customBottom(padding: 20))
+        imgSlideShow.slideshowInterval = 2
+        imgSlideShow.contentScaleMode = .scaleAspectFill
+        
+        let maskPathContainer = UIBezierPath(roundedRect: imgSlideShow.bounds,
+                                             byRoundingCorners: [.bottomLeft, .bottomRight],
+                    cornerRadii: CGSize(width: 30.0, height: 30.0))
+
+        let shapeContainer = CAShapeLayer()
+        shapeContainer.path = maskPathContainer.cgPath
+        imgSlideShow.layer.mask = shapeContainer
+//        let maskPath = UIBezierPath(roundedRect: lblTrending.bounds,
+//                    byRoundingCorners: [.bottomLeft],
+//                    cornerRadii: CGSize(width: 30.0, height: 30.0))
+//
+//        let shape = CAShapeLayer()
+//        shape.path = maskPath.cgPath
+//        lblTrending.layer.mask = shape
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         trendingCollectionView.reloadData()
+//        self.tabBarController?.tabBar.isHidden = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(false, animated: animated)
+//        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     private func setCardItems() {
+        
+//        TODO - gradiant colors
+        
         newVehiclesCategoryItem.imgItem.image = UIImage(named: "newVehicles")
+//        newVehiclesCategoryItem.imgItem.addBlackGradientLayerInForeground(frame: newVehiclesCategoryItem.imgItem.bounds, colors:[UIColor(rgb: 0xc9da2e), UIColor(rgb: 0x21b258)])
         newVehiclesCategoryItem.lblItem.text = "New \nVehicles"
         let tapGestureRecognizerNewVehiclesCategory = UITapGestureRecognizer(target: self, action: #selector(viewTappedNewVehiclesCategory(tapGestureRecognizer:)))
         newVehiclesCategoryItem.isUserInteractionEnabled = true

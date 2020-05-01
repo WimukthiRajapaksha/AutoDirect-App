@@ -15,15 +15,15 @@ class TrendingCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        containerView.layer.borderColor = UIColor.green.cgColor
-        containerView.layer.borderWidth = 3
-        containerView.layer.cornerRadius = containerView.frame.height/2.6
+        containerView.layer.borderColor = UIColor(rgb: 0x63b946).cgColor
+        containerView.layer.borderWidth = 1
+        containerView.layer.cornerRadius = containerView.frame.size.height/3.0
     }
     
     override var isSelected: Bool {
         didSet {
-            containerView.backgroundColor = isSelected ? .green : .clear
-            lblItemName.textColor = isSelected ? .black : .green
+            containerView.backgroundColor = isSelected ? UIColor(rgb: 0x63b946) : .clear
+            lblItemName.textColor = isSelected ? .black : UIColor(rgb: 0x63b946)
         }
     }
 

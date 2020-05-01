@@ -8,11 +8,12 @@
 
 import UIKit
 
-class InventoryViewController: UIViewController {
+class InventoryViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationController?.setNavigationBarHidden(false, animated: true)
         // Do any additional setup after loading the view.
     }
     

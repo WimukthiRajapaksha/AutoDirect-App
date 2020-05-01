@@ -15,13 +15,13 @@ class NewVehiclesCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        containerView.layer.borderWidth = 3
+//        containerView.layer.borderWidth = 1
         containerView.layer.cornerRadius = containerView.frame.height/2.2
     }
     
     override var isSelected: Bool {
         didSet {
-            containerView.backgroundColor = isSelected ? .green : .clear
+            containerView.backgroundColor = isSelected ? UIColor(rgb: 0x63b946) : .clear
         }
     }
 

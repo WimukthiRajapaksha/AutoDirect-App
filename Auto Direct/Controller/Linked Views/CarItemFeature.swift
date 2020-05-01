@@ -9,6 +9,7 @@
 import UIKit
 
 class CarItemFeature: UIView {
+    @IBOutlet weak var viewImage: UIView!
     @IBOutlet var cardView: UIView!
     @IBOutlet weak var imgFeature: UIImageView!
     @IBOutlet weak var lblFeature: UILabel!
@@ -29,10 +30,10 @@ class CarItemFeature: UIView {
         cardView.frame = self.bounds
         cardView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
                 
-        imgFeature.layer.borderWidth = 1
-        imgFeature.layer.masksToBounds = false
+    //    viewImage.layer.borderWidth = 1
+    //    viewImage.layer.masksToBounds = false
 //        imgFeature.backgroundColor = .gray
-        imgFeature.layer.cornerRadius = imgFeature.bounds.width/7.2
-        imgFeature.clipsToBounds = true
+ //       viewImage.layer.cornerRadius = viewImage.frame.size.width/6.5
+//        viewImage.clipsToBounds = true
     }
 }

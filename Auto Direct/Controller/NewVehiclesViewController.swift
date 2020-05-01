@@ -8,18 +8,25 @@
 
 import UIKit
 
-class NewVehiclesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
+class NewVehiclesViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var btnBack: UIBarButtonItem!
     @IBOutlet weak var barButtonRight: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var newVehiclesCollectionView: UICollectionView!
+    @IBOutlet weak var viewSearchDetails: UIView!
+    @IBOutlet weak var viewSearchOption: UIView!
+    @IBOutlet weak var viewNewestFirst: UIView!
+    @IBOutlet weak var lblSearchResultCount: UILabel!
     
     private let newVehiclesTableViewCell: String
     private let newVehiclesCollectionViewCell: String
     private let brandsList: [String]
     
+    private var fromSearch: Bool
+    
     required init?(coder aDecoder: NSCoder) {
+        fromSearch = false
         newVehiclesTableViewCell = "NewVehiclesTableViewCell"
         newVehiclesCollectionViewCell = "NewVehiclesCollectionViewCell"
         brandsList = ["All", "p", "qqqqqqq", "r", "s", "tttttt", "u", "v", "w", "xxxxxxx", "y", "z", "p", "q", "r", "sssssss", "t", "uuuuuuuuuuuuuuuuuuuuuuuu", "v", "wwwwwwwwwwww", "xxxx", "yxxyyy", "zzzzzzz"]
@@ -29,16 +36,13 @@ class NewVehiclesViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let button = UIButton.init(type: .custom)
-        button.setImage(UIImage(named: "call"), for: .normal)
-        button.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
-        button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        button.layer.borderWidth = 1
-        button.layer.cornerRadius = 22
-        button.backgroundColor = .gray
-        button.addTarget(self, action: #selector(self.handleButton), for: .touchUpInside)
+        if fromSearch {
+            newVehiclesCollectionView.isHidden = true
+            viewSearchDetails.isHidden = false
+        }
         
-        barButtonRight.customView = button
+        viewSearchOption.layer.cornerRadius = viewSearchOption.frame.height / 2.0
+        viewNewestFirst.layer.cornerRadius = viewNewestFirst.frame.height / 2.0
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -48,7 +52,25 @@ class NewVehiclesViewController: UIViewController, UITableViewDelegate, UITableV
         newVehiclesCollectionView.dataSource = self
         newVehiclesCollectionView.register(UINib(nibName: newVehiclesCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: newVehiclesCollectionViewCell)
         
-//        loadCardDetails()
+        viewSearchOption.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.searchOption(_:))))
+        viewSearchOption.isUserInteractionEnabled = true
+        
+        viewNewestFirst.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.newestFirst(_:))))
+        viewNewestFirst.isUserInteractionEnabled = true
+        
+//        self.tabBarController?.tabBar.isHidden = false
+        
+        navigationItem.leftBarButtonItem = backBarButton()
+        
+        tableView.gradient(width: tableView.bounds.width, height: 30, colors: [UIColor(rgb: 0x0b0f0f).cgColor, UIColor(rgb: 0x1b1f2a).cgColor])
+    }
+    
+    @objc func searchOption(_ gestureRecognizer: UITapGestureRecognizer) {
+        performSegue(withIdentifier: "searchOptionsSegue", sender: self)
+    }
+    
+    @objc func newestFirst(_ gestureRecognizer: UITapGestureRecognizer) {
+        print("newest first")
     }
     
 //    private func loadCardDetails() {
@@ -70,12 +92,13 @@ class NewVehiclesViewController: UIViewController, UITableViewDelegate, UITableV
 //    }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
-    @objc func handleButton( sender : UIButton ) {
-        // It would be nice is isEnabled worked...
-        sender.alpha = sender.alpha == 1.0 ? 0.5 : 1.0
-    }
+//    @objc func handleButton( sender : UIButton ) {
+//        // It would be nice is isEnabled worked...
+//        sender.alpha = sender.alpha == 1.0 ? 0.5 : 1.0
+//    }
     
     @IBAction func onBackTouch(_ sender: Any) {
         self.navigationController?.popViewController(animated:true)
@@ -114,6 +137,10 @@ class NewVehiclesViewController: UIViewController, UITableViewDelegate, UITableV
 
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         print("deselect \(indexPath.row)")
+    }
+    
+    public func setFromSearch(fromSearch: Bool) {
+        self.fromSearch = fromSearch
     }
     
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

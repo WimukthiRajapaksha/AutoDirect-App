@@ -9,5 +9,9 @@ target 'Auto Direct' do
 	pod 'SideMenuSwift'
 	pod 'Alamofire'
   pod 'ImageSlideshow'
+  pod 'StepIndicator', '~> 1.0.8'
+  pod 'DLRadioButton'
+  pod 'RangeSeekSlider'
+  pod 'Presentr'
 
 end

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class QRPayViewController: UIViewController {
+class QRPayViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
