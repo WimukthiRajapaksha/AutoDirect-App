@@ -19,8 +19,8 @@ class SearchOptionMakeCollectionViewCell: UICollectionViewCell {
     
     override var isSelected: Bool {
         didSet {
-            containerView.backgroundColor = isSelected ? .green : .clear
-            lblMake.textColor = isSelected ? .black : .white
+            containerView.backgroundColor = isSelected ? UIColor(rgb: 0x63b946) : .clear
+            lblMake.textColor = isSelected ? .white : .white
         }
     }
 }

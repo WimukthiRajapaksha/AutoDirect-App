@@ -104,7 +104,9 @@
                                                 <constraint firstAttribute="height" constant="50" id="LNO-fg-pme"/>
                                                 <constraint firstAttribute="width" constant="120" id="xcH-Sf-Bye"/>
                                             </constraints>
-                                            <state key="normal" title="Next Step"/>
+                                            <state key="normal" title="Next Step">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -239,7 +241,9 @@
                                                 <constraint firstAttribute="width" constant="120" id="8zp-WK-KbK"/>
                                                 <constraint firstAttribute="height" constant="50" id="EK1-UT-DtN"/>
                                             </constraints>
-                                            <state key="normal" title="Submit"/>
+                                            <state key="normal" title="Submit">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

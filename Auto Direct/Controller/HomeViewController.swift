@@ -10,6 +10,12 @@ import UIKit
 import ImageSlideshow
 
 class HomeViewController: BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    @IBOutlet var takeItView: UIView!
+    @IBOutlet var stackTopItems: UIStackView!
+    @IBOutlet var stackBottomItems: UIStackView!
+    @IBOutlet var leftNavItem: UIBarButtonItem!
+    @IBOutlet var viewItems: UIView!
+    @IBOutlet var stackTrending: UIStackView!
     @IBOutlet var lblTrending: UILabel!
     @IBOutlet var imgSlideShow: ImageSlideshow!
     @IBOutlet weak var newVehiclesCategoryItem: HomeCategoryItemView!
@@ -23,7 +29,7 @@ class HomeViewController: BaseViewController, UICollectionViewDelegate, UICollec
     
     required init?(coder aDecoder: NSCoder) {
         trendingCollectionViewCell = "TrendingCollectionViewCell"
-        trendingItems = ["a", "b", "cccccccccccccc", "d", "e", "f", "g", "h", "i", "j", "k", "llllllllllll", "m", "n", "oooooooooooooooooo", "p", "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq", "r"]
+        trendingItems = ["NISSAN JUKE", "SUZUKI VITARA", "VOLKSWAGEN T-CROSS", "HONDA CIVIC", "TOYOTA RAIZER"]
         super.init(coder: aDecoder)
     }
     
@@ -35,7 +41,7 @@ class HomeViewController: BaseViewController, UICollectionViewDelegate, UICollec
         trendingCollectionView.allowsMultipleSelection = false
         trendingCollectionView.register(UINib(nibName: trendingCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: trendingCollectionViewCell)
         setCardItems()
-        
+                
         imgSlideShow.setImageInputs([
             ImageSource(image: UIImage(named: "car-1")!),
             ImageSource(image: UIImage(named: "car-2")!),
@@ -53,30 +59,114 @@ class HomeViewController: BaseViewController, UICollectionViewDelegate, UICollec
             ImageSource(image: UIImage(named: "car-14")!)
         ])
         
-        imgSlideShow.pageIndicatorPosition = PageIndicatorPosition(horizontal: .center, vertical: .customBottom(padding: 20))
+        imgSlideShow.pageIndicatorPosition = PageIndicatorPosition(horizontal: .center, vertical: .customBottom(padding: 30))
         imgSlideShow.slideshowInterval = 2
         imgSlideShow.contentScaleMode = .scaleAspectFill
         
-        let maskPathContainer = UIBezierPath(roundedRect: imgSlideShow.bounds,
-                                             byRoundingCorners: [.bottomLeft, .bottomRight],
-                    cornerRadii: CGSize(width: 30.0, height: 30.0))
+//        print(imgSlideShow.bounds)
+//        print(imgSlideShow.frame)
+//        print(view.bounds)
+//        print(view.frame)
+        
+        let radi: CGFloat = 30
+        let maskPathContainer = UIBezierPath()
+        maskPathContainer.move(to: CGPoint(x: 0, y: 0))
+        maskPathContainer.addLine(to: CGPoint(x: 0, y: imgSlideShow.frame.height-2*radi))
+        maskPathContainer.addArc(withCenter: CGPoint(x: radi, y: imgSlideShow.frame.height-2*radi), radius: radi, startAngle: .pi, endAngle: .pi/2, clockwise: false)
+        maskPathContainer.addLine(to: CGPoint(x: (view.frame.width - radi), y: imgSlideShow.frame.height-radi))
+        maskPathContainer.addArc(withCenter: CGPoint(x: (view.frame.width - radi), y: (imgSlideShow.frame.height)), radius: radi, startAngle: .pi*3/2, endAngle: 0, clockwise: true)
+        maskPathContainer.addLine(to: CGPoint(x: (view.frame.width), y: 0))
+        maskPathContainer.close()
 
         let shapeContainer = CAShapeLayer()
         shapeContainer.path = maskPathContainer.cgPath
         imgSlideShow.layer.mask = shapeContainer
-//        let maskPath = UIBezierPath(roundedRect: lblTrending.bounds,
-//                    byRoundingCorners: [.bottomLeft],
-//                    cornerRadii: CGSize(width: 30.0, height: 30.0))
-//
-//        let shape = CAShapeLayer()
-//        shape.path = maskPath.cgPath
-//        lblTrending.layer.mask = shape
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         trendingCollectionView.reloadData()
-//        self.tabBarController?.tabBar.isHidden = false
+        
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseInOut, animations: {
+//            self.navigationItem.rightBarButtonItem.
+//            self.tabBarItem.
+        }, completion: nil)
+        self.imgSlideShow.frame.origin.y -= 300
+        UIView.animate(withDuration: 0.7, delay: 0.3, options: .curveEaseInOut, animations: {
+//            self.imgSlideShow.center = self.view.center
+            self.imgSlideShow.frame.origin.y += 300
+        }, completion: nil)
+        self.stackTrending.alpha = 0
+        self.stackTrending.frame.origin.y -= 50
+        UIView.animate(withDuration: 0.5, delay: 1, options: .curveEaseOut, animations: {
+            self.stackTrending.frame.origin.y += 50
+            self.stackTrending.alpha = 1
+        }, completion: nil)
+        
+        viewItems.alpha = 0
+//        self.newVehiclesCategoryItem.center = self.viewItems.center
+        self.newVehiclesCategoryItem.alpha = 0
+        
+//        self.preOwnedVehiclesCategoryItem.center = self.viewItems.center
+        self.preOwnedVehiclesCategoryItem.alpha = 0
+        
+//        self.readyToShipCategoryItem.center = self.viewItems.center
+        self.readyToShipCategoryItem.alpha = 0
+        
+//        self.govPermitsCategoryItem.center = self.viewItems.center
+        self.govPermitsCategoryItem.alpha = 0
+        UIView.animate(withDuration: 0.2, delay: 1.25, options: .curveLinear, animations: {
+            self.viewItems.alpha = 1
+        }, completion: nil)
+        
+        self.newVehiclesCategoryItem.center.x += self.view.frame.width/4
+        self.newVehiclesCategoryItem.center.y += self.view.frame.height/10
+        self.newVehiclesCategoryItem.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        self.newVehiclesCategoryItem.isUserInteractionEnabled = false
+        
+        self.preOwnedVehiclesCategoryItem.center.x -= self.view.frame.width/4
+        self.preOwnedVehiclesCategoryItem.center.y += self.view.frame.height/10
+        self.preOwnedVehiclesCategoryItem.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        self.preOwnedVehiclesCategoryItem.isUserInteractionEnabled = false
+        
+        self.readyToShipCategoryItem.center.x += self.view.frame.width/4
+        self.readyToShipCategoryItem.center.y -= self.view.frame.height/10
+        self.readyToShipCategoryItem.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        self.readyToShipCategoryItem.isUserInteractionEnabled = false
+        
+        self.govPermitsCategoryItem.center.x -= self.view.frame.width/4
+        self.govPermitsCategoryItem.center.y -= self.view.frame.height/10
+        self.govPermitsCategoryItem.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        self.govPermitsCategoryItem.isUserInteractionEnabled = false
+
+        UIView.animate(withDuration: 0.7, delay: 1.4, options: .curveEaseInOut, animations: {
+            self.newVehiclesCategoryItem.center.x -= self.view.frame.width/4
+            self.newVehiclesCategoryItem.center.y -= self.view.frame.height/10
+            self.newVehiclesCategoryItem.alpha = 1
+            self.newVehiclesCategoryItem.transform = CGAffineTransform(scaleX: 1, y: 1)
+            self.newVehiclesCategoryItem.isUserInteractionEnabled = true
+            
+            self.preOwnedVehiclesCategoryItem.center.x += self.view.frame.width/4
+            self.preOwnedVehiclesCategoryItem.center.y -= self.view.frame.height/10
+            self.preOwnedVehiclesCategoryItem.alpha = 1
+            self.preOwnedVehiclesCategoryItem.transform = CGAffineTransform(scaleX: 1, y: 1)
+            self.preOwnedVehiclesCategoryItem.isUserInteractionEnabled = true
+            
+            self.readyToShipCategoryItem.center.x -= self.view.frame.width/4
+            self.readyToShipCategoryItem.center.y += self.view.frame.height/10
+            self.readyToShipCategoryItem.alpha = 1
+            self.readyToShipCategoryItem.transform = CGAffineTransform(scaleX: 1, y: 1)
+            self.readyToShipCategoryItem.isUserInteractionEnabled = true
+            
+            self.govPermitsCategoryItem.center.x += self.view.frame.width/4
+            self.govPermitsCategoryItem.center.y += self.view.frame.height/10
+            self.govPermitsCategoryItem.alpha = 1
+            self.govPermitsCategoryItem.transform = CGAffineTransform(scaleX: 1, y: 1)
+            self.govPermitsCategoryItem.isUserInteractionEnabled = true
+        }, completion: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -153,5 +243,18 @@ class HomeViewController: BaseViewController, UICollectionViewDelegate, UICollec
 
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         print("deselect \(indexPath.row)")
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVc = segue.destination as! VehicleCategoryViewController
+        if (segue.identifier == "newVehiclesSegue") {
+            destinationVc.setItemId(id: 0)
+        } else if (segue.identifier == "preOwnedVehiclesSegue") {
+            destinationVc.setItemId(id: 1)
+        } else if (segue.identifier == "readyToShipSegue") {
+            destinationVc.setItemId(id: 2)
+        } else {
+            destinationVc.setItemId(id: 3)
+        }
     }
 }

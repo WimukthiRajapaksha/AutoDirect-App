@@ -12,13 +12,12 @@ import SideMenuSwift
 class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.delegate = self
         navigationController?.setNavigationBarHidden(true, animated: false)
         
         self.tabBar.layer.borderWidth = 1
         self.tabBar.layer.borderColor = UIColor(rgb: 0x353b4a).cgColor
-        
-  //      UITabBar.appearance().shadowImage = UIImage.colorForNavBar(color: .red)
-//        let font = UIFont(name: "SF Compact Text", size: 11).
         
         var descriptor = UIFontDescriptor(name: "SFCompactText", size: 11)
         descriptor = descriptor.addingAttributes([UIFontDescriptor.AttributeName.traits : [UIFontDescriptor.TraitKey.weight : UIFont.Weight.light]])

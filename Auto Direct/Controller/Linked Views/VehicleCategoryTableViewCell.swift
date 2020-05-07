@@ -1,5 +1,5 @@
 //
-//  NewVehiclesTableViewCell.swift
+//  VehicleCategoryTableViewCell.swift
 //  Auto Direct
 //
 //  Created by User on 4/14/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewVehiclesTableViewCell: UITableViewCell {
+class VehicleCategoryTableViewCell: UITableViewCell {
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var lblBrandName: UILabel!
     @IBOutlet weak var lblBrandDetail: UILabel!

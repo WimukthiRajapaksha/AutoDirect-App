@@ -1,5 +1,5 @@
 //
-//  NewVehiclesCollectionViewCell.swift
+//  VehicleCategoryCollectionViewCell.swift
 //  Auto Direct
 //
 //  Created by User on 4/18/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewVehiclesCollectionViewCell: UICollectionViewCell {
+class VehicleCategoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var lblItemName: UILabel!
     

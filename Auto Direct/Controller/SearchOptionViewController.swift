@@ -124,16 +124,29 @@ class SearchOptionViewController: BaseViewController, UICollectionViewDelegate, 
     
 //    colle
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        if (collectionView.accessibilityIdentifier == "conditionCollection") {
-////            return CGSize(width: 30, height: collectionView.bounds.size.height)
-//            return CGSize(width: 30, height: 20)
-//        } else if (collectionView.accessibilityIdentifier == "modelCollection") {
-//            return CGSize(width: 50, height: 20)
-//        } else {
-//            return CGSize(width: 100, height: collectionView.bounds.size.height)
-//        }
-//    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if (collectionView.accessibilityIdentifier == "conditionCollection") {
+            if indexPath.row == 1 {
+                return CGSize(width: collectionView.bounds.width/2, height: 20)
+            } else {
+                return CGSize(width: collectionView.bounds.width/2.5, height: 20)
+            }
+            
+        } else if (collectionView.accessibilityIdentifier == "modelCollection") {
+            return CGSize(width: 60, height: 30)
+        } else {
+            return CGSize(width: 100, height: collectionView.bounds.size.height)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if (collectionView.accessibilityIdentifier == "modelCollection") {
+
+            let cell = collectionModel.dequeueReusableCell(withReuseIdentifier: "SearchOptionModelCollectionViewCell", for: indexPath) as! SearchOptionModelCollectionViewCell
+            cell.btnRadio.isSelected = true
+//            collectionModel.reloadData()
+        }
+    }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         if (collectionView.accessibilityIdentifier == "makeCollection") {
@@ -148,10 +161,16 @@ class SearchOptionViewController: BaseViewController, UICollectionViewDelegate, 
     }
     
     func rangeSeekSlider(_ slider: RangeSeekSlider, stringForMaxValue maxValue: CGFloat) -> String? {
-        return "Rs." + String(format: "%.2f", maxValue)
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        let formattedNumber = numberFormatter.string(from: NSNumber(value: Float(maxValue)))
+        return "Rs.\(formattedNumber!).00"
     }
     
     func rangeSeekSlider(_ slider: RangeSeekSlider, stringForMinValue minValue: CGFloat) -> String? {
-        return "Rs."  + String(format: "%.2f", minValue)
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        let formattedNumber = numberFormatter.string(from: NSNumber(value: Float(minValue)))
+        return "Rs.\(formattedNumber!).00"
     }
 }

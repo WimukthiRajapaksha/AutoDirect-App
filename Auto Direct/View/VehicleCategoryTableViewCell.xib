@@ -22,58 +22,58 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" rowHeight="792" id="KGk-i7-Jjw" customClass="NewVehiclesTableViewCell" customModule="Auto_Direct" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="361" height="792"/>
+        <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" rowHeight="611" id="KGk-i7-Jjw" customClass="VehicleCategoryTableViewCell" customModule="Auto_Direct" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="361" height="611"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="361" height="792"/>
+                <rect key="frame" x="0.0" y="0.0" width="361" height="611"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="hGc-YR-NRF">
-                        <rect key="frame" x="20" y="11" width="321" height="770"/>
+                        <rect key="frame" x="20" y="11" width="321" height="569"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ssT-HV-bY7">
-                                <rect key="frame" x="0.0" y="0.0" width="321" height="46"/>
+                                <rect key="frame" x="0.0" y="0.0" width="321" height="43.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Audi Q2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqJ-Us-g5e">
-                                        <rect key="frame" x="0.0" y="0.0" width="321" height="24.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="321" height="21.5"/>
                                         <fontDescription key="fontDescription" name="SFCompactText-Medium" family="SF Compact Text" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sport 30 TDI 116 PS S tronic Automatic" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pgb-KO-1bN">
-                                        <rect key="frame" x="0.0" y="29.5" width="321" height="16.5"/>
+                                        <rect key="frame" x="0.0" y="26.5" width="321" height="17"/>
                                         <fontDescription key="fontDescription" name="SFCompactText-Light" family="SF Compact Text" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hQJ-rs-lxC">
-                                <rect key="frame" x="0.0" y="66" width="321" height="414"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="car-10" translatesAutoresizingMaskIntoConstraints="NO" id="AgV-rM-AUj">
-                                        <rect key="frame" x="11" y="0.0" width="299" height="414"/>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="car-10" translatesAutoresizingMaskIntoConstraints="NO" id="AgV-rM-AUj">
+                                <rect key="frame" x="0.0" y="53.5" width="321" height="313"/>
+                                <color key="backgroundColor" red="0.14117647058823529" green="0.15686274509803921" blue="0.20392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="AgV-rM-AUj" firstAttribute="height" secondItem="hQJ-rs-lxC" secondAttribute="height" id="1nD-kx-mpG"/>
-                                    <constraint firstItem="AgV-rM-AUj" firstAttribute="centerY" secondItem="hQJ-rs-lxC" secondAttribute="centerY" id="N3a-QB-b8k"/>
-                                    <constraint firstItem="AgV-rM-AUj" firstAttribute="centerX" secondItem="hQJ-rs-lxC" secondAttribute="centerX" id="NM2-y1-IY5"/>
+                                    <constraint firstAttribute="height" constant="313" id="JGv-Qx-GEb"/>
+                                </constraints>
+                            </imageView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hQJ-rs-lxC">
+                                <rect key="frame" x="0.0" y="63.5" width="321" height="313"/>
+                                <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="313" id="x80-Dn-9UX"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Tx1-Ba-6n7">
-                                <rect key="frame" x="0.0" y="500" width="321" height="47"/>
+                                <rect key="frame" x="0.0" y="376.5" width="321" height="48.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MONTHLY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k5q-P2-a42">
-                                        <rect key="frame" x="0.0" y="0.0" width="321" height="14"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="321" height="14.5"/>
                                         <fontDescription key="fontDescription" name="SFCompactText-Regular" family="SF Compact Text" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LKR 52,300" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XZo-MF-Abi">
-                                        <rect key="frame" x="0.0" y="19" width="321" height="28"/>
+                                        <rect key="frame" x="0.0" y="19.5" width="321" height="29"/>
                                         <fontDescription key="fontDescription" name="SFCompactText-Bold" family="SF Compact Text" pointSize="24"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -81,7 +81,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="4CP-Fq-5d8">
-                                <rect key="frame" x="0.0" y="670" width="321" height="100"/>
+                                <rect key="frame" x="0.0" y="469" width="321" height="100"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="69g-al-9L5" customClass="CarItemFeature" customModule="Auto_Direct" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="48" height="100"/>
@@ -122,6 +122,7 @@
                             </stackView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="AgV-rM-AUj" firstAttribute="leading" secondItem="hGc-YR-NRF" secondAttribute="leadingMargin" id="3R5-Xj-4nD"/>
                             <constraint firstItem="4CP-Fq-5d8" firstAttribute="leading" secondItem="hGc-YR-NRF" secondAttribute="leadingMargin" id="3sF-5e-D9G"/>
                             <constraint firstItem="4CP-Fq-5d8" firstAttribute="bottom" secondItem="hGc-YR-NRF" secondAttribute="bottomMargin" id="5MK-gu-vEU"/>
                             <constraint firstItem="Tx1-Ba-6n7" firstAttribute="trailing" secondItem="hGc-YR-NRF" secondAttribute="trailingMargin" id="8GK-ah-6d2"/>
@@ -129,8 +130,10 @@
                             <constraint firstItem="4CP-Fq-5d8" firstAttribute="trailing" secondItem="hGc-YR-NRF" secondAttribute="trailingMargin" id="9mw-Zm-ZHn"/>
                             <constraint firstItem="ssT-HV-bY7" firstAttribute="trailing" secondItem="hGc-YR-NRF" secondAttribute="trailingMargin" id="ENw-vG-xxz"/>
                             <constraint firstItem="4CP-Fq-5d8" firstAttribute="top" secondItem="Tx1-Ba-6n7" secondAttribute="bottom" id="IaI-KR-w62"/>
+                            <constraint firstItem="Tx1-Ba-6n7" firstAttribute="top" secondItem="AgV-rM-AUj" secondAttribute="bottom" constant="10" id="LhN-Db-iuP"/>
+                            <constraint firstItem="AgV-rM-AUj" firstAttribute="top" secondItem="ssT-HV-bY7" secondAttribute="bottom" constant="10" id="N0m-Ei-Rtr"/>
+                            <constraint firstItem="AgV-rM-AUj" firstAttribute="trailing" secondItem="hGc-YR-NRF" secondAttribute="trailingMargin" id="QMy-Bs-QKc"/>
                             <constraint firstItem="hQJ-rs-lxC" firstAttribute="leading" secondItem="hGc-YR-NRF" secondAttribute="leadingMargin" id="RfO-q8-ngg"/>
-                            <constraint firstItem="hQJ-rs-lxC" firstAttribute="top" secondItem="hGc-YR-NRF" secondAttribute="top" constant="66" id="UXp-ZO-WVA"/>
                             <constraint firstItem="4CP-Fq-5d8" firstAttribute="trailing" secondItem="hGc-YR-NRF" secondAttribute="trailingMargin" id="aZD-ti-xCy"/>
                             <constraint firstItem="hQJ-rs-lxC" firstAttribute="trailing" secondItem="hGc-YR-NRF" secondAttribute="trailingMargin" id="bKt-t6-jVf"/>
                             <constraint firstItem="Tx1-Ba-6n7" firstAttribute="leading" secondItem="hGc-YR-NRF" secondAttribute="leadingMargin" id="o1x-mC-eYX"/>
@@ -144,8 +147,7 @@
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="hGc-YR-NRF" secondAttribute="trailing" id="0ox-xK-Ndt"/>
                     <constraint firstItem="hGc-YR-NRF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="1r6-RF-eSN"/>
-                    <constraint firstItem="hGc-YR-NRF" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="2n0-hC-z1T"/>
-                    <constraint firstItem="hGc-YR-NRF" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="JMV-Le-DRE"/>
+                    <constraint firstItem="hGc-YR-NRF" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" constant="-20" id="JMV-Le-DRE"/>
                     <constraint firstItem="hGc-YR-NRF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="SBK-CI-SEt"/>
                     <constraint firstItem="hGc-YR-NRF" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="kDE-hN-cKg"/>
                     <constraint firstItem="hGc-YR-NRF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="kxA-0v-yh7"/>
@@ -165,7 +167,7 @@
                 <outlet property="viewFeature4" destination="mbA-so-AW9" id="Zbv-dY-abr"/>
                 <outlet property="viewFeature5" destination="IgC-NE-FXI" id="bDf-nA-hag"/>
             </connections>
-            <point key="canvasLocation" x="121.0144927536232" y="477.45535714285711"/>
+            <point key="canvasLocation" x="121.0144927536232" y="618.41517857142856"/>
         </tableViewCell>
     </objects>
     <resources>

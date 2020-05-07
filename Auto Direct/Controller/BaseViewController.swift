@@ -40,6 +40,8 @@ class BaseViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
+//        navigationItem.setRightBarButtonItems([setCallButton()], animated: true)
+//        navigationItem.setLeftBarButtonItems([setLeftRevealSidebar()], animated: true)
     }
     
     func setLeftRevealSidebar() -> UIBarButtonItem {
@@ -96,7 +98,6 @@ class BaseViewController: UIViewController {
         } else {
             tabBarController?.selectedIndex = 0
         }
-        
     }
     
 }

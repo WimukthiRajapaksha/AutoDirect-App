@@ -17,9 +17,15 @@ class SearchOptionModelCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    override var isSelected: Bool {
-        didSet {
-            self.btnRadio.isSelected = isSelected ? true : false
-        }
-    }
+//    override var isSelected: Bool {
+//        didSet {
+//            self.btnRadio.isSelected = isSelected ? true : false
+//        }
+//    }
+    
+//    override var isSelected: Bool {
+//        didSet {
+//            self.btnRadio.isSelected = isSelected ? true : false
+//        }
+//    }
 }

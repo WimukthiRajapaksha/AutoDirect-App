@@ -9,10 +9,13 @@
 import UIKit
 
 class FirstReserveTableViewCell: UITableViewCell {
-
+    @IBOutlet weak var imgVehicle: UIImageView!
+    @IBOutlet weak var lblModel: UILabel!
+    @IBOutlet weak var lblDetail: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+//        imgVehicle.layer.masksToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

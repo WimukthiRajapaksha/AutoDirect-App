@@ -44,4 +44,10 @@ extension UIView {
         gradient.colors = colors
         self.layer.insertSublayer(gradient, at: 0)
     }
+    
+    func rotate(angle: CGFloat) {
+        let radians = angle / 180.0 * CGFloat.pi
+        let rotation = self.transform.rotated(by: radians)
+        self.transform = rotation
+    }
 }

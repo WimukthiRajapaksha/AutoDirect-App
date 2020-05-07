@@ -9,23 +9,30 @@
 import UIKit
 
 class InventoryViewController: BaseViewController {
+    private let inventorySegue: String
+    
+    required init?(coder aDecoder: NSCoder) {
+        inventorySegue = "inventorySegue"
+        super.init(coder: aDecoder)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        self.performSegue(withIdentifier: inventorySegue, sender: self)
     }
-    */
-
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == inventorySegue) {
+            let vehicleCategory = segue.destination as! VehicleCategoryViewController
+            vehicleCategory.setItemId(id: 4)
+        }
+    }
 }

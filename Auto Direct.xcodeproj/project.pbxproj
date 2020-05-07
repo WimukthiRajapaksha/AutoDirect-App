@@ -34,8 +34,8 @@
 		CE426C9924521A6200B1606B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE426C9824521A6200B1606B /* BaseViewController.swift */; };
 		CE59DD30244B12D50045A949 /* TrendingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE59DD2E244B12D50045A949 /* TrendingCollectionViewCell.swift */; };
 		CE59DD31244B12D50045A949 /* TrendingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE59DD2F244B12D50045A949 /* TrendingCollectionViewCell.xib */; };
-		CE59DD34244B20CB0045A949 /* NewVehiclesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE59DD32244B20CB0045A949 /* NewVehiclesCollectionViewCell.swift */; };
-		CE59DD35244B20CB0045A949 /* NewVehiclesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE59DD33244B20CB0045A949 /* NewVehiclesCollectionViewCell.xib */; };
+		CE59DD34244B20CB0045A949 /* VehicleCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE59DD32244B20CB0045A949 /* VehicleCategoryCollectionViewCell.swift */; };
+		CE59DD35244B20CB0045A949 /* VehicleCategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE59DD33244B20CB0045A949 /* VehicleCategoryCollectionViewCell.xib */; };
 		CE59DD63244C122C0045A949 /* FirstModelDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE59DD62244C122C0045A949 /* FirstModelDetailsTableViewCell.swift */; };
 		CE59DD65244C125D0045A949 /* SecondModelDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE59DD64244C125D0045A949 /* SecondModelDetailsTableViewCell.swift */; };
 		CE59DD67244C126D0045A949 /* ThirdModelDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE59DD66244C126D0045A949 /* ThirdModelDetailsTableViewCell.swift */; };
@@ -62,13 +62,11 @@
 		CE6DC18824431AA900F11973 /* SFCompactText-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = CE6DC18724431A9000F11973 /* SFCompactText-LightItalic.otf */; };
 		CE6DC198244435BA00F11973 /* HomeCategoryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DC197244435BA00F11973 /* HomeCategoryItemView.swift */; };
 		CE6DC19A244435D500F11973 /* HomeCategoryItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE6DC199244435D500F11973 /* HomeCategoryItemView.xib */; };
-		CE6DC1A024444A7400F11973 /* NewVehiclesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DC19F24444A7400F11973 /* NewVehiclesViewController.swift */; };
-		CE6DC1A224459F2600F11973 /* CarDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE6DC1A124459F2600F11973 /* CarDetailsView.xib */; };
-		CE6DC1A424459F4500F11973 /* CarDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DC1A324459F4500F11973 /* CarDetailsView.swift */; };
+		CE6DC1A024444A7400F11973 /* VehicleCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DC19F24444A7400F11973 /* VehicleCategoryViewController.swift */; };
 		CE6DC1A62445A14000F11973 /* CarItemFeature.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE6DC1A52445A14000F11973 /* CarItemFeature.xib */; };
 		CE6DC1A82445A14F00F11973 /* CarItemFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DC1A72445A14F00F11973 /* CarItemFeature.swift */; };
-		CE6DC1AB24462AB000F11973 /* NewVehiclesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DC1A924462AB000F11973 /* NewVehiclesTableViewCell.swift */; };
-		CE6DC1AC24462AB000F11973 /* NewVehiclesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE6DC1AA24462AB000F11973 /* NewVehiclesTableViewCell.xib */; };
+		CE6DC1AB24462AB000F11973 /* VehicleCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DC1A924462AB000F11973 /* VehicleCategoryTableViewCell.swift */; };
+		CE6DC1AC24462AB000F11973 /* VehicleCategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE6DC1AA24462AB000F11973 /* VehicleCategoryTableViewCell.xib */; };
 		CE6DC1AE2446359400F11973 /* ModelDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DC1AD2446359400F11973 /* ModelDetailsViewController.swift */; };
 		CE6DC1B0244635CC00F11973 /* ReserveVehicleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DC1AF244635CC00F11973 /* ReserveVehicleViewController.swift */; };
 		CE6DC1B324463B6F00F11973 /* SidebarItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DC1B224463B6F00F11973 /* SidebarItemModel.swift */; };
@@ -83,6 +81,7 @@
 		CEAD465D24573F48004CDA7D /* SearchOptionMakeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD465C24573F48004CDA7D /* SearchOptionMakeCollectionViewCell.swift */; };
 		CEAD465F24573F5C004CDA7D /* SearchOptionModelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD465E24573F5C004CDA7D /* SearchOptionModelCollectionViewCell.swift */; };
 		CEAD466124573F6C004CDA7D /* SearchOptionYearCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD466024573F6C004CDA7D /* SearchOptionYearCollectionViewCell.swift */; };
+		CED81E8B24645C680050F61E /* PaymentStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED81E8A24645C680050F61E /* PaymentStatusViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,8 +116,8 @@
 		CE426C9824521A6200B1606B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		CE59DD2E244B12D50045A949 /* TrendingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE59DD2F244B12D50045A949 /* TrendingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrendingCollectionViewCell.xib; sourceTree = "<group>"; };
-		CE59DD32244B20CB0045A949 /* NewVehiclesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVehiclesCollectionViewCell.swift; sourceTree = "<group>"; };
-		CE59DD33244B20CB0045A949 /* NewVehiclesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewVehiclesCollectionViewCell.xib; sourceTree = "<group>"; };
+		CE59DD32244B20CB0045A949 /* VehicleCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		CE59DD33244B20CB0045A949 /* VehicleCategoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VehicleCategoryCollectionViewCell.xib; sourceTree = "<group>"; };
 		CE59DD62244C122C0045A949 /* FirstModelDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstModelDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		CE59DD64244C125D0045A949 /* SecondModelDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondModelDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		CE59DD66244C126D0045A949 /* ThirdModelDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdModelDetailsTableViewCell.swift; sourceTree = "<group>"; };
@@ -155,13 +154,11 @@
 		CE6DC19224431B3F00F11973 /* SFCompactText-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactText-Bold.otf"; sourceTree = "<group>"; };
 		CE6DC197244435BA00F11973 /* HomeCategoryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCategoryItemView.swift; sourceTree = "<group>"; };
 		CE6DC199244435D500F11973 /* HomeCategoryItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCategoryItemView.xib; sourceTree = "<group>"; };
-		CE6DC19F24444A7400F11973 /* NewVehiclesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVehiclesViewController.swift; sourceTree = "<group>"; };
-		CE6DC1A124459F2600F11973 /* CarDetailsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarDetailsView.xib; sourceTree = "<group>"; };
-		CE6DC1A324459F4500F11973 /* CarDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDetailsView.swift; sourceTree = "<group>"; };
+		CE6DC19F24444A7400F11973 /* VehicleCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleCategoryViewController.swift; sourceTree = "<group>"; };
 		CE6DC1A52445A14000F11973 /* CarItemFeature.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarItemFeature.xib; sourceTree = "<group>"; };
 		CE6DC1A72445A14F00F11973 /* CarItemFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarItemFeature.swift; sourceTree = "<group>"; };
-		CE6DC1A924462AB000F11973 /* NewVehiclesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVehiclesTableViewCell.swift; sourceTree = "<group>"; };
-		CE6DC1AA24462AB000F11973 /* NewVehiclesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewVehiclesTableViewCell.xib; sourceTree = "<group>"; };
+		CE6DC1A924462AB000F11973 /* VehicleCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleCategoryTableViewCell.swift; sourceTree = "<group>"; };
+		CE6DC1AA24462AB000F11973 /* VehicleCategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VehicleCategoryTableViewCell.xib; sourceTree = "<group>"; };
 		CE6DC1AD2446359400F11973 /* ModelDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDetailsViewController.swift; sourceTree = "<group>"; };
 		CE6DC1AF244635CC00F11973 /* ReserveVehicleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveVehicleViewController.swift; sourceTree = "<group>"; };
 		CE6DC1B224463B6F00F11973 /* SidebarItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarItemModel.swift; sourceTree = "<group>"; };
@@ -176,6 +173,7 @@
 		CEAD465C24573F48004CDA7D /* SearchOptionMakeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOptionMakeCollectionViewCell.swift; sourceTree = "<group>"; };
 		CEAD465E24573F5C004CDA7D /* SearchOptionModelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOptionModelCollectionViewCell.swift; sourceTree = "<group>"; };
 		CEAD466024573F6C004CDA7D /* SearchOptionYearCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOptionYearCollectionViewCell.swift; sourceTree = "<group>"; };
+		CED81E8A24645C680050F61E /* PaymentStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentStatusViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,13 +241,12 @@
 				CE01F7BA243A478600C658F8 /* LaunchScreen.storyboard */,
 				CE01F7CF243A555D00C658F8 /* SidebarItemTableViewCell.xib */,
 				CE6DC199244435D500F11973 /* HomeCategoryItemView.xib */,
-				CE6DC1A124459F2600F11973 /* CarDetailsView.xib */,
 				CE6DC1A52445A14000F11973 /* CarItemFeature.xib */,
-				CE6DC1AA24462AB000F11973 /* NewVehiclesTableViewCell.xib */,
+				CE6DC1AA24462AB000F11973 /* VehicleCategoryTableViewCell.xib */,
 				CE6DC1BD2446DC1900F11973 /* SidebarItemTableViewHeaderCell.xib */,
 				CE6DC1C12446E15400F11973 /* SidebarItemTableViewFooterCell.xib */,
 				CE59DD2F244B12D50045A949 /* TrendingCollectionViewCell.xib */,
-				CE59DD33244B20CB0045A949 /* NewVehiclesCollectionViewCell.xib */,
+				CE59DD33244B20CB0045A949 /* VehicleCategoryCollectionViewCell.xib */,
 				CE59DDB4244CB4DC0045A949 /* ModelFeatureItem.xib */,
 				CE59DE31244EE07A0045A949 /* PersonalInformationTableViewCell.xib */,
 				CE59DE35244EE1BB0045A949 /* PaymentDetailsTableViewCell.xib */,
@@ -270,7 +267,7 @@
 				CE01F7D2243A579B00C658F8 /* TabBarViewController.swift */,
 				CE01F7FE243B72F800C658F8 /* QRPayViewController.swift */,
 				CE01F800243B730600C658F8 /* UpdatesViewController.swift */,
-				CE6DC19F24444A7400F11973 /* NewVehiclesViewController.swift */,
+				CE6DC19F24444A7400F11973 /* VehicleCategoryViewController.swift */,
 				CE6DC1AD2446359400F11973 /* ModelDetailsViewController.swift */,
 				CE6DC1AF244635CC00F11973 /* ReserveVehicleViewController.swift */,
 				CE01F7FC243B72E800C658F8 /* SearchViewController.swift */,
@@ -281,6 +278,7 @@
 				CE2E61B724584B0B00052473 /* PcpViewController.swift */,
 				CE6687ED245A21F400E3E5F1 /* ConfirmPaymentViewController.swift */,
 				CE668817245B286900E3E5F1 /* SuccessViewController.swift */,
+				CED81E8A24645C680050F61E /* PaymentStatusViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -304,13 +302,12 @@
 			children = (
 				CE01F7CE243A555D00C658F8 /* SidebarItemTableViewCell.swift */,
 				CE6DC197244435BA00F11973 /* HomeCategoryItemView.swift */,
-				CE6DC1A924462AB000F11973 /* NewVehiclesTableViewCell.swift */,
+				CE6DC1A924462AB000F11973 /* VehicleCategoryTableViewCell.swift */,
 				CE6DC1A72445A14F00F11973 /* CarItemFeature.swift */,
-				CE6DC1A324459F4500F11973 /* CarDetailsView.swift */,
 				CE6DC1BC2446DC1900F11973 /* SidebarItemTableViewHeaderCell.swift */,
 				CE6DC1C02446E15400F11973 /* SidebarItemTableViewFooterCell.swift */,
 				CE59DD2E244B12D50045A949 /* TrendingCollectionViewCell.swift */,
-				CE59DD32244B20CB0045A949 /* NewVehiclesCollectionViewCell.swift */,
+				CE59DD32244B20CB0045A949 /* VehicleCategoryCollectionViewCell.swift */,
 				CE59DDEE244E1ABB0045A949 /* Model */,
 				CE59DDEF244E1AF10045A949 /* Reserve */,
 				CE2551B92455D4C1006E2918 /* Search */,
@@ -460,21 +457,20 @@
 			files = (
 				CE59DE33244EE07A0045A949 /* PersonalInformationTableViewCell.xib in Resources */,
 				CE01F7BC243A478600C658F8 /* LaunchScreen.storyboard in Resources */,
-				CE6DC1A224459F2600F11973 /* CarDetailsView.xib in Resources */,
 				CE6DC1BF2446DC1900F11973 /* SidebarItemTableViewHeaderCell.xib in Resources */,
 				CE6DC1A62445A14000F11973 /* CarItemFeature.xib in Resources */,
 				CE6DC18824431AA900F11973 /* SFCompactText-LightItalic.otf in Resources */,
 				CE59DDB5244CB4DC0045A949 /* ModelFeatureItem.xib in Resources */,
 				CE6687EC245A02EB00E3E5F1 /* BottomView.xib in Resources */,
 				CE59DE37244EE1BB0045A949 /* PaymentDetailsTableViewCell.xib in Resources */,
-				CE59DD35244B20CB0045A949 /* NewVehiclesCollectionViewCell.xib in Resources */,
+				CE59DD35244B20CB0045A949 /* VehicleCategoryCollectionViewCell.xib in Resources */,
 				CE59DD31244B12D50045A949 /* TrendingCollectionViewCell.xib in Resources */,
 				CE6DC19A244435D500F11973 /* HomeCategoryItemView.xib in Resources */,
 				CE01F7B9243A478600C658F8 /* Assets.xcassets in Resources */,
 				CE01F7D1243A555D00C658F8 /* SidebarItemTableViewCell.xib in Resources */,
 				CE01F7B7243A477F00C658F8 /* Main.storyboard in Resources */,
 				CE6DC1C32446E15400F11973 /* SidebarItemTableViewFooterCell.xib in Resources */,
-				CE6DC1AC24462AB000F11973 /* NewVehiclesTableViewCell.xib in Resources */,
+				CE6DC1AC24462AB000F11973 /* VehicleCategoryTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,6 +526,7 @@
 				CE59DDF1244E1B1A0045A949 /* FirstReserveTableViewCell.swift in Sources */,
 				CE0E18442458888A00D7AB61 /* UIColor.swift in Sources */,
 				CE59DE36244EE1BB0045A949 /* PaymentDetailsTableViewCell.swift in Sources */,
+				CED81E8B24645C680050F61E /* PaymentStatusViewController.swift in Sources */,
 				CE6DC1B7244641F900F11973 /* SidebarSubItemModel.swift in Sources */,
 				CE6DC1A82445A14F00F11973 /* CarItemFeature.swift in Sources */,
 				CE59DDB7244CB4FA0045A949 /* ModelFeatureItem.swift in Sources */,
@@ -538,13 +535,12 @@
 				CEAD466124573F6C004CDA7D /* SearchOptionYearCollectionViewCell.swift in Sources */,
 				CE59DDF5244E1B420045A949 /* ThirdReserveTableViewCell.swift in Sources */,
 				CE0E184624588D9A00D7AB61 /* UIImage.swift in Sources */,
-				CE6DC1A424459F4500F11973 /* CarDetailsView.swift in Sources */,
 				CE2551B82455D4BB006E2918 /* SearchCollectionViewCell.swift in Sources */,
 				CE59DD67244C126D0045A949 /* ThirdModelDetailsTableViewCell.swift in Sources */,
 				CE6DC1BE2446DC1900F11973 /* SidebarItemTableViewHeaderCell.swift in Sources */,
 				CEAD465F24573F5C004CDA7D /* SearchOptionModelCollectionViewCell.swift in Sources */,
 				CE2E61B424583E3C00052473 /* ReadyToShipViewController.swift in Sources */,
-				CE6DC1A024444A7400F11973 /* NewVehiclesViewController.swift in Sources */,
+				CE6DC1A024444A7400F11973 /* VehicleCategoryViewController.swift in Sources */,
 				CE59DD6D244C12A30045A949 /* SixthModelDetailsTableViewCell.swift in Sources */,
 				CE59DE2F244EC95B0045A949 /* UIView.swift in Sources */,
 				CE59DD69244C127D0045A949 /* ForthModelDetailsTableViewCell.swift in Sources */,
@@ -560,14 +556,14 @@
 				CE6DC1AE2446359400F11973 /* ModelDetailsViewController.swift in Sources */,
 				CE01F7FD243B72E800C658F8 /* SearchViewController.swift in Sources */,
 				CE59DD63244C122C0045A949 /* FirstModelDetailsTableViewCell.swift in Sources */,
-				CE6DC1AB24462AB000F11973 /* NewVehiclesTableViewCell.swift in Sources */,
+				CE6DC1AB24462AB000F11973 /* VehicleCategoryTableViewCell.swift in Sources */,
 				CE6DC1B524463BB800F11973 /* SidebarItemsList.swift in Sources */,
 				CE01F7B2243A477F00C658F8 /* SceneDelegate.swift in Sources */,
 				CE2E61B824584B0B00052473 /* PcpViewController.swift in Sources */,
 				CE6687EE245A21F400E3E5F1 /* ConfirmPaymentViewController.swift in Sources */,
 				CE2E61B624583E6D00052473 /* GovPermitsViewController.swift in Sources */,
 				CE6687EA245A02D300E3E5F1 /* BottomView.swift in Sources */,
-				CE59DD34244B20CB0045A949 /* NewVehiclesCollectionViewCell.swift in Sources */,
+				CE59DD34244B20CB0045A949 /* VehicleCategoryCollectionViewCell.swift in Sources */,
 				CE6DC198244435BA00F11973 /* HomeCategoryItemView.swift in Sources */,
 				CEAD465B24573F2C004CDA7D /* SearchOptionConditionCollectionViewCell.swift in Sources */,
 				CEAD46592456C5A3004CDA7D /* SearchOptionViewController.swift in Sources */,

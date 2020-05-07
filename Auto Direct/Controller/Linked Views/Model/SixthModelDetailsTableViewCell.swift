@@ -9,11 +9,13 @@
 import UIKit
 
 class SixthModelDetailsTableViewCell: UITableViewCell {
-    @IBOutlet var viewMore: UIView!
+    @IBOutlet weak var btnMore: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        viewMore.layer.cornerRadius = 22
+        btnMore.layer.borderWidth = 1
+        btnMore.layer.borderColor = UIColor(rgb: 0x464B57).cgColor
+        btnMore.layer.cornerRadius = 25
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

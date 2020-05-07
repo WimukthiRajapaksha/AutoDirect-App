@@ -19,8 +19,8 @@ class SearchOptionYearCollectionViewCell: UICollectionViewCell {
     
     override var isSelected: Bool {
         didSet {
-            containerView.backgroundColor = isSelected ? .green : .clear
-            lblYear.textColor = isSelected ? .black : .white
+            containerView.backgroundColor = isSelected ? UIColor(rgb: 0x63b946) : .clear
+            lblYear.textColor = isSelected ? .white : .white
         }
     }
 }
