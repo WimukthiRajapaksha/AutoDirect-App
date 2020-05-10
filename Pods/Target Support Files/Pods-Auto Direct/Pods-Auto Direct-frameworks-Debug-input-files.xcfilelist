@@ -1,0 +1,10 @@
+${PODS_ROOT}/Target Support Files/Pods-Auto Direct/Pods-Auto Direct-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/DLRadioButton/DLRadioButton.framework
+${BUILT_PRODUCTS_DIR}/ImageSlideshow/ImageSlideshow.framework
+${BUILT_PRODUCTS_DIR}/Presentr/Presentr.framework
+${BUILT_PRODUCTS_DIR}/RangeSeekSlider/RangeSeekSlider.framework
+${BUILT_PRODUCTS_DIR}/Shimmer/Shimmer.framework
+${BUILT_PRODUCTS_DIR}/SideMenuSwift/SideMenuSwift.framework
+${BUILT_PRODUCTS_DIR}/SpringIndicator/SpringIndicator.framework
+${BUILT_PRODUCTS_DIR}/StepIndicator/StepIndicator.framework

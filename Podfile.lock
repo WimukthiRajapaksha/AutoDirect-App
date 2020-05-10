@@ -1,0 +1,50 @@
+PODS:
+  - Alamofire (5.0.2)
+  - DLRadioButton (1.4.12)
+  - ImageSlideshow (1.8.3):
+    - ImageSlideshow/Core (= 1.8.3)
+  - ImageSlideshow/Core (1.8.3)
+  - Presentr (1.9)
+  - RangeSeekSlider (1.8.0)
+  - Shimmer (1.0.2)
+  - SideMenuSwift (2.0.5)
+  - SpringIndicator (5.0.0)
+  - StepIndicator (1.0.8)
+
+DEPENDENCIES:
+  - Alamofire
+  - DLRadioButton
+  - ImageSlideshow
+  - Presentr
+  - RangeSeekSlider
+  - Shimmer
+  - SideMenuSwift
+  - SpringIndicator
+  - StepIndicator (~> 1.0.8)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - DLRadioButton
+    - ImageSlideshow
+    - Presentr
+    - RangeSeekSlider
+    - Shimmer
+    - SideMenuSwift
+    - SpringIndicator
+    - StepIndicator
+
+SPEC CHECKSUMS:
+  Alamofire: 3ba7a4db18b4f62c4a1c0e1cb39d7f3d52e10ada
+  DLRadioButton: d7c4e225ed0e8013cef7be61455230c7557ad7c1
+  ImageSlideshow: 4694d7d699a1549582e7cc631fb392d8f91630f3
+  Presentr: 7078d7eb5d1661ebeaae60c9e42a1e534de1b993
+  RangeSeekSlider: 650b11fa1edcb92e1e0ede797669d98622570fb5
+  Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
+  SideMenuSwift: c7d99c270e0fad922a14b81f1dcc7a84c764bcd5
+  SpringIndicator: 111bf862e1415e5ac7b3a43c0cd09633d5715fd6
+  StepIndicator: 748b293f671355b021253f82031ac002f153dc81
+
+PODFILE CHECKSUM: a38fcac93f58635d9abd3e6ecec5e4685ab9e719
+
+COCOAPODS: 1.8.4
