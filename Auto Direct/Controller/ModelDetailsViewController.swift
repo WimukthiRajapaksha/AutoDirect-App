@@ -74,9 +74,26 @@ class ModelDetailsViewController: BaseViewController, UITableViewDelegate, UITab
         }, completion: nil)
     }
     
+    func setShareButton() -> UIBarButtonItem {
+        let button = UIBarButtonItem(image: UIImage(named: "share"), style: .plain, target: self, action: #selector(self.onShareBtn))
+        button.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -30)
+        button.tintColor = .white
+        return button
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 6
     }
+    
+//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return 30.0
+//    }
+//    
+//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        let view = UIView()
+//        view.backgroundColor = .clear
+//        return view
+//    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
@@ -88,6 +105,7 @@ class ModelDetailsViewController: BaseViewController, UITableViewDelegate, UITab
             return cell
         } else if (indexPath.row == 2) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ThirdModelDetailsTableViewCell") as! ThirdModelDetailsTableViewCell
+            cell.whatsappView.layer.cornerRadius = 29.5
             return cell
         } else if (indexPath.row == 3) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ForthModelDetailsTableViewCell") as! ForthModelDetailsTableViewCell
@@ -95,7 +113,8 @@ class ModelDetailsViewController: BaseViewController, UITableViewDelegate, UITab
             self.player = AVPlayer(url: videoURL!)
             self.playerViewController = AVPlayerViewController()
             playerViewController.player = self.player
-            playerViewController.view.frame = cell.contentView.frame
+//            playerViewController.view.frame = CGRect(x: cell.contentView.frame.origin.x, y: cell.contentView.frame.origin.y + 20, width: cell.contentView.frame.width, height: cell.contentView.frame.height)
+            playerViewController.view.frame = cell.viewVideoPlayer.frame
             playerViewController.player?.pause()
             self.playerViewController.delegate = self
             cell.addSubview(playerViewController.view)
@@ -105,8 +124,8 @@ class ModelDetailsViewController: BaseViewController, UITableViewDelegate, UITab
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SixthModelDetailsTableViewCell") as! SixthModelDetailsTableViewCell
-            let gestureMore = UITapGestureRecognizer(target: self, action: #selector(moreDetails(tapGestureRecognizer:)))
-            cell.btnMore.addGestureRecognizer(gestureMore)
+//            let gestureMore = UITapGestureRecognizer(target: self, action: #selector(moreDetails(tapGestureRecognizer:)))
+//            cell.btnMore.addGestureRecognizer(gestureMore)
             return cell
         }
     }
@@ -152,6 +171,17 @@ class ModelDetailsViewController: BaseViewController, UITableViewDelegate, UITab
                 }, completion: nil)
             }
         }
+    }
+    
+    @objc func onShareBtn( sender : UIButton ) {
+//        sender.alpha = sender.alpha == 1.0 ? 0.5 : 1.0
+//        print("clicked")
+        let websiteUrl : NSURL = NSURL(string: "https://autodirect.lk")!
+        let activityViewController : UIActivityViewController = UIActivityViewController(
+            activityItems: [websiteUrl], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.up
+        activityViewController.popoverPresentationController?.sourceRect = CGRect(x: 150, y: 150, width: 0, height: 0)
+        self.present(activityViewController, animated: true, completion: nil)
     }
     
     @objc func moreDetails(tapGestureRecognizer: UITapGestureRecognizer){

@@ -14,10 +14,10 @@ class VehicleCategoryViewController: BaseViewController, UITableViewDelegate, UI
     @IBOutlet var shimming: FBShimmeringView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var vehicleCategoryCollectionView: UICollectionView!
-    @IBOutlet weak var viewSearchDetails: UIView!
-    @IBOutlet weak var viewSearchOption: UIView!
-    @IBOutlet weak var viewNewestFirst: UIView!
-    @IBOutlet weak var lblSearchResultCount: UILabel!
+//    @IBOutlet weak var viewSearchDetails: UIView!
+//    @IBOutlet weak var viewSearchOption: UIView!
+//    @IBOutlet weak var viewNewestFirst: UIView!
+//    @IBOutlet weak var lblSearchResultCount: UILabel!
     
     private let vehicleCategoryTableViewCell: String
     private let vehicleCategoryCollectionViewCell: String
@@ -56,8 +56,8 @@ class VehicleCategoryViewController: BaseViewController, UITableViewDelegate, UI
         view.addSubview(viewIndicator)
         
         shimming.isShimmering = true
-        viewSearchOption.layer.cornerRadius = viewSearchOption.frame.height / 2.0
-        viewNewestFirst.layer.cornerRadius = viewNewestFirst.frame.height / 2.0
+//        viewSearchOption.layer.cornerRadius = viewSearchOption.frame.height / 2.0
+//        viewNewestFirst.layer.cornerRadius = viewNewestFirst.frame.height / 2.0
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -67,11 +67,11 @@ class VehicleCategoryViewController: BaseViewController, UITableViewDelegate, UI
         vehicleCategoryCollectionView.dataSource = self
         vehicleCategoryCollectionView.register(UINib(nibName: vehicleCategoryCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: vehicleCategoryCollectionViewCell)
         
-        viewSearchOption.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.searchOption(_:))))
-        viewSearchOption.isUserInteractionEnabled = true
+//        viewSearchOption.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.searchOption(_:))))
+//        viewSearchOption.isUserInteractionEnabled = true
         
-        viewNewestFirst.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.newestFirst(_:))))
-        viewNewestFirst.isUserInteractionEnabled = true
+//        viewNewestFirst.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.newestFirst(_:))))
+//        viewNewestFirst.isUserInteractionEnabled = true
         navigationItem.leftBarButtonItem = backBarButton()
         
         tableView.gradient(width: UIScreen.main.bounds.width, height: 30, colors: [UIColor(rgb: 0x0b0f0f).cgColor, UIColor(rgb: 0x1b1f2a).cgColor])
@@ -87,6 +87,8 @@ class VehicleCategoryViewController: BaseViewController, UITableViewDelegate, UI
         super.viewWillAppear(animated)
         shownIndexes = []
 
+         print(tabBarController?.selectedIndex)
+        
         if (self.itemId == 0) {
             self.title = "New Vehicles"
         } else if (self.itemId == 1) {
@@ -95,11 +97,6 @@ class VehicleCategoryViewController: BaseViewController, UITableViewDelegate, UI
             self.title = "Ready to Ship"
         } else if (self.itemId == 3) {
             self.title = "GOV Permits"
-        } else if (self.itemId == 4) {
-            navigationItem.leftBarButtonItem = UIBarButtonItem()
-            self.vehicleCategoryCollectionView.isHidden = true
-            self.viewSearchDetails.isHidden = false
-            self.title = "Inventory"
         } else {
             self.title = "Search"
         }
@@ -156,10 +153,10 @@ class VehicleCategoryViewController: BaseViewController, UITableViewDelegate, UI
 //        // It would be nice is isEnabled worked...
 //        sender.alpha = sender.alpha == 1.0 ? 0.5 : 1.0
 //    }
-    
-    @IBAction func onBackTouch(_ sender: Any) {
-        self.navigationController?.popViewController(animated:true)
-    }
+//
+//    @IBAction func onBackTouch(_ sender: Any) {
+//        self.navigationController?.popViewController(animated:true)
+//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10

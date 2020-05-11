@@ -18,6 +18,7 @@ class SidebarItemModel {
 //        itemSubItems = [SidebarSubItemModel(subItemName: subItems.k, subItemDescription: String?)]
         for item in subItems {
             itemSubItems.append(SidebarSubItemModel(subItemName: item.key, subItemDescription: item.value))
+            print(item.value)
         }
         print(itemSubItems)
     }
@@ -27,6 +28,9 @@ class SidebarItemModel {
     }
     
     public func getSubItems() -> [SidebarSubItemModel] {
+        self.itemSubItems.sort { (item1, item2) -> Bool in
+            item1.getSubItemName() < item2.getSubItemName()
+        }
         return self.itemSubItems
     }
 }

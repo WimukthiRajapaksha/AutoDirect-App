@@ -24,8 +24,8 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
         sidebarItemTableViewCell = "SidebarItemTableViewCell"
         sidebarItemTableViewHeaderCell = "SidebarItemTableViewHeaderCell"
         sidebarItemTableViewFooterCell = "SidebarItemTableViewFooterCell"
-        headerSectionHight = 65
-        footerSectionHeight = 10
+        headerSectionHight = 55
+        footerSectionHeight = 1
         sidebarItemsList = SidebarItemsList()
         super.init(coder: aDecoder)
     }
@@ -37,6 +37,10 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.dataSource = self
         tableView.alwaysBounceVertical = false
         tableView.separatorStyle = .none
+        
+//        tableView.estimatedRowHeight = 44
+//        tableView.rowHeight = UITableView.automaticDimension
+        
         tableView.register(UINib(nibName: sidebarItemTableViewCell, bundle: nil), forCellReuseIdentifier: sidebarItemTableViewCell)
         tableView.register(UINib(nibName: sidebarItemTableViewHeaderCell, bundle: nil), forCellReuseIdentifier: sidebarItemTableViewHeaderCell)
         tableView.register(UINib(nibName: sidebarItemTableViewFooterCell, bundle: nil), forCellReuseIdentifier: sidebarItemTableViewFooterCell)
@@ -102,6 +106,7 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        print(sidebarItemsList.getItemsList().count)
         return sidebarItemsList.getItemsList().count
     }
     
@@ -120,24 +125,33 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let viewFooter = UIView()
         if section != 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: sidebarItemTableViewFooterCell) as! SidebarItemTableViewFooterCell
-            return cell
-        }
-        else {
-            return UIView()
+            viewFooter.backgroundColor = .gray
+            return viewFooter
+        } else {
+            return nil
         }
         
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 40
+        } else {
+            return UITableView.automaticDimension
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print(indexPath.row)
         let cell = tableView.dequeueReusableCell(withIdentifier: sidebarItemTableViewCell, for: indexPath) as! SidebarItemTableViewCell
-        cell.lblItemName.text = sidebarItemsList.getItemsList()[indexPath.section].getSubItems()[indexPath.row].getSubItemName()
+        cell.lblItemDescription.isHidden = true
+        var subItemName = sidebarItemsList.getItemsList()[indexPath.section].getSubItems()[indexPath.row].getSubItemName()
+        subItemName.remove(at: subItemName.startIndex)
+        cell.lblItemName.text = subItemName
         if sidebarItemsList.getItemsList()[indexPath.section].getSubItems()[indexPath.row].getSubItemDescription() != nil {
             cell.lblItemDescription.text = sidebarItemsList.getItemsList()[indexPath.section].getSubItems()[indexPath.row].getSubItemDescription()
-        } else {
-            cell.lblItemDescription.isHidden = true
+            cell.lblItemDescription.isHidden = false
         }
         return cell
     }
@@ -150,5 +164,4 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
             scrollView.contentInset = UIEdgeInsets(top: -sectionHeaderHeight, left: 0, bottom: 0, right: 0);
         }
     }
-
 }

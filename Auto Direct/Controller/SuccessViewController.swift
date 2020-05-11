@@ -21,7 +21,8 @@ class SuccessViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.tabBarController?.tabBar.isHidden = true
+        self.hidesBottomBarWhenPushed = true
+        self.tabBarController?.tabBar.isHidden = false
         imgSuccess.alpha = 0
         lblThank.frame.origin.y += 50
         lblInfo.frame.origin.y += 50

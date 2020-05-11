@@ -15,5 +15,6 @@ target 'Auto Direct' do
   pod 'Presentr'
   pod 'Shimmer'
   pod "SpringIndicator"
+  pod "ESTabBarController-swift"
 
 end

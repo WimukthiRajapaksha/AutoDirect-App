@@ -36,6 +36,8 @@ class SearchViewController: BaseViewController, UICollectionViewDelegate, UIColl
                 
         searchBar.barTintColor = UIColor(rgb: 0x1b1f2a)
         
+//        self.tabBarController?.tabBar.isHidden = true
+        
         searchBar.searchTextField.textColor = UIColor.blue
         searchBar.searchTextField.backgroundColor = UIColor.white
     }
@@ -43,6 +45,7 @@ class SearchViewController: BaseViewController, UICollectionViewDelegate, UIColl
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
+        
         collectionBrands.reloadData()
         collectionTrending.reloadData()
     }
@@ -81,6 +84,7 @@ class SearchViewController: BaseViewController, UICollectionViewDelegate, UIColl
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "searchResultSegue") {
+            self.hidesBottomBarWhenPushed = false
             let vehicleCategory = segue.destination as! VehicleCategoryViewController
             vehicleCategory.setItemId(id: 5)
         }

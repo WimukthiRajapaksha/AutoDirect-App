@@ -41,6 +41,8 @@ class HomeViewController: BaseViewController, UICollectionViewDelegate, UICollec
         trendingCollectionView.allowsMultipleSelection = false
         trendingCollectionView.register(UINib(nibName: trendingCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: trendingCollectionViewCell)
         setCardItems()
+        
+//        navigationItem.rightBarButtonItem = setCallButton()
                 
         imgSlideShow.setImageInputs([
             ImageSource(image: UIImage(named: "car-1")!),
@@ -89,7 +91,8 @@ class HomeViewController: BaseViewController, UICollectionViewDelegate, UICollec
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         trendingCollectionView.reloadData()
-        
+//        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+//        self.navigationController?.setNavigationBarHidden(true, animated: animated)
         UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseInOut, animations: {
 //            self.navigationItem.rightBarButtonItem.
 //            self.tabBarItem.
@@ -172,6 +175,8 @@ class HomeViewController: BaseViewController, UICollectionViewDelegate, UICollec
     override func viewWillDisappear(_ animated: Bool) {
 //        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
+    
+    
     
     private func setCardItems() {
         

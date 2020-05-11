@@ -22,12 +22,13 @@ class ReserveVehicleViewController: BaseViewController, UITableViewDelegate, UIT
     private let viewIndicator: UIView
     private let lblLoading: UILabel
     private var blurEffectViewNavbar: UIVisualEffectView?
+    private var blurEffectViewTabbar: UIVisualEffectView?
     private var blurEffectView: UIVisualEffectView?
     
     var count = 10
     var timer: Timer?
     
-    let presenter: Presentr = {
+    let presenterPayment: Presentr = {
         let width = ModalSize.full
         let height = ModalSize.fluid(percentage: 1)
         let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: UIScreen.main.bounds.height*1.6/3))
@@ -37,7 +38,7 @@ class ReserveVehicleViewController: BaseViewController, UITableViewDelegate, UIT
         customPresenter.transitionType = .coverVertical
         customPresenter.dismissTransitionType = .coverVertical
         customPresenter.roundCorners = true
-        customPresenter.backgroundColor = .gray
+        customPresenter.backgroundColor = .black
         customPresenter.backgroundOpacity = 0.5
         customPresenter.dismissOnSwipe = true
         customPresenter.dismissOnSwipeDirection = .bottom
@@ -86,6 +87,11 @@ class ReserveVehicleViewController: BaseViewController, UITableViewDelegate, UIT
         blurEffectViewNavbar!.frame = bounds ?? CGRect.zero
         blurEffectViewNavbar!.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
+        let boundTabbar = self.tabBarController?.tabBar.bounds
+        blurEffectViewTabbar = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+        blurEffectViewTabbar!.frame = boundTabbar ?? CGRect.zero
+        blurEffectViewTabbar!.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
         navigationItem.leftBarButtonItem = backBarButton()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -112,6 +118,16 @@ class ReserveVehicleViewController: BaseViewController, UITableViewDelegate, UIT
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 20.0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -166,7 +182,7 @@ class ReserveVehicleViewController: BaseViewController, UITableViewDelegate, UIT
     @objc func onNextTouch(_ sender:UITapGestureRecognizer) {        
         let confirmPaymentViewController = self.storyboard?.instantiateViewController(withIdentifier: "ConfirmPaymentViewController") as! ConfirmPaymentViewController
         confirmPaymentViewController.delegate = self
-        customPresentViewController(presenter, viewController: confirmPaymentViewController, animated: true, completion: nil)
+        customPresentViewController(presenterPayment, viewController: confirmPaymentViewController, animated: true, completion: nil)
         let cellProgress = tableView.cellForRow(at: progressBarIndexPath!) as! ForthReserveTableViewCell
         cellProgress.progressBarView.currentStep = 1
     }
@@ -217,33 +233,30 @@ class ReserveVehicleViewController: BaseViewController, UITableViewDelegate, UIT
     }
     
     @objc func onSubmitTouch(_ sender:UITapGestureRecognizer) {
+        
+        self.tabBarController?.tabBar.isHidden = true
         self.view.addSubview(blurEffectView!)
         self.navigationController?.navigationBar.addSubview(blurEffectViewNavbar!)
+        self.tabBarController?.tabBar.addSubview(blurEffectViewTabbar!)
                 
         let cellProgress = tableView.cellForRow(at: progressBarIndexPath!) as! ForthReserveTableViewCell
         cellProgress.progressBarView.currentStep = 3
         let paymentStatusViewController = self.storyboard?.instantiateViewController(identifier: "PaymentStatusViewController") as! PaymentStatusViewController
         paymentStatusViewController.delegate = self
-        paymentStatusViewController.modalPresentationStyle = .overCurrentContext
+        paymentStatusViewController.modalPresentationStyle = .overFullScreen
         UIView.animate(withDuration: 0.1, delay: 3, options: .curveLinear, animations: {
-//            self.performSegue(withIdentifier: "reservationSuccessSegue", sender: self)
-            
-            self.present(paymentStatusViewController, animated: true) {
-//                self.performSegue(withIdentifier: "reservationSuccessSegue", sender: self)
-                print("Done")
-            }
+            self.present(paymentStatusViewController, animated: true, completion: nil)
         }, completion: nil)
     }
     
     func paymentSuccess(paymentSuccess: Bool) {
         print(paymentSuccess)
         if paymentSuccess {
-//            self.dismiss(animated: true) {
+            self.dismiss(animated: true, completion: nil)
             self.performSegue(withIdentifier: "reservationSuccessSegue", sender: self)
-            
-            self.dismiss(animated: true)
+//            self.tabBarController?.selectedIndex = 0
             self.blurEffectViewNavbar!.removeFromSuperview()
-//            }
+            self.blurEffectViewTabbar?.removeFromSuperview()
         }
     }
 }

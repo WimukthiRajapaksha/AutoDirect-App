@@ -27,73 +27,66 @@ class PaymentStatusViewController: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
         viewContainer.isHidden = false
-//        let initialCenter = viewSecond.center
-//        viewFirst.center = viewSecond.center
-//        viewThird.center = viewSecond.center
+        let initialCenter = viewSecond.center
+        viewFirst.center = viewSecond.center
+        viewThird.center = viewSecond.center
         viewFirst.rotate(angle: 45.0)
         viewSecond.rotate(angle: 45.0)
         viewThird.rotate(angle: 45.0)
         
-        UIView.animate(withDuration: 1, delay: 0, options: .curveLinear, animations: {
-            let impliesAnimation = CAKeyframeAnimation(keyPath: "transform.scale")
-            impliesAnimation.values = [1.0 ,1.4, 0.9, 1.15, 0.95, 1.02, 1.0]
-            impliesAnimation.duration = 1
-            impliesAnimation.calculationMode = CAAnimationCalculationMode.cubic
-            self.viewSecond.layer.add(impliesAnimation, forKey: nil)
-        }, completion: nil)
 //        UIView.animate(withDuration: 1, delay: 0, options: .curveLinear, animations: {
-//            self.viewFirst.center = CGPoint(x: initialCenter.x - 25, y: initialCenter.y)
-//            self.viewThird.center = CGPoint(x: initialCenter.x + 25, y: initialCenter.y)
-//            self.viewSecond.rotate(angle: 50.0)
-//            self.viewSecond.center = CGPoint(x: initialCenter.x, y: initialCenter.y + 25)
-//        }, completion: { finishFirst in
-//            if finishFirst {
-//                UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
-//                    self.viewFirst.center = CGPoint(x: initialCenter.x - 20, y: initialCenter.y)
-//                    self.viewThird.center = CGPoint(x: initialCenter.x + 20, y: initialCenter.y)
-//                    self.viewSecond.rotate(angle: -5.0)
-//                    self.viewSecond.center = CGPoint(x: initialCenter.x, y: initialCenter.y + 20)
-//                }, completion: { finishSecond in
-//                    if finishSecond {
-//                        UIView.animate(withDuration: 0.1, delay: 0.2, options: .curveLinear, animations: {
-//                            self.viewSecond.rotate(angle: -45.0)
-//                        }, completion: { finishThird in
-//                            if finishThird {
-//                                UIView.animate(withDuration: 0.1, delay: 0.3, options: .curveLinear, animations: {
-//                                    self.viewFirst.rotate(angle: 45.0)
-//                                }, completion: { finishForth in
-//                                    if finishForth {
-//                                        UIView.animate(withDuration: 0.1, delay: 0.4, options: .curveLinear, animations: {
-//                                            self.viewThird.rotate(angle: -45.0)
-//                                        }, completion: { finishFifth in
-//                                            if finishFifth {
-//                                                UIView.animate(withDuration: 0.1, delay: 0.5, options: .curveLinear, animations: {
-//                                                    self.lblPaymentStatus.text = "Payment Approved..."
-//                                                    self.viewSecond.rotate(angle: -45.0)
-//                                                }, completion: { finishSixth in
-//                                                    if finishSixth {
-//                                                        UIView.animate(withDuration: 0.1, delay: 0.6, options: .curveLinear, animations: {
-//                                                            self.viewSecond.center = initialCenter
-//                                                        }, completion: {finishSeventh in
-////                                                            self.dismiss(animated: true, completion: nil)
-//                                                            self.delegate?.paymentSuccess(paymentSuccess: true)
-//                                                        })
-//                                                    }
-//                                                })
-//                                            }
-//                                        })
-//                                    }
-//                                })
-//                            }
-//                        })
-//                    }
-//                })
-//            }
-//        })
+//            let impliesAnimation = CAKeyframeAnimation(keyPath: "transform.scale")
+//            impliesAnimation.values = [1.0 ,1.4, 0.9, 1.15, 0.95, 1.02, 1.0]
+//            impliesAnimation.duration = 1
+//            impliesAnimation.calculationMode = CAAnimationCalculationMode.cubic
+//            self.viewSecond.layer.add(impliesAnimation, forKey: nil)
+//        }, completion: nil)
+        UIView.animate(withDuration: 1.7, delay: 0, usingSpringWithDamping: 0.45, initialSpringVelocity: 1, options: .curveLinear, animations: {
+            self.viewFirst.center = CGPoint(x: initialCenter.x - 20, y: initialCenter.y)
+            self.viewThird.center = CGPoint(x: initialCenter.x + 20, y: initialCenter.y)
+            self.viewSecond.rotate(angle: 45.0)
+            self.viewSecond.center = CGPoint(x: initialCenter.x, y: initialCenter.y + 20)
+        }, completion: { finishFirst in
+            if finishFirst {
+                UIView.animate(withDuration: 1, delay: 0.2, usingSpringWithDamping: 0.45, initialSpringVelocity: 1, options: .curveLinear, animations: {
+                    self.viewSecond.rotate(angle: -45.0)
+                }, completion: { finishThird in
+                    if finishThird {
+                        UIView.animate(withDuration: 1, delay: 0.2, usingSpringWithDamping: 0.45, initialSpringVelocity: 1, options: .curveLinear, animations: {
+                            self.viewFirst.rotate(angle: 45.0)
+                        }, completion: { finishForth in
+                            if finishForth {
+                                UIView.animate(withDuration: 1, delay: 0.2, usingSpringWithDamping: 0.45, initialSpringVelocity: 1, options: .curveLinear, animations: {
+                                    self.viewThird.rotate(angle: -45.0)
+                                }, completion: { finishFifth in
+                                    if finishFifth {
+                                        UIView.animate(withDuration: 1, delay: 0.2, usingSpringWithDamping: 0.45, initialSpringVelocity: 1, options: .curveLinear, animations: {
+                                            self.lblPaymentStatus.text = "Payment Approved..."
+                                            self.viewSecond.rotate(angle: -45.0)
+                                        }, completion: { finishSixth in
+                                            if finishSixth {
+                                                UIView.animate(withDuration: 1.3, delay: 0.2, usingSpringWithDamping: 0.45, initialSpringVelocity: 1, options: .curveLinear, animations: {
+                                                    self.viewSecond.center = initialCenter
+                                                }, completion: {finishSeventh in
+//                                                            self.dismiss(animated: true, completion: nil)
+                                                    self.delegate?.paymentSuccess(paymentSuccess: true)
+//                                                            self.performSegue(withIdentifier: "successSegue", sender: self)
+
+                                                })
+                                            }
+                                        })
+                                    }
+                                })
+                            }
+                        })
+                    }
+                })
+            }
+        })
     }
 }
