@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,13 +29,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Uky-bW-3zX">
-                    <rect key="frame" x="16" y="0.0" width="148" height="137"/>
+                    <rect key="frame" x="0.0" y="0.0" width="180" height="84.5"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hef-At-ChJ">
-                            <rect key="frame" x="0.0" y="0.0" width="148" height="58"/>
+                            <rect key="frame" x="0.0" y="0.0" width="180" height="55"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="condition" translatesAutoresizingMaskIntoConstraints="NO" id="n50-yI-Dzk">
-                                    <rect key="frame" x="49" y="4" width="50" height="50"/>
+                                    <rect key="frame" x="65" y="2.5" width="50" height="50"/>
                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="8GI-AC-AMx"/>
@@ -46,31 +47,25 @@
                             <constraints>
                                 <constraint firstItem="n50-yI-Dzk" firstAttribute="centerY" secondItem="Hef-At-ChJ" secondAttribute="centerY" id="Aj7-d1-67j"/>
                                 <constraint firstItem="n50-yI-Dzk" firstAttribute="centerX" secondItem="Hef-At-ChJ" secondAttribute="centerX" id="Bia-9d-UCt"/>
+                                <constraint firstAttribute="height" constant="55" id="LYL-68-LnL"/>
                                 <constraint firstItem="n50-yI-Dzk" firstAttribute="centerY" secondItem="Hef-At-ChJ" secondAttribute="centerY" id="O3d-SU-nEo"/>
                             </constraints>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="CONDITION" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NBa-QU-ZRL">
-                            <rect key="frame" x="0.0" y="58" width="148" height="63"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="CONDITION" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NBa-QU-ZRL">
+                            <rect key="frame" x="0.0" y="55" width="180" height="13.5"/>
                             <fontDescription key="fontDescription" name="SFCompactText-Medium" family="SF Compact Text" pointSize="11"/>
                             <color key="textColor" red="0.33725490196078434" green="0.36862745098039218" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brand New" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLt-lm-7fL">
-                            <rect key="frame" x="0.0" y="121" width="148" height="16"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brand New" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLt-lm-7fL">
+                            <rect key="frame" x="0.0" y="68.5" width="180" height="16"/>
                             <fontDescription key="fontDescription" name="SFCompactText-Light" family="SF Compact Text" pointSize="13"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="NBa-QU-ZRL" firstAttribute="trailing" secondItem="Uky-bW-3zX" secondAttribute="trailingMargin" id="3wG-pT-p2L"/>
-                        <constraint firstItem="FLt-lm-7fL" firstAttribute="trailing" secondItem="Uky-bW-3zX" secondAttribute="trailingMargin" id="58H-Wf-SGA"/>
-                        <constraint firstItem="FLt-lm-7fL" firstAttribute="bottom" secondItem="Uky-bW-3zX" secondAttribute="bottomMargin" id="NIo-mM-xRh"/>
                         <constraint firstItem="NBa-QU-ZRL" firstAttribute="top" secondItem="Hef-At-ChJ" secondAttribute="bottom" id="S1g-mg-7dS"/>
-                        <constraint firstItem="Hef-At-ChJ" firstAttribute="trailing" secondItem="Uky-bW-3zX" secondAttribute="trailingMargin" id="YjD-9b-mWw"/>
-                        <constraint firstItem="Hef-At-ChJ" firstAttribute="leading" secondItem="Uky-bW-3zX" secondAttribute="leadingMargin" id="Zxp-vh-bWi"/>
-                        <constraint firstItem="FLt-lm-7fL" firstAttribute="leading" secondItem="Uky-bW-3zX" secondAttribute="leadingMargin" id="dvO-1n-Fs0"/>
-                        <constraint firstItem="NBa-QU-ZRL" firstAttribute="leading" secondItem="Uky-bW-3zX" secondAttribute="leadingMargin" id="sNo-ur-OmT"/>
                         <constraint firstItem="FLt-lm-7fL" firstAttribute="top" secondItem="NBa-QU-ZRL" secondAttribute="bottom" id="uni-OP-TvE"/>
                         <constraint firstItem="FLt-lm-7fL" firstAttribute="top" secondItem="NBa-QU-ZRL" secondAttribute="bottom" id="xVb-dn-jSn"/>
                     </constraints>
@@ -78,10 +73,9 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstAttribute="trailingMargin" secondItem="Uky-bW-3zX" secondAttribute="trailing" id="Wu9-48-Ule"/>
-                <constraint firstAttribute="bottomMargin" secondItem="Uky-bW-3zX" secondAttribute="bottom" id="auU-3y-a1q"/>
-                <constraint firstItem="Uky-bW-3zX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="topMargin" id="dWh-2K-EQs"/>
-                <constraint firstItem="Uky-bW-3zX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="dpo-ni-RFr"/>
+                <constraint firstItem="Uky-bW-3zX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="PbL-7M-ykd"/>
+                <constraint firstItem="Uky-bW-3zX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="axJ-62-b9x"/>
+                <constraint firstItem="Uky-bW-3zX" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="wON-fQ-ExB"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-31.884057971014496" y="260.82589285714283"/>

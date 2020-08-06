@@ -14,7 +14,7 @@ class SearchCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        containerView.layer.cornerRadius = containerView.frame.height/2.6
+        containerView.layer.cornerRadius = containerView.frame.height/2
     }
 
     override var isSelected: Bool {

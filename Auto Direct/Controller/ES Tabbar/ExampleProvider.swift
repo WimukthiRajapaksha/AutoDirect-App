@@ -48,14 +48,14 @@ enum ExampleProvider {
         let v2 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "InventoryViewController") as! UINavigationController
         let v3 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchViewController") as! UINavigationController
 //            let v3 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "first") as! ExtraFirstViewController
-        let v4 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QRPayViewController") as! UINavigationController
+        let v4 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CallUsViewController") as! UINavigationController
         let v5 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UpdatesViewController") as! UINavigationController
 
         v1.tabBarItem = ESTabBarItem.init(ExampleIrregularityBasicContentView(), title: "HOME", image: UIImage(named: "home"), selectedImage: UIImage(named: "home"), tag: 0)
         v2.tabBarItem = ESTabBarItem.init(ExampleIrregularityBasicContentView(), title: "INVENTORY", image: UIImage(named: "inventory"), selectedImage: UIImage(named: "inventory"), tag: 1)
         v3.tabBarItem = ESTabBarItem.init(ExampleIrregularityContentView(), title: nil, image: UIImage(named: "search")?.rotate(radians: -.pi/4), selectedImage: UIImage(named: "search")?.rotate(radians: -.pi/4), tag: 2)
 //        v3.tabBarItem = ESTabBarItem.init(ExampleIrregularityContentView(), title: nil, image: UIImage(named: "search"), selectedImage: UIImage(named: "search"), tag: 2)
-        v4.tabBarItem = ESTabBarItem.init(ExampleIrregularityBasicContentView(), title: "QR PAY", image: UIImage(named: "qrPay"), selectedImage: UIImage(named: "qrPay"), tag: 3)
+        v4.tabBarItem = ESTabBarItem.init(ExampleIrregularityBasicContentView(), title: "CALL US", image: UIImage(named: "call"), selectedImage: UIImage(named: "call"), tag: 3)
         v5.tabBarItem = ESTabBarItem.init(ExampleIrregularityBasicContentView(), title: "UPDATES", image: UIImage(named: "updates"), selectedImage: UIImage(named: "updates"), tag: 4)
 
         tabBarController.viewControllers = [v1, v2, v3, v4, v5]

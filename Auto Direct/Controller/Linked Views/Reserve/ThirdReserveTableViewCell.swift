@@ -9,7 +9,8 @@
 import UIKit
 
 class ThirdReserveTableViewCell: UITableViewCell {
-
+    @IBOutlet weak var lblDetails: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

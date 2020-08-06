@@ -20,6 +20,24 @@ class VehicleCategoryTableViewCell: UITableViewCell {
     @IBOutlet weak var viewFeature4: CarItemFeature!
     @IBOutlet weak var viewFeature5: CarItemFeature!
     
+    private var fuelType: String!
+    private var engine: String!
+    private var transmission: String!
+    private var year: Int!
+    private var type: String!
+    
+    public func setItemData(brandName: String, brandDetail: String, imageUrl: String, amount: String, fuelType: String, engine: String, transmission: String, year: String, type: String) {
+        self.lblBrandDetail.text = brandDetail
+        self.lblBrandName.text = brandName
+        self.lblAmount.text = "LKR \(amount)"
+        self.imgBrand.downloaded(from: imageUrl)
+        self.viewFeature1.lblFeature.text = fuelType
+        self.viewFeature2.lblFeature.text = engine
+        self.viewFeature3.lblFeature.text = transmission
+        self.viewFeature4.lblFeature.text = year
+        self.viewFeature5.lblFeature.text = type
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         

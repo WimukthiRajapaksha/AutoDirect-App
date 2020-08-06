@@ -9,7 +9,9 @@
 import UIKit
 
 class SecondReserveTableViewCell: UITableViewCell {
-
+    @IBOutlet weak var lblAdvancedPaymentAmount: UILabel!
+    @IBOutlet weak var lblStockNo: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

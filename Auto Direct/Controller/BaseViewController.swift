@@ -11,6 +11,7 @@ import SideMenuSwift
 import Presentr
 
 class BaseViewController: UIViewController {
+    public let domain: Domain!
     
     let presenter: Presentr = {
         let width = ModalSize.full
@@ -29,6 +30,11 @@ class BaseViewController: UIViewController {
         customPresenter.cornerRadius = 20
         return customPresenter
     }()
+    
+    required init?(coder aDecoder: NSCoder) {
+        domain = Domain()
+        super.init(coder: aDecoder)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,10 +65,11 @@ class BaseViewController: UIViewController {
     
     func setCallButton() -> UIBarButtonItem {
              
-         let button = UIBarButtonItem(image: UIImage(named: "call"), style: .plain, target: self, action: #selector(onCallBtn(sender:)))
-         button.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -30)
-         button.tintColor = .white
-         return button
+        let button = UIBarButtonItem(image: UIImage(named: "call"), style: .plain, target: self, action: #selector(onCallBtn(sender:)))
+//        let button = UIBarButtonItem(image: UIImage(named: "car-6"), style: .plain, target: self, action: #selector(onCallBtn(sender:)))
+        button.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        button.tintColor = .white
+        return button
      }
      
      @objc func onCallBtn( sender : UIBarButtonItem ) {
@@ -79,7 +86,8 @@ class BaseViewController: UIViewController {
     }
     
     func setLeftRevealSidebar() -> UIBarButtonItem {
-        let button = UIBarButtonItem(image: UIImage(systemName: "list.bullet"), style: .plain, target: self, action: #selector(self.onLeftBtn))
+//        let button = UIBarButtonItem(image: UIImage(systemName: "list.bullet"), style: .plain, target: self, action: #selector(self.onLeftBtn))
+        let button = UIBarButtonItem(image: UIImage(named: "list"), style: .plain, target: self, action: #selector(self.onLeftBtn))
         button.tintColor = .white
         return button
     }
@@ -106,19 +114,28 @@ class BaseViewController: UIViewController {
     }
     
     @objc func onBackBtn( sender : UIButton ) {
-        if ((navigationController?.viewControllers.count)! > 1) {
-            self.navigationController?.popViewController(animated: true)
+        if (sender.tag == 10) {
+            self.dismiss(animated: true, completion: nil)
         } else {
-            tabBarController?.selectedIndex = 0
-//            self.dismiss(animated: true, completion: nil)
-//                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenuController") as! SideMenuController
-//    //            self.dismiss(animated: true, completion: nil)
-//            vc.modalPresentationStyle = .fullScreen
-//                self.navigationController?.present(vc, animated: true, completion: nil)
-//
-            
-//            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+            if ((navigationController?.viewControllers.count)! > 1) {
+                self.navigationController?.popViewController(animated: true)
+            } else {
+                tabBarController?.selectedIndex = 0
+    //            self.dismiss(animated: true, completion: nil)
+    //                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenuController") as! SideMenuController
+    //    //            self.dismiss(animated: true, completion: nil)
+    //            vc.modalPresentationStyle = .fullScreen
+    //                self.navigationController?.present(vc, animated: true, completion: nil)
+    //
+                
+    //            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+            }
         }
+        
     }
     
+    func itemTouch(index: Int) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "aboutUs") as! AboutUsViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }

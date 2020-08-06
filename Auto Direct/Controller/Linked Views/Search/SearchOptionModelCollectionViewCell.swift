@@ -12,6 +12,8 @@ import DLRadioButton
 class SearchOptionModelCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var btnRadio: DLRadioButton!
+//    @IBOutlet weak var btnRadioNew: UIButton!
+    @IBOutlet weak var lblRadio: CheckBox!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -19,13 +21,9 @@ class SearchOptionModelCollectionViewCell: UICollectionViewCell {
     
 //    override var isSelected: Bool {
 //        didSet {
-//            self.btnRadio.isSelected = isSelected ? true : false
-//        }
-//    }
-    
-//    override var isSelected: Bool {
-//        didSet {
-//            self.btnRadio.isSelected = isSelected ? true : false
+//            containerView.backgroundColor = isSelected ? UIColor(rgb: 0x63b946) : .clear
+//            lblRadio.textColor = isSelected ? .white : .white
+////            btnRadioNew.backgroundColor = .green
 //        }
 //    }
 }

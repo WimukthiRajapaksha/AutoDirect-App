@@ -23,5 +23,12 @@ class FirstReserveTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    public func setData(imgUrl: String, make: String, model: String, detail: String) {
+        print(imgUrl)
+        self.imgVehicle.downloaded(from: imgUrl)
+        self.lblModel.text = "\(make) \(model)"
+        self.lblDetail.text = detail
+    }
 
 }

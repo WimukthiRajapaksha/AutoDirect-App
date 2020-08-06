@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,7 +34,7 @@
                         <rect key="frame" x="20" y="11" width="321" height="569"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ssT-HV-bY7">
-                                <rect key="frame" x="0.0" y="0.0" width="321" height="43.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="321" height="21.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Audi Q2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqJ-Us-g5e">
                                         <rect key="frame" x="0.0" y="0.0" width="321" height="21.5"/>
@@ -41,30 +42,30 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sport 30 TDI 116 PS S tronic Automatic" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pgb-KO-1bN">
-                                        <rect key="frame" x="0.0" y="26.5" width="321" height="17"/>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sport 30 TDI 116 PS S tronic Automatic" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pgb-KO-1bN">
+                                        <rect key="frame" x="0.0" y="0.0" width="321" height="0.0"/>
                                         <fontDescription key="fontDescription" name="SFCompactText-Light" family="SF Compact Text" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="car-10" translatesAutoresizingMaskIntoConstraints="NO" id="AgV-rM-AUj">
-                                <rect key="frame" x="0.0" y="53.5" width="321" height="313"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AgV-rM-AUj">
+                                <rect key="frame" x="0.0" y="31.5" width="321" height="313"/>
                                 <color key="backgroundColor" red="0.14117647058823529" green="0.15686274509803921" blue="0.20392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="313" id="JGv-Qx-GEb"/>
                                 </constraints>
                             </imageView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hQJ-rs-lxC">
-                                <rect key="frame" x="0.0" y="63.5" width="321" height="313"/>
+                                <rect key="frame" x="0.0" y="41.5" width="321" height="313"/>
                                 <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="313" id="x80-Dn-9UX"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Tx1-Ba-6n7">
-                                <rect key="frame" x="0.0" y="376.5" width="321" height="48.5"/>
+                                <rect key="frame" x="0.0" y="354.5" width="321" height="48.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MONTHLY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k5q-P2-a42">
                                         <rect key="frame" x="0.0" y="0.0" width="321" height="14.5"/>
@@ -80,30 +81,30 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="4CP-Fq-5d8">
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4CP-Fq-5d8">
                                 <rect key="frame" x="0.0" y="469" width="321" height="100"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="69g-al-9L5" customClass="CarItemFeature" customModule="Auto_Direct" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="48" height="100"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="56" height="100"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="AUm-KP-sY1"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AAA-92-dt5" customClass="CarItemFeature" customModule="Auto_Direct" customModuleProvider="target">
-                                        <rect key="frame" x="68" y="0.0" width="48.5" height="100"/>
+                                        <rect key="frame" x="66" y="0.0" width="56.5" height="100"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vhf-Sd-FNV" customClass="CarItemFeature" customModule="Auto_Direct" customModuleProvider="target">
-                                        <rect key="frame" x="136.5" y="0.0" width="48" height="100"/>
+                                        <rect key="frame" x="132.5" y="0.0" width="56" height="100"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mbA-so-AW9" customClass="CarItemFeature" customModule="Auto_Direct" customModuleProvider="target">
-                                        <rect key="frame" x="204.5" y="0.0" width="48.5" height="100"/>
+                                        <rect key="frame" x="198.5" y="0.0" width="56.5" height="100"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IgC-NE-FXI" customClass="CarItemFeature" customModule="Auto_Direct" customModuleProvider="target">
-                                        <rect key="frame" x="273" y="0.0" width="48" height="100"/>
+                                        <rect key="frame" x="265" y="0.0" width="56" height="100"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
@@ -170,7 +171,4 @@
             <point key="canvasLocation" x="121.0144927536232" y="618.41517857142856"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="car-10" width="299" height="168"/>
-    </resources>
 </document>

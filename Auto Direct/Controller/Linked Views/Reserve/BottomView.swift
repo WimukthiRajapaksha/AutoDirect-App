@@ -14,6 +14,9 @@ class BottomView: UIView {
     @IBOutlet weak var paymentDetailsView: UIView!
     @IBOutlet weak var btnNext: UIButton!
     @IBOutlet weak var btnSubmit: UIButton!
+    @IBOutlet weak var txtEmail: UITextField!
+    @IBOutlet weak var txtMobile: UITextField!
+    @IBOutlet weak var txtName: UITextField!
     
     override init(frame: CGRect) {
         super.init(frame: frame)

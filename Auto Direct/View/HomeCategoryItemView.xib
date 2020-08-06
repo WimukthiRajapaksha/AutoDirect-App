@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -38,6 +39,7 @@
                         <constraint firstItem="59d-iG-k2s" firstAttribute="trailing" secondItem="HGa-I9-4n3" secondAttribute="trailingMargin" id="VBT-2C-oCC"/>
                         <constraint firstItem="9PD-ly-ZcW" firstAttribute="top" secondItem="59d-iG-k2s" secondAttribute="bottom" id="dcl-nN-0mY"/>
                         <constraint firstItem="9PD-ly-ZcW" firstAttribute="leading" secondItem="HGa-I9-4n3" secondAttribute="leadingMargin" id="kau-pk-fAx"/>
+                        <constraint firstItem="59d-iG-k2s" firstAttribute="top" secondItem="HGa-I9-4n3" secondAttribute="top" id="nbh-vg-Jgf"/>
                         <constraint firstItem="9PD-ly-ZcW" firstAttribute="bottom" secondItem="HGa-I9-4n3" secondAttribute="bottomMargin" id="pPk-it-zy0"/>
                         <constraint firstItem="9PD-ly-ZcW" firstAttribute="trailing" secondItem="HGa-I9-4n3" secondAttribute="trailingMargin" id="tso-oc-9Yw"/>
                     </constraints>
