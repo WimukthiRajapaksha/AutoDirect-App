@@ -14,7 +14,8 @@ class VehicleCategoryViewController: BaseViewController, UITableViewDelegate, UI
     @IBOutlet var shimming: FBShimmeringView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var vehicleCategoryCollectionView: UICollectionView!
-//    @IBOutlet weak var viewSearchDetails: UIView!
+    @IBOutlet weak var viewNoVehiclesAvailable: UIView!
+    //    @IBOutlet weak var viewSearchDetails: UIView!
 //    @IBOutlet weak var viewSearchOption: UIView!
 //    @IBOutlet weak var viewNewestFirst: UIView!
 //    @IBOutlet weak var lblSearchResultCount: UILabel!
@@ -22,25 +23,30 @@ class VehicleCategoryViewController: BaseViewController, UITableViewDelegate, UI
     private let vehicleCategoryTableViewCell: String
     private let vehicleCategoryCollectionViewCell: String
     private var brandsList: [String]
-    private var shownIndexes: [IndexPath]
+    private var selectedBrandIndex: IndexPath
     private var fromSearch: Bool
     private var itemId: Int
     private let springIndicator: SpringIndicator
     private let viewIndicator: UIView
 //    private var shimmeringView: FBShimmeringView?
     private var firstTimeLoadingIndecator: Bool
+    private var allTableData: [VehicleModelInDetail?]
     private var tableData: [VehicleModelInDetail?]
     private var previouslySelectedModel: String
     private var selectedVehicleModel: VehicleModelInDetail?
     private var trendingModel: String?
     
+    private var springStillShowing: Bool
+    
     
     required init?(coder aDecoder: NSCoder) {
         itemId = 0
         fromSearch = false
+        springStillShowing = false
         firstTimeLoadingIndecator = true
-        shownIndexes = []
+        selectedBrandIndex = IndexPath(row: 0, section: 0)
         tableData = []
+        allTableData = []
         previouslySelectedModel = ""
         viewIndicator = UIView(frame: CGRect(x: UIScreen.main.bounds.width/2-30, y: UIScreen.main.bounds.height/3.7-30, width: 60, height: 60))
         springIndicator = SpringIndicator(frame: CGRect(x: 20, y: 20, width: 20, height: 20))
@@ -91,15 +97,26 @@ class VehicleCategoryViewController: BaseViewController, UITableViewDelegate, UI
     override func viewWillDisappear(_ animated: Bool) {
         firstTimeLoadingIndecator = false
         selectedVehicleModel = nil
+        if springStillShowing {
+            self.viewIndicator.alpha = 1
+            UIView.animate(withDuration: 1, delay: 0, options: .curveLinear, animations: {
+                self.viewIndicator.alpha = 0
+                self.viewIndicator.frame.origin.y -= 40
+                self.springIndicator.stop()
+            }, completion: { (boolValue) in
+                self.view.isUserInteractionEnabled = true
+                self.springStillShowing = false
+            })
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        shownIndexes = []
         selectedVehicleModel = nil
         self.brandsList.removeAll()
-        
+        selectedBrandIndex = IndexPath(row: 0, section: 0)
         springIndicator.start()
+        springStillShowing = true
         viewIndicator.alpha = 0
         viewIndicator.frame.origin.y -= 40
         self.view.isUserInteractionEnabled = false
@@ -109,28 +126,28 @@ class VehicleCategoryViewController: BaseViewController, UITableViewDelegate, UI
         }, completion: nil)
         
         
-        super.domain.getAllMakes { (boolResponse, jsonResponse) in
-            print(boolResponse)
-            print(jsonResponse)
-            if boolResponse {
-                self.brandsList = jsonResponse.arrayObject as! [String]
-                let index = self.brandsList.firstIndex(of: "")
-                if index != nil {
-                    self.brandsList.remove(at: index!)
-                }
-//                if (self.brandsList[0] == "") {
-//                    self.brandsList[0] = "All"
+//        super.domain.getAllMakes { (boolResponse, jsonResponse) in
+//            print(boolResponse)
+//            print(jsonResponse)
+//            if boolResponse {
+//                self.brandsList = jsonResponse.arrayObject as! [String]
+//                let index = self.brandsList.firstIndex(of: "")
+//                if index != nil {
+//                    self.brandsList.remove(at: index!)
 //                }
-            } else {
-                self.view!.makeToast(jsonResponse["message"].stringValue, duration: 3, position: .bottom, title: "Sorry!", completion: nil)
-            }
-            self.vehicleCategoryCollectionView.reloadData()
-        }
+////                if (self.brandsList[0] == "") {
+////                    self.brandsList[0] = "All"
+////                }
+//            } else {
+//                self.view!.makeToast(jsonResponse["message"].stringValue, duration: 3, position: .bottom, title: "Sorry!", completion: nil)
+//            }
+//            self.vehicleCategoryCollectionView.reloadData()
+//        }
         
         var condition = ""
         if (self.itemId == 0) {
             self.title = "New Vehicles"
-            condition = "new"
+            condition = "new|unregistered"
         } else if (self.itemId == 1) {
             self.title = "Pre-Owned Vehicles"
             condition = "pre-owned"
@@ -141,7 +158,7 @@ class VehicleCategoryViewController: BaseViewController, UITableViewDelegate, UI
             self.title = "GOV Permits"
             condition = "gov permits"
         } else if (self.itemId == 10) {
-            self.title = ""
+            self.title = self.trendingModel!
         } else {
             self.title = "Search"
         }
@@ -149,16 +166,29 @@ class VehicleCategoryViewController: BaseViewController, UITableViewDelegate, UI
             super.domain.getFindByCondition(condition: condition) { (boolResponse, jsonResponse) in
                 print(boolResponse)
                 print(jsonResponse)
+                self.allTableData.removeAll()
                 if boolResponse {
                     for (_, item) in jsonResponse {
-                        self.tableData.append(VehicleModelInDetail(autoId: item["autoid"].intValue, id: item["autoid"].int, title: item["title"].stringValue, conditions: item["conditions"].stringValue, bodies: item["bodies"].stringValue, makes: item["makes"].stringValue, models: item["models"].stringValue, mileages: item["mileages"].stringValue, fuelTypes: item["fueltypes"].stringValue, engines: item["engines"].stringValue, years: item["years"].intValue, rentals: item["rentals"].stringValue, fuelConsumptions: item["fuelconsumptions"].stringValue, transmission: item["transmission"].stringValue, drives: item["drives"].stringValue, fuelEconomy: item["fueleconomy"].stringValue, exteriorColors: item["exteriorColors"].stringValue, interiorColors: item["interiorColors"].stringValue, availabilities: item["availabilities"].stringValue, additionalFeatures: item["additionalfeatures"].stringValue, prominentWords: item["prominentwords"].stringValue, quotation: item["quotation"].stringValue, price: item["price"].intValue, downPayment: item["downPayment"].stringValue, imageURL: item["imageURL"].stringValue, stockNumber: item["stockNumber"].stringValue))
+                        self.allTableData.append(VehicleModelInDetail(autoId: item["autoid"].intValue, id: item["autoid"].int, title: item["title"].stringValue, conditions: item["conditions"].stringValue, bodies: item["bodies"].stringValue, makes: item["makes"].stringValue, models: item["models"].stringValue, mileages: item["mileages"].stringValue, fuelTypes: item["fueltypes"].stringValue, engines: item["engines"].stringValue, years: item["years"].intValue, rentals: item["rentals"].stringValue, fuelConsumptions: item["fuelconsumptions"].stringValue, transmission: item["transmission"].stringValue, drives: item["drives"].stringValue, fuelEconomy: item["fueleconomy"].stringValue, exteriorColors: item["exteriorColors"].stringValue, interiorColors: item["interiorColors"].stringValue, availabilities: item["availabilities"].stringValue, additionalFeatures: item["additionalfeatures"].stringValue, prominentWords: item["prominentwords"].stringValue, quotation: item["quotation"].stringValue, price: item["price"].intValue, downPayment: item["downPayment"].stringValue, imageURL: item["imageURL"].stringValue, stockNumber: item["stockNumber"].stringValue, permalink: item["permalink"].stringValue, video: item["video"].stringValue))
+                        
+                        if (!self.brandsList.contains("All")) {
+                            self.brandsList.append("All")
+                        }
+                        if (!self.brandsList.contains(item["makes"].stringValue) && (item["makes"].stringValue != "")) {
+                            self.brandsList.append(item["makes"].stringValue)
+                        }
                     }
-                    print(self.tableData.count)
                 } else {
                     self.view!.makeToast(jsonResponse["message"].stringValue, duration: 3, position: .bottom, title: "Sorry!", completion: nil)
                 }
+                self.tableData = self.allTableData
+                if (self.tableData.count == 0) {
+                    self.viewNoVehiclesAvailable.isHidden = false
+                } else {
+                    self.viewNoVehiclesAvailable.isHidden = true
+                }
                 self.tableView.reloadData()
-                
+                self.vehicleCategoryCollectionView.reloadData()
                 self.viewIndicator.alpha = 1
                 UIView.animate(withDuration: 1, delay: 0, options: .curveLinear, animations: {
                     self.viewIndicator.alpha = 0
@@ -166,22 +196,37 @@ class VehicleCategoryViewController: BaseViewController, UITableViewDelegate, UI
                     self.springIndicator.stop()
                 }, completion: { (boolValue) in
                     self.view.isUserInteractionEnabled = true
+                    self.springStillShowing = false
                 })
             }
         } else if (self.itemId == 10) {
             super.domain.getFindByModel(model: trendingModel!) { (boolResponse, jsonResponse) in
                 print(boolResponse)
                 print(jsonResponse)
+                self.allTableData.removeAll()
                 if boolResponse {
                     for (_, item) in jsonResponse {
-                        self.tableData.append(VehicleModelInDetail(autoId: item["autoid"].intValue, id: item["autoid"].int, title: item["title"].stringValue, conditions: item["conditions"].stringValue, bodies: item["bodies"].stringValue, makes: item["makes"].stringValue, models: item["models"].stringValue, mileages: item["mileages"].stringValue, fuelTypes: item["fueltypes"].stringValue, engines: item["engines"].stringValue, years: item["years"].intValue, rentals: item["rentals"].stringValue, fuelConsumptions: item["fuelconsumptions"].stringValue, transmission: item["transmission"].stringValue, drives: item["drives"].stringValue, fuelEconomy: item["fueleconomy"].stringValue, exteriorColors: item["exteriorColors"].stringValue, interiorColors: item["interiorColors"].stringValue, availabilities: item["availabilities"].stringValue, additionalFeatures: item["additionalfeatures"].stringValue, prominentWords: item["prominentwords"].stringValue, quotation: item["quotation"].stringValue, price: item["price"].intValue, downPayment: item["downPayment"].stringValue, imageURL: item["imageURL"].stringValue, stockNumber: item["stockNumber"].stringValue))
+                        self.allTableData.append(VehicleModelInDetail(autoId: item["autoid"].intValue, id: item["autoid"].int, title: item["title"].stringValue, conditions: item["conditions"].stringValue, bodies: item["bodies"].stringValue, makes: item["makes"].stringValue, models: item["models"].stringValue, mileages: item["mileages"].stringValue, fuelTypes: item["fueltypes"].stringValue, engines: item["engines"].stringValue, years: item["years"].intValue, rentals: item["rentals"].stringValue, fuelConsumptions: item["fuelconsumptions"].stringValue, transmission: item["transmission"].stringValue, drives: item["drives"].stringValue, fuelEconomy: item["fueleconomy"].stringValue, exteriorColors: item["exteriorColors"].stringValue, interiorColors: item["interiorColors"].stringValue, availabilities: item["availabilities"].stringValue, additionalFeatures: item["additionalfeatures"].stringValue, prominentWords: item["prominentwords"].stringValue, quotation: item["quotation"].stringValue, price: item["price"].intValue, downPayment: item["downPayment"].stringValue, imageURL: item["imageURL"].stringValue, stockNumber: item["stockNumber"].stringValue, permalink: item["permalink"].stringValue, video: item["video"].stringValue))
+                        
+                        if (!self.brandsList.contains("All")) {
+                            self.brandsList.append("All")
+                        }
+                        if (!self.brandsList.contains(item["makes"].stringValue) && (item["makes"].stringValue != "")) {
+                            self.brandsList.append(item["makes"].stringValue)
+                        }
                     }
                     print(self.tableData.count)
                 } else {
                     self.view!.makeToast(jsonResponse["message"].stringValue, duration: 3, position: .bottom, title: "Sorry!", completion: nil)
                 }
+                self.tableData = self.allTableData
+                if (self.tableData.count == 0) {
+                    self.viewNoVehiclesAvailable.isHidden = false
+                } else {
+                    self.viewNoVehiclesAvailable.isHidden = true
+                }
                 self.tableView.reloadData()
-                
+                self.vehicleCategoryCollectionView.reloadData()
                 self.viewIndicator.alpha = 1
                 UIView.animate(withDuration: 1, delay: 0, options: .curveLinear, animations: {
                     self.viewIndicator.alpha = 0
@@ -189,6 +234,7 @@ class VehicleCategoryViewController: BaseViewController, UITableViewDelegate, UI
                     self.springIndicator.stop()
                 }, completion: { (boolValue) in
                     self.view.isUserInteractionEnabled = true
+                    self.springStillShowing = false
                 })
             }
         }
@@ -278,15 +324,15 @@ class VehicleCategoryViewController: BaseViewController, UITableViewDelegate, UI
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if !shownIndexes.contains(indexPath) {
-            shownIndexes.append(indexPath)
-            tableView.isUserInteractionEnabled = true
-            let cellItem = cell as! VehicleCategoryTableViewCell
-            cellItem.alpha = 0
-            UIView.animate(withDuration: 1, delay: (0.5*Double(indexPath.row)), options: .curveLinear, animations: {
-                cellItem.alpha = 1
-            }, completion: nil)
-        }
+//        if !shownIndexes.contains(indexPath) {
+//            shownIndexes.append(indexPath)
+//            tableView.isUserInteractionEnabled = true
+//            let cellItem = cell as! VehicleCategoryTableViewCell
+//            cellItem.alpha = 0
+//            UIView.animate(withDuration: 1, delay: (0.5*Double(indexPath.row)), options: .curveLinear, animations: {
+//                cellItem.alpha = 1
+//            }, completion: nil)
+//        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -312,10 +358,20 @@ class VehicleCategoryViewController: BaseViewController, UITableViewDelegate, UI
 //                cell.containerView.backgroundColor = UIColor(rgb: 0x63b946)
 //                firstTimeLoadingIndecator = false
 //            } else
-            if (previouslySelectedModel == brandsList[indexPath.row]) {
-                collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredVertically)
-                cell.containerView.backgroundColor = UIColor(rgb: 0x63b946)
-            }
+            
+            
+            
+            
+            
+//            if (previouslySelectedModel == brandsList[indexPath.row]) {
+//                collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredVertically)
+//                cell.containerView.backgroundColor = UIColor(rgb: 0x63b946)
+//            }
+        }
+        
+        if (selectedBrandIndex == indexPath) {
+            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredVertically)
+            cell.containerView.backgroundColor = UIColor(rgb: 0x63b946)
         }
         cell.lblItemName.text = brandsList[indexPath.row]
         return cell
@@ -323,54 +379,70 @@ class VehicleCategoryViewController: BaseViewController, UITableViewDelegate, UI
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        tableView.setContentOffset(.zero, animated: true)
-        if (tableData.count > 0) {
-            tableView.setContentOffset(.zero, animated: true)
+//        if (tableData.count > 0) {
+        tableView.setContentOffset(.zero, animated: true)
 //            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableView.ScrollPosition.top, animated: true)
-        }
+//        }
         previouslySelectedModel = brandsList[indexPath.row]
         print("select \(indexPath.row)")
 //        let cell = collectionView.cellForItem(at: indexPath) as! VehicleCategoryCollectionViewCell
 //        cell.containerView.backgroundColor = UIColor(rgb: 0x63b946)
         
         
-        
+        selectedBrandIndex = indexPath
         springIndicator.start()
         viewIndicator.alpha = 0
         viewIndicator.frame.origin.y -= 40
         self.view.isUserInteractionEnabled = false
+        springStillShowing = true
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveLinear, animations: {
             self.viewIndicator.alpha = 1
             self.viewIndicator.frame.origin.y += 40
         }, completion: nil)
         
-        
-        
-        super.domain.getFindByMake(make: brandsList[indexPath.row]) { (boolResponse, jsonResponse) in
-            print(boolResponse)
-            print(jsonResponse)
-            self.tableData.removeAll()
-            if boolResponse {
-                for (_, item) in jsonResponse {
-                    self.tableData.append(VehicleModelInDetail(autoId: item["autoid"].intValue, id: item["autoid"].int, title: item["title"].stringValue, conditions: item["conditions"].stringValue, bodies: item["bodies"].stringValue, makes: item["makes"].stringValue, models: item["models"].stringValue, mileages: item["mileages"].stringValue, fuelTypes: item["fueltypes"].stringValue, engines: item["engines"].stringValue, years: item["years"].intValue, rentals: item["rentals"].stringValue, fuelConsumptions: item["fuelconsumptions"].stringValue, transmission: item["transmission"].stringValue, drives: item["drives"].stringValue, fuelEconomy: item["fueleconomy"].stringValue, exteriorColors: item["exteriorColors"].stringValue, interiorColors: item["interiorColors"].stringValue, availabilities: item["availabilities"].stringValue, additionalFeatures: item["additionalfeatures"].stringValue, prominentWords: item["prominentwords"].stringValue, quotation: item["quotation"].stringValue, price: item["price"].intValue, downPayment: item["downPayment"].stringValue, imageURL: item["imageURL"].stringValue, stockNumber: item["stockNumber"].stringValue))
-                }
-                print(self.tableData.count)
-            } else {
-                self.view!.makeToast(jsonResponse["message"].stringValue, duration: 3, position: .bottom, title: "Sorry!", completion: nil)
-            }
-//            self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableView.ScrollPosition.top, animated: true)
-            self.tableView.reloadData()
-//            self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableView.ScrollPosition.top, animated: true)
-            
-            self.viewIndicator.alpha = 1
-            UIView.animate(withDuration: 1, delay: 0, options: .curveLinear, animations: {
-                self.viewIndicator.alpha = 0
-                self.viewIndicator.frame.origin.y -= 40
-                self.springIndicator.stop()
-            }, completion: { (boolValue) in
-                self.view.isUserInteractionEnabled = true
-            })
-            
+        if (brandsList[indexPath.row] == "All") {
+            self.tableData = self.allTableData
+        } else {
+//            let abc = self.allTableData.filter{$0?.getMakes() == brandsList[indexPath.row]}
+            self.tableData = self.allTableData.filter{$0?.getMakes() == brandsList[indexPath.row]}
+//            super.domain.getFindByMake(make: brandsList[indexPath.row]) { (boolResponse, jsonResponse) in
+//                print(boolResponse)
+//                print(jsonResponse)
+//                self.tableData.removeAll()
+//                if boolResponse {
+//                    for (_, item) in jsonResponse {
+//                        self.tableData.append(VehicleModelInDetail(autoId: item["autoid"].intValue, id: item["autoid"].int, title: item["title"].stringValue, conditions: item["conditions"].stringValue, bodies: item["bodies"].stringValue, makes: item["makes"].stringValue, models: item["models"].stringValue, mileages: item["mileages"].stringValue, fuelTypes: item["fueltypes"].stringValue, engines: item["engines"].stringValue, years: item["years"].intValue, rentals: item["rentals"].stringValue, fuelConsumptions: item["fuelconsumptions"].stringValue, transmission: item["transmission"].stringValue, drives: item["drives"].stringValue, fuelEconomy: item["fueleconomy"].stringValue, exteriorColors: item["exteriorColors"].stringValue, interiorColors: item["interiorColors"].stringValue, availabilities: item["availabilities"].stringValue, additionalFeatures: item["additionalfeatures"].stringValue, prominentWords: item["prominentwords"].stringValue, quotation: item["quotation"].stringValue, price: item["price"].intValue, downPayment: item["downPayment"].stringValue, imageURL: item["imageURL"].stringValue, stockNumber: item["stockNumber"].stringValue))
+//                    }
+//                    print(self.tableData.count)
+//                } else {
+//                    self.view!.makeToast(jsonResponse["message"].stringValue, duration: 3, position: .bottom, title: "Sorry!", completion: nil)
+//                }
+//    //            self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableView.ScrollPosition.top, animated: true)
+//                self.tableView.reloadData()
+//    //            self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableView.ScrollPosition.top, animated: true)
+//
+//                self.viewIndicator.alpha = 1
+//                UIView.animate(withDuration: 1, delay: 0, options: .curveLinear, animations: {
+//                    self.viewIndicator.alpha = 0
+//                    self.viewIndicator.frame.origin.y -= 40
+//                    self.springIndicator.stop()
+//                }, completion: { (boolValue) in
+//                    self.view.isUserInteractionEnabled = true
+//                })
+//
+//            }
         }
+        self.viewIndicator.alpha = 1
+        self.tableView.reloadData()
+        UIView.animate(withDuration: 1, delay: 0, options: .curveLinear, animations: {
+            self.viewIndicator.alpha = 0
+            self.viewIndicator.frame.origin.y -= 40
+            self.springIndicator.stop()
+        }, completion: { (boolValue) in
+            self.view.isUserInteractionEnabled = true
+            self.springStillShowing = false
+        })
+        
     }
 
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {

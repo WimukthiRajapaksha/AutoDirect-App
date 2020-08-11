@@ -44,7 +44,8 @@ class BaseViewController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
         
-        navigationItem.rightBarButtonItem = setCallButton()
+//        navigationItem.rightBarButtonItem = setCallButton()
+        navigationItem.rightBarButtonItem = UIBarButtonItem()
         navigationItem.leftBarButtonItem = setLeftRevealSidebar()
         
 //        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "CaviarDreams", size: 30)!]
@@ -73,10 +74,24 @@ class BaseViewController: UIViewController {
      }
      
      @objc func onCallBtn( sender : UIBarButtonItem ) {
+        self.callNumber()
 //         sender.alpha = sender.alpha == 1.0 ? 0.5 : 1.0
 
-         let contactNumbersViewController = UIStoryboard(name: "Main", bundle:nil).instantiateViewController(withIdentifier: "ContactNumbersViewController") as! ContactNumbersViewController
-         customPresentViewController(presenter, viewController: contactNumbersViewController, animated: true, completion: nil)
+//         let contactNumbersViewController = UIStoryboard(name: "Main", bundle:nil).instantiateViewController(withIdentifier: "ContactNumbersViewController") as! ContactNumbersViewController
+//         customPresentViewController(presenter, viewController: contactNumbersViewController, animated: true, completion: nil)
+    }
+    
+    private func callNumber() {
+        if let phoneCallURL = URL(string: "telprompt://+94775687687") {
+            let application:UIApplication = UIApplication.shared
+            if (application.canOpenURL(phoneCallURL)) {
+                if #available(iOS 10.0, *) {
+                    application.open(phoneCallURL, options: [:], completionHandler: nil)
+                } else {
+                     application.openURL(phoneCallURL as URL)
+                }
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

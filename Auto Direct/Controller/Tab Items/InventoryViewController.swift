@@ -19,6 +19,7 @@ class InventoryViewController: BaseViewController, UICollectionViewDelegate, UIC
     @IBOutlet weak var viewSearchResults: UIView!
     @IBOutlet weak var btnSearchOption: UIButton!
     @IBOutlet weak var btnNewestFirst: UIButton!
+    @IBOutlet weak var viewNoVehiclesAvailable: UIView!
     
     private let vehicleCategoryTableViewCell: String
     private let vehicleCategoryCollectionViewCell: String
@@ -35,6 +36,8 @@ class InventoryViewController: BaseViewController, UICollectionViewDelegate, UIC
     var fromTabSearch: Bool
 //    private var shimmeringView: FBShimmeringView?
     
+    private var springStillShowing: Bool
+    
     required init?(coder aDecoder: NSCoder) {
         itemId = 0
         fromSearch = false
@@ -48,6 +51,7 @@ class InventoryViewController: BaseViewController, UICollectionViewDelegate, UIC
         brandsList = ["All", "Audi", "BMW", "Honda", "Jeep", "Mazda", "Benz", "MG", "Mini", "Nissan", "Peugeot", "Subaru", "Suzuki", "Toyota", "Volkswagen"]
         tableData = []
         allTableData = []
+        self.springStillShowing = false
         super.init(coder: aDecoder)
     }
     
@@ -93,9 +97,6 @@ class InventoryViewController: BaseViewController, UICollectionViewDelegate, UIC
         btnNewestFirst.layer.cornerRadius = btnNewestFirst.frame.height/2
         btnSearchOption.layer.cornerRadius = btnSearchOption.frame.height/2
         
-        
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -105,6 +106,7 @@ class InventoryViewController: BaseViewController, UICollectionViewDelegate, UIC
         viewIndicator.alpha = 0
         viewIndicator.frame.origin.y -= 40
         self.view.isUserInteractionEnabled = false
+        self.springStillShowing = true
         UIView.animate(withDuration: 0.6, delay: 0, options: .curveLinear, animations: {
             self.viewIndicator.alpha = 1
             self.viewIndicator.frame.origin.y += 40
@@ -139,17 +141,23 @@ class InventoryViewController: BaseViewController, UICollectionViewDelegate, UIC
                     print(jsonResponse)
                     if boolResponse {
                         for (_, item) in jsonResponse {
-                            self.allTableData.append(VehicleModelInDetail(autoId: item["autoid"].intValue, id: item["autoid"].int, title: item["title"].stringValue, conditions: item["conditions"].stringValue, bodies: item["bodies"].stringValue, makes: item["makes"].stringValue, models: item["models"].stringValue, mileages: item["mileages"].stringValue, fuelTypes: item["fueltypes"].stringValue, engines: item["engines"].stringValue, years: item["years"].intValue, rentals: item["rentals"].stringValue, fuelConsumptions: item["fuelconsumptions"].stringValue, transmission: item["transmission"].stringValue, drives: item["drives"].stringValue, fuelEconomy: item["fueleconomy"].stringValue, exteriorColors: item["exteriorColors"].stringValue, interiorColors: item["interiorColors"].stringValue, availabilities: item["availabilities"].stringValue, additionalFeatures: item["additionalfeatures"].stringValue, prominentWords: item["prominentwords"].stringValue, quotation: item["quotation"].stringValue, price: item["price"].intValue, downPayment: item["downPayment"].stringValue, imageURL: item["imageURL"].stringValue, stockNumber: item["stockNumber"].stringValue))
+                            self.allTableData.append(VehicleModelInDetail(autoId: item["autoid"].intValue, id: item["autoid"].int, title: item["title"].stringValue, conditions: item["conditions"].stringValue, bodies: item["bodies"].stringValue, makes: item["makes"].stringValue, models: item["models"].stringValue, mileages: item["mileages"].stringValue, fuelTypes: item["fueltypes"].stringValue, engines: item["engines"].stringValue, years: item["years"].intValue, rentals: item["rentals"].stringValue, fuelConsumptions: item["fuelconsumptions"].stringValue, transmission: item["transmission"].stringValue, drives: item["drives"].stringValue, fuelEconomy: item["fueleconomy"].stringValue, exteriorColors: item["exteriorColors"].stringValue, interiorColors: item["interiorColors"].stringValue, availabilities: item["availabilities"].stringValue, additionalFeatures: item["additionalfeatures"].stringValue, prominentWords: item["prominentwords"].stringValue, quotation: item["quotation"].stringValue, price: item["price"].intValue, downPayment: item["downPayment"].stringValue, imageURL: item["imageURL"].stringValue, stockNumber: item["stockNumber"].stringValue, permalink: item["permalink"].stringValue, video: item["video"].stringValue))
                         }
                         print(self.fromSearch)
                         print(self.fromTabSearch)
                         
                         self.tableData = self.allTableData
+                        if (self.tableData.count == 0) {
+                            self.viewNoVehiclesAvailable.isHidden = false
+                        } else {
+                            self.viewNoVehiclesAvailable.isHidden = true
+                        }
                         self.viewSearchResults.isHidden = false
                         if self.tableData.count > 0 {
+                            self.viewSearchResults.isHidden = false
                             self.lblSearchResultCount.text = (self.tableData.count == 1) ? "\(self.tableData.count) Vehicle Available" : "\(self.tableData.count) Vehicles Available"
                         } else {
-                            self.lblSearchResultCount.text = "0 Vehicles Available"
+                            self.viewSearchResults.isHidden = true
                         }
                         self.tableView.reloadData()
                         
@@ -165,10 +173,25 @@ class InventoryViewController: BaseViewController, UICollectionViewDelegate, UIC
                         self.springIndicator.stop()
                     }, completion: { (boolVal) in
                         self.view.isUserInteractionEnabled = true
+                        self.springStillShowing = false
                     })
                 }
             } else {
                 self.tableData = self.allTableData
+                if (self.tableData.count == 0) {
+                    self.viewNoVehiclesAvailable.isHidden = false
+                } else {
+                    self.viewNoVehiclesAvailable.isHidden = true
+                }
+//                self.viewSearchResults.isHidden = false
+                if self.tableData.count > 0 {
+                    self.viewSearchResults.isHidden = false
+                    self.lblSearchResultCount.text = (self.tableData.count == 1) ? "\(self.tableData.count) Vehicle Available" : "\(self.tableData.count) Vehicles Available"
+                } else {
+                    self.viewSearchResults.isHidden = true
+//                    self.lblSearchResultCount.text = "0 Vehicles Available"
+                }
+                
                 self.tableView.reloadData()
                 self.viewIndicator.alpha = 1
                 UIView.animate(withDuration: 0.5, delay: 0, options: .curveLinear, animations: {
@@ -177,39 +200,56 @@ class InventoryViewController: BaseViewController, UICollectionViewDelegate, UIC
                     self.springIndicator.stop()
                 }, completion: { (boolVal) in
                     self.view.isUserInteractionEnabled = true
+                    self.springStillShowing = false
                 })
             }
         } else if (!fromTabSearch && fromSearch) {
             fromSearch = !fromSearch
+            if (self.tableData.count == 0) {
+                self.viewNoVehiclesAvailable.isHidden = false
+            } else {
+                self.viewNoVehiclesAvailable.isHidden = true
+            }
             if tableData.count > 0 {
+                self.viewSearchResults.isHidden = false
                 self.lblSearchResultCount.text = (tableData.count == 1) ? "\(tableData.count) \(tableData[0]?.getMakes() ?? "") Vehicle Available" : "\(tableData.count) \(tableData[0]?.getMakes() ?? "") Vehicles Available"
             } else {
-                self.lblSearchResultCount.text = "0 Vehicles Available"
+                self.viewSearchResults.isHidden = true
+//                self.lblSearchResultCount.text = "0 Vehicles Available"
             }
             self.viewIndicator.alpha = 1
-            self.viewSearchResults.isHidden = false
+//            self.viewSearchResults.isHidden = false
             UIView.animate(withDuration: 0.5, delay: 0, options: .curveLinear, animations: {
                 self.viewIndicator.alpha = 0
                 self.viewIndicator.frame.origin.y -= 40
                 self.springIndicator.stop()
             }, completion: { (boolVal) in
                 self.view.isUserInteractionEnabled = true
+                self.springStillShowing = false
             })
         } else {
-            fromTabSearch = !fromTabSearch
+//            fromTabSearch = !fromTabSearch
+//            if (self.tableData.count == 0) {
+//                self.viewNoVehiclesAvailable.isHidden = false
+//            } else {
+//                self.viewNoVehiclesAvailable.isHidden = true
+//            }
             if tableData.count > 0 {
+                self.viewSearchResults.isHidden = false
                 self.lblSearchResultCount.text = (tableData.count == 1) ? "\(tableData.count) \(tableData[0]?.getMakes() ?? "") Vehicle Available" : "\(tableData.count) \(tableData[0]?.getMakes() ?? "") Vehicles Available"
             } else {
-                self.lblSearchResultCount.text = "0 Vehicles Available"
+                self.viewSearchResults.isHidden = true
+//                self.lblSearchResultCount.text = "0 Vehicles Available"
             }
             self.viewIndicator.alpha = 1
-            self.viewSearchResults.isHidden = false
+//            self.viewSearchResults.isHidden = false
             UIView.animate(withDuration: 0.5, delay: 0, options: .curveLinear, animations: {
                 self.viewIndicator.alpha = 0
                 self.viewIndicator.frame.origin.y -= 40
                 self.springIndicator.stop()
             }, completion: { (boolVal) in
                 self.view.isUserInteractionEnabled = true
+                self.springStillShowing = false
             })
         }
     }
@@ -220,6 +260,17 @@ class InventoryViewController: BaseViewController, UICollectionViewDelegate, UIC
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        if self.springStillShowing {
+            self.viewIndicator.alpha = 1
+            UIView.animate(withDuration: 1, delay: 0, options: .curveLinear, animations: {
+                self.viewIndicator.alpha = 0
+                self.viewIndicator.frame.origin.y -= 40
+                self.springIndicator.stop()
+            }, completion: { (boolValue) in
+                self.view.isUserInteractionEnabled = true
+                self.springStillShowing = false
+            })
+        }
     }
     
     private func viewSearchResultsShowHide(hide: Bool, make: String = "", resultCount: Int = 0) {
@@ -306,15 +357,15 @@ class InventoryViewController: BaseViewController, UICollectionViewDelegate, UIC
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if !shownIndexes.contains(indexPath) {
-            shownIndexes.append(indexPath)
-            tableView.isUserInteractionEnabled = true
-            let cellItem = cell as! VehicleCategoryTableViewCell
-            cellItem.alpha = 0
-            UIView.animate(withDuration: 1, delay: (0.5*Double(indexPath.row)), options: .curveLinear, animations: {
-                cellItem.alpha = 1
-            }, completion: nil)
-        }
+//        if !shownIndexes.contains(indexPath) {
+//            shownIndexes.append(indexPath)
+//            tableView.isUserInteractionEnabled = true
+//            let cellItem = cell as! VehicleCategoryTableViewCell
+//            cellItem.alpha = 0
+//            UIView.animate(withDuration: 1, delay: (0.5*Double(indexPath.row)), options: .curveLinear, animations: {
+//                cellItem.alpha = 1
+//            }, completion: nil)
+//        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -363,6 +414,13 @@ class InventoryViewController: BaseViewController, UICollectionViewDelegate, UIC
         if (error == "") {
             self.viewSearchResultsShowHide(hide: false, make: make, resultCount: tableData.count)
             self.tableData = tableData
+            if (self.tableData.count == 0) {
+                self.viewNoVehiclesAvailable.isHidden = false
+                self.viewSearchResults.isHidden = true
+            } else {
+                self.viewNoVehiclesAvailable.isHidden = true
+                self.viewSearchResults.isHidden = false
+            }
             print(tableData.count)
             self.tableView.reloadData()
         } else {
@@ -387,6 +445,13 @@ class InventoryViewController: BaseViewController, UICollectionViewDelegate, UIC
     
     func searchOptionsResult(result: [VehicleModelInDetail?]) {
         self.tableData = result
+        if (self.tableData.count == 0) {
+            self.viewNoVehiclesAvailable.isHidden = false
+            self.viewSearchResults.isHidden = true
+        } else {
+            self.viewNoVehiclesAvailable.isHidden = true
+            self.viewSearchResults.isHidden = false
+        }
         fromSearch = true
         self.tableView.reloadData()
     }

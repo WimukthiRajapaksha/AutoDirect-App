@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireImage
 
 class FirstReserveTableViewCell: UITableViewCell {
     @IBOutlet weak var imgVehicle: UIImageView!
@@ -24,11 +26,20 @@ class FirstReserveTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    public func setData(imgUrl: String, make: String, model: String, detail: String) {
+    public func setData(imgUrl: String, title: String, type: String) {
         print(imgUrl)
-        self.imgVehicle.downloaded(from: imgUrl)
-        self.lblModel.text = "\(make) \(model)"
-        self.lblDetail.text = detail
+//        self.imgVehicle.downloaded(from: imgUrl)
+        
+        AF.request(imgUrl).responseImage { (response) in
+            if response.error == nil {
+                self.imgVehicle.image = UIImage(data: response.data!)
+            } else {
+                self.imgVehicle.image = UIImage(named: "placeholder")
+            }
+        }
+        
+        self.lblModel.text = title
+        self.lblDetail.text = type
     }
 
 }

@@ -25,8 +25,12 @@ class ModelDetailsViewController: BaseViewController, UITableViewDelegate, UITab
     private let springIndicator: SpringIndicator
     private let viewIndicator: UIView
     
+    private var springStillShowing: Bool
+    
+    
     required init?(coder aDecoder: NSCoder) {
         shownIndexes = []
+        springStillShowing = false
         viewIndicator = UIView(frame: CGRect(x: UIScreen.main.bounds.width/2-30, y: UIScreen.main.bounds.height/3-30, width: 60, height: 60))
         springIndicator = SpringIndicator(frame: CGRect(x: 20, y: 20, width: 20, height: 20))
         playerFullScreenShown = false
@@ -64,6 +68,7 @@ class ModelDetailsViewController: BaseViewController, UITableViewDelegate, UITab
         viewIndicator.alpha = 0
         viewIndicator.frame.origin.y -= 40
         self.view.isUserInteractionEnabled = false
+        springStillShowing = true
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveLinear, animations: {
             self.viewIndicator.alpha = 1
             self.viewIndicator.frame.origin.y += 40
@@ -80,7 +85,22 @@ class ModelDetailsViewController: BaseViewController, UITableViewDelegate, UITab
             self.springIndicator.stop()
         }, completion: { (boolValue) in
             self.view.isUserInteractionEnabled = true
+            self.springStillShowing = false
         })
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if self.springStillShowing {
+            viewIndicator.alpha = 1
+            UIView.animate(withDuration: 1, delay: 0, options: .curveLinear, animations: {
+                self.viewIndicator.alpha = 0
+                self.viewIndicator.frame.origin.y -= 40
+                self.springIndicator.stop()
+            }, completion: { (boolValue) in
+                self.view.isUserInteractionEnabled = true
+                self.springStillShowing = false
+            })
+        }
     }
     
     public func setSelectedVehicleModel(vehicleModel: VehicleModelInDetail) {
@@ -95,7 +115,12 @@ class ModelDetailsViewController: BaseViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        if (selectedVehicleModel.getVideo() != "") {
+            return 5
+        } else {
+            return 4
+        }
+        
 //        return 6 // Todo - if there should be more button & play video section return 6
     }
     
@@ -133,11 +158,12 @@ class ModelDetailsViewController: BaseViewController, UITableViewDelegate, UITab
             let cell = tableView.dequeueReusableCell(withIdentifier: "ThirdModelDetailsTableViewCell") as! ThirdModelDetailsTableViewCell
             cell.whatsappView.layer.cornerRadius = 29.5
 //            cell.setModelDetailsForWhatsAppInquiry(details: "\(selectedVehicleModel.getTitle()), Stock Number \(selectedVehicleModel.getStockNumber())")
-            cell.setModelDetailsForWhatsAppInquiry(make: selectedVehicleModel.getMakes(), model: selectedVehicleModel.getModels(), year: "\(selectedVehicleModel.getYears())", stockNumber: selectedVehicleModel.getStockNumber())
+            cell.setModelDetailsForWhatsAppInquiry(title: selectedVehicleModel.getTitle(), year: "\(selectedVehicleModel.getYears())", stockNumber: selectedVehicleModel.getStockNumber())
             cell.lblStockNumber.text = selectedVehicleModel.getStockNumber()
             return cell
-//        } else if (indexPath.row == 3) {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "ForthModelDetailsTableViewCell") as! ForthModelDetailsTableViewCell
+        } else if (indexPath.row == 3 && selectedVehicleModel.getVideo() != "") {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ForthModelDetailsTableViewCell") as! ForthModelDetailsTableViewCell
+            cell.setPlayerLink(link: selectedVehicleModel.getVideo())
 //            let videoURL = URL(string: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4")
 //            self.player = AVPlayer(url: videoURL!)
 //            self.playerViewController = AVPlayerViewController()
@@ -147,11 +173,12 @@ class ModelDetailsViewController: BaseViewController, UITableViewDelegate, UITab
 //            playerViewController.player?.pause()
 //            self.playerViewController.delegate = self
 //            cell.addSubview(playerViewController.view)
-//            return cell
-            
-//            Todo - concomment above section and change the indexpath.row to show avplayer section
-            
-        } else if (indexPath.row == 3) {
+            return cell
+        } else if (indexPath.row == 3 && selectedVehicleModel.getVideo() == "") {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "FifthModelDetailsTableViewCell") as! FifthModelDetailsTableViewCell
+            cell.setFeaturesList(featuresList: selectedVehicleModel.getAdditionalFeatures())
+            return cell
+        } else if (indexPath.row == 4) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "FifthModelDetailsTableViewCell") as! FifthModelDetailsTableViewCell
             cell.setFeaturesList(featuresList: selectedVehicleModel.getAdditionalFeatures())
             return cell
@@ -209,9 +236,12 @@ class ModelDetailsViewController: BaseViewController, UITableViewDelegate, UITab
     @objc func onShareBtn( sender : UIButton ) {
 //        sender.alpha = sender.alpha == 1.0 ? 0.5 : 1.0
 //        print("clicked")
-        let websiteUrl : NSURL = NSURL(string: "https://autodirect.lk")!
+//        https://autodirect.lk/listings/mercedes-benz-c200-4/
+        
+        
+        let websiteUrl = NSURL(string: self.selectedVehicleModel.getPermalink())!
         let activityViewController : UIActivityViewController = UIActivityViewController(
-            activityItems: [websiteUrl], applicationActivities: nil)
+            activityItems: [self.selectedVehicleModel.getTitle(), websiteUrl], applicationActivities: nil)
         activityViewController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.up
         activityViewController.popoverPresentationController?.sourceRect = CGRect(x: 150, y: 150, width: 0, height: 0)
         self.present(activityViewController, animated: true, completion: nil)
@@ -232,7 +262,8 @@ class ModelDetailsViewController: BaseViewController, UITableViewDelegate, UITab
     }
     
     @objc func onPcpTouch(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "pcpSegue", sender: self)
+//        self.performSegue(withIdentifier: "pcpSegue", sender: self)
+        UIApplication.shared.openURL(URL(string: selectedVehicleModel.getQuotation())!)
     }
     
     func playerViewController(_ playerViewController: AVPlayerViewController, willBeginFullScreenPresentationWithAnimationCoordinator coordinator: UIViewControllerTransitionCoordinator) {

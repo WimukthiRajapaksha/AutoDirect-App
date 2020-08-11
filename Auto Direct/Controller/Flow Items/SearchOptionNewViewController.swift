@@ -14,7 +14,7 @@ protocol SearchOptionsResultDelegate {
     func searchOptionsResult(result: [VehicleModelInDetail?])
 }
 
-class SearchOptionNewViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, ConditionDelegate, MakeYearDelegate, ModelDelegate, PriceDelegate, SearchDelegate {
+class SearchOptionNewViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, ConditionDelegate, ConditionMakeYearDelegate, ModelDelegate, PriceDelegate, SearchDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     private let year: Int
@@ -36,6 +36,8 @@ class SearchOptionNewViewController: BaseViewController, UITableViewDelegate, UI
     var searchOptionsResultDelegate: SearchOptionsResultDelegate!
     private var searchResult: [VehicleModelInDetail?]
     
+    private var springStillShowing: Bool
+    
     required init?(coder: NSCoder) {
         year = Calendar.current.component(.year, from: Date())
         makeList = []
@@ -48,6 +50,7 @@ class SearchOptionNewViewController: BaseViewController, UITableViewDelegate, UI
         selectedMinPrice = ""
         selectedMaxPrice = ""
         searchResult = []
+        self.springStillShowing = false
         viewIndicator = UIView(frame: CGRect(x: UIScreen.main.bounds.width/2-30, y: UIScreen.main.bounds.height/3.7-30, width: 60, height: 60))
         springIndicator = SpringIndicator(frame: CGRect(x: 20, y: 20, width: 20, height: 20))
         conditionList = ["Budget Plus", "New|Unregistered", "Pre-Owned"]
@@ -83,6 +86,7 @@ class SearchOptionNewViewController: BaseViewController, UITableViewDelegate, UI
         viewIndicator.alpha = 0
         viewIndicator.frame.origin.y -= 40
         self.view.isUserInteractionEnabled = false
+        springStillShowing = true
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveLinear, animations: {
             self.viewIndicator.alpha = 1
             self.viewIndicator.frame.origin.y += 40
@@ -109,6 +113,7 @@ class SearchOptionNewViewController: BaseViewController, UITableViewDelegate, UI
                 self.springIndicator.stop()
             }, completion: { (boolValue) in
                 self.view.isUserInteractionEnabled = true
+                self.springStillShowing = false
             })
         }
     }
@@ -118,6 +123,17 @@ class SearchOptionNewViewController: BaseViewController, UITableViewDelegate, UI
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        if springStillShowing {
+            self.viewIndicator.alpha = 1
+            UIView.animate(withDuration: 1, delay: 0, options: .curveLinear, animations: {
+                self.viewIndicator.alpha = 0
+                self.viewIndicator.frame.origin.y -= 40
+                self.springIndicator.stop()
+            }, completion: { (boolValue) in
+                self.view.isUserInteractionEnabled = true
+                self.springStillShowing = false
+            })
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -139,17 +155,18 @@ class SearchOptionNewViewController: BaseViewController, UITableViewDelegate, UI
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.row == 0) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "FirstTableViewCell", for: indexPath) as! FirstTableViewCell
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "SecondTableViewCell", for: indexPath) as! SecondTableViewCell
+            cell.conditionDelegate = self
             cell.selectionStyle = .none
 //            cell.lbl.text = "Condition"
             cell.lbl.attributedText = self.withRedStar(lblString: "Condition*")
             cell.setData(data: conditionList)
-//            cell.setData(data: ["Bu", "Ne", "Pr"])
-            cell.conditionDelegate = self
+//            cell.conditionDelegate = self
             return cell
         } else if (indexPath.row == 1) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SecondTableViewCell", for: indexPath) as! SecondTableViewCell
             cell.lbl.attributedText = self.withRedStar(lblString: "Make*")
-            cell.makeYearDelegate = self
+            cell.conditionMakeYearDelegate = self
 //            cell.setData(data: ["Audi", "BMW", "Honda", "Jeep", "Mazda", "Benz", "MG", "Mini", "Nissan", "Peugeot", "Subaru", "Suzuki", "Toyota", "Volkswagen"])
             cell.setData(data: makeList as! [String], identifier: "makeCollectionView" )
             cell.selectionStyle = .none
@@ -160,13 +177,14 @@ class SearchOptionNewViewController: BaseViewController, UITableViewDelegate, UI
 //            cell.setData(data: modelList as! [String])
             cell.selectionStyle = .none
 //            cell.modelDelegate = self
+            print(modelList)
             cell.setData(data: modelList as! [String], identifier: "modelCollectionView")
-            cell.makeYearDelegate = self
+            cell.conditionMakeYearDelegate = self
             return cell
         } else if (indexPath.row == 3) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SecondTableViewCell", for: indexPath) as! SecondTableViewCell
             cell.lbl.attributedText = self.withRedStar(lblString: "Year*")
-            cell.makeYearDelegate = self
+            cell.conditionMakeYearDelegate = self
             cell.setData(data: yearsList as! [String], identifier: "yearCollectionView")
             cell.selectionStyle = .none
             return cell
@@ -189,11 +207,11 @@ class SearchOptionNewViewController: BaseViewController, UITableViewDelegate, UI
         print(conditionList[condition])
     }
     
-    func selectedMakeYear(makeModelYear: String, identifier: String) {
-        print(makeModelYear)
+    func selectedMakeYear(conditionMakeModelYear: String, identifier: String) {
+        print(conditionMakeModelYear)
         if (identifier == "makeCollectionView") {
-            selectedMake = makeModelYear
-            super.domain.getModelsByMake(make: makeModelYear) { (boolResponse, jsonResponse) in
+            selectedMake = conditionMakeModelYear
+            super.domain.getModelsByMake(make: conditionMakeModelYear) { (boolResponse, jsonResponse) in
                 print(boolResponse)
                 print(jsonResponse)
                 if boolResponse {
@@ -203,6 +221,7 @@ class SearchOptionNewViewController: BaseViewController, UITableViewDelegate, UI
                         self.modelList.remove(at: index!)
                     }
                     if (self.modelList.count != 0) {
+                        print(self.modelList as! [String])
                         let indexPath = IndexPath(row: 2, section: 0)
     //                    let cell = self.tableView.dequeueReusableCell(withIdentifier: "ThirdTableViewCell", indexPath: indexPath) as! ThirdTableViewCell
                         let cell = self.tableView.dequeueReusableCell(withIdentifier: "ThirdTableViewCell", for: indexPath) as! ThirdTableViewCell
@@ -214,9 +233,9 @@ class SearchOptionNewViewController: BaseViewController, UITableViewDelegate, UI
                 }
             }
         } else if (identifier == "modelCollectionView") {
-            selectedModel = makeModelYear
+            selectedModel = conditionMakeModelYear
         } else {
-            selectedYear = makeModelYear
+            selectedYear = conditionMakeModelYear
         }
     }
     
@@ -234,15 +253,13 @@ class SearchOptionNewViewController: BaseViewController, UITableViewDelegate, UI
     
     func search() {
         if (selectedCondition != "" && selectedMake != "" && selectedModel != "" && selectedYear != "" && selectedMinPrice != "" && selectedMaxPrice != "") {
-//            self.view!.makeToast("\(selectedCondition) \(selectedMake) \(selectedModel) \(selectedYear) \(selectedMinPrice) \(selectedMaxPrice)", duration: 3, position: .bottom, title: "SEARCHING....") { (bool) in
-//
-//                self.navigationController?.popViewController(animated: true)
-//            }
+            print("\(selectedCondition) \(selectedMake) \(selectedModel) \(selectedYear) \(selectedMinPrice) \(selectedMaxPrice)")
             
             springIndicator.start()
             viewIndicator.alpha = 0
             viewIndicator.frame.origin.y -= 40
             self.view.isUserInteractionEnabled = false
+            self.springStillShowing = true
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveLinear, animations: {
                 self.viewIndicator.alpha = 1
                 self.viewIndicator.frame.origin.y += 40
@@ -254,7 +271,7 @@ class SearchOptionNewViewController: BaseViewController, UITableViewDelegate, UI
                 
                 if boolResponse {
                     for (_, item) in jsonResponse {
-                        self.searchResult.append(VehicleModelInDetail(autoId: item["autoid"].intValue, id: item["autoid"].int, title: item["title"].stringValue, conditions: item["conditions"].stringValue, bodies: item["bodies"].stringValue, makes: item["makes"].stringValue, models: item["models"].stringValue, mileages: item["mileages"].stringValue, fuelTypes: item["fueltypes"].stringValue, engines: item["engines"].stringValue, years: item["years"].intValue, rentals: item["rentals"].stringValue, fuelConsumptions: item["fuelconsumptions"].stringValue, transmission: item["transmission"].stringValue, drives: item["drives"].stringValue, fuelEconomy: item["fueleconomy"].stringValue, exteriorColors: item["exteriorColors"].stringValue, interiorColors: item["interiorColors"].stringValue, availabilities: item["availabilities"].stringValue, additionalFeatures: item["additionalfeatures"].stringValue, prominentWords: item["prominentwords"].stringValue, quotation: item["quotation"].stringValue, price: item["price"].intValue, downPayment: item["downPayment"].stringValue, imageURL: item["imageURL"].stringValue, stockNumber: item["stockNumber"].stringValue))
+                        self.searchResult.append(VehicleModelInDetail(autoId: item["autoid"].intValue, id: item["autoid"].int, title: item["title"].stringValue, conditions: item["conditions"].stringValue, bodies: item["bodies"].stringValue, makes: item["makes"].stringValue, models: item["models"].stringValue, mileages: item["mileages"].stringValue, fuelTypes: item["fueltypes"].stringValue, engines: item["engines"].stringValue, years: item["years"].intValue, rentals: item["rentals"].stringValue, fuelConsumptions: item["fuelconsumptions"].stringValue, transmission: item["transmission"].stringValue, drives: item["drives"].stringValue, fuelEconomy: item["fueleconomy"].stringValue, exteriorColors: item["exteriorColors"].stringValue, interiorColors: item["interiorColors"].stringValue, availabilities: item["availabilities"].stringValue, additionalFeatures: item["additionalfeatures"].stringValue, prominentWords: item["prominentwords"].stringValue, quotation: item["quotation"].stringValue, price: item["price"].intValue, downPayment: item["downPayment"].stringValue, imageURL: item["imageURL"].stringValue, stockNumber: item["stockNumber"].stringValue, permalink: item["permalink"].stringValue, video: item["video"].stringValue))
                     }
                     self.searchOptionsResultDelegate.searchOptionsResult(result: self.searchResult)
                     self.navigationController?.popViewController(animated: true)
@@ -269,6 +286,7 @@ class SearchOptionNewViewController: BaseViewController, UITableViewDelegate, UI
                     self.springIndicator.stop()
                 }, completion: { (boolValue) in
                     self.view.isUserInteractionEnabled = true
+                    self.springStillShowing = false
                 })
             }
         } else {

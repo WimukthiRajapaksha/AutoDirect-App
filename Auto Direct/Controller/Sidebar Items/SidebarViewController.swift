@@ -151,6 +151,9 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: sidebarItemTableViewCell, for: indexPath) as! SidebarItemTableViewCell
+        if (indexPath.section == 0) {
+            cell.lblItemName.textColor = .white
+        }
         cell.lblItemDescription.isHidden = true
         var subItemName = sidebarItemsList.getItemsList()[indexPath.section].getSubItems()[indexPath.row].getSubItemName()
         subItemName.remove(at: subItemName.startIndex)
@@ -198,11 +201,13 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.sendWhatsAppMsg()
                 self.sideMenuController?.hideMenu()
             } else {
-                navigationViewController = self.storyboard?.instantiateViewController(withIdentifier: "ourDeliveries") as! UINavigationController
-                navigationViewController.modalPresentationStyle = .fullScreen
-                self.present(navigationViewController, animated: true) {
-                    self.sideMenuController?.hideMenu()
-                }
+//                navigationViewController = self.storyboard?.instantiateViewController(withIdentifier: "ourDeliveries") as! UINavigationController
+//                navigationViewController.modalPresentationStyle = .fullScreen
+//                self.present(navigationViewController, animated: true) {
+//                    self.sideMenuController?.hideMenu()
+//                }
+                UIApplication.shared.openURL(URL(string: "https://autodirect.lk/our-deliveries/")!)
+                self.sideMenuController?.hideMenu()
             }
         }
     }

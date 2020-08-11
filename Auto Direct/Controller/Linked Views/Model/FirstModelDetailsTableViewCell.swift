@@ -8,6 +8,8 @@
 
 import UIKit
 import ImageSlideshow
+import Alamofire
+import AlamofireImage
 
 class FirstModelDetailsTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     @IBOutlet var containerView: UIView!
@@ -246,8 +248,8 @@ class FirstModelDetailsTableViewCell: UITableViewCell, UICollectionViewDelegate,
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print(imageLinks.count)
-        return 10
-//        return self.imageLinks.count
+//        return 10
+        return self.imageLinks.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -256,18 +258,60 @@ class FirstModelDetailsTableViewCell: UITableViewCell, UICollectionViewDelegate,
         
         cell.imgView.contentMode = .scaleAspectFill
         
-        cell.imgView.downloaded(from: self.imageLinks[indexPath.row]!)
+//        cell.imgView.downloaded(from: self.imageLinks[indexPath.row]!)
+        
+        AF.request(self.imageLinks[indexPath.row]!).responseImage { (response) in
+            if response.error == nil {
+                cell.imgView.image = UIImage(data: response.data!)
+            } else {
+                cell.imgView.image = UIImage(named: "placeholder")
+            }
+        }
         
 //        cell.imgView.image = UIImage(named: "car-\(indexPath.row+1)")
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.size.width, height: collectionView.frame.size.height)
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return CGSize(width: UIScreen.main.bounds.size.width, height: collectionView.frame.size.height)
+//    }
     
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+//    }
+    
+//    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+//        if (scrollView == self.collectionView) {
+//            var currentCellOffset = self.collectionView.contentOffset
+//            currentCellOffset.x += self.collectionView.frame.size.width / 2
+//            var indexPath = self.collectionView.indexPathForItem(at: currentCellOffset)
+//
+//            self.collectionView.scrollToItem(at: indexPath!, at: .centeredVertically, animated: true)
+//
+////            self.collectionView.scrollToItemAtIndexPath:indexPath
+////            atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
+////                    animated:YES
+//
+//        }
+//    }
+    
+    
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+
+        return 2.5
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        let frameSize = collectionView.frame.size
+        return CGSize(width: frameSize.width - 2.5, height: frameSize.height)
+//        return CGSize(width: self.containerView.frame.width, height: collectionView.frame.size.height)
+    }
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+        return UIEdgeInsets(top: 0, left: 1.250, bottom: 0, right: 1.250)
     }
     
     

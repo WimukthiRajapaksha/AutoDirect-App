@@ -18,5 +18,8 @@ target 'Auto Direct' do
   pod "ESTabBarController-swift"
   pod 'SwiftyJSON'
   pod 'Toast-Swift'
+  pod 'ImageLoader'
+  pod 'AlamofireImage'
+  pod 'youtube-ios-player-helper'
 
 end

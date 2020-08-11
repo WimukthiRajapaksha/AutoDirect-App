@@ -350,13 +350,6 @@
 			children = (
 				CE6DC18624431A2900F11973 /* fonts */,
 				CE645B532469282D00728066 /* Assets.xcassets */,
-				CE645B4D2469281000728066 /* UIColor.swift */,
-				CE645B492469280F00728066 /* UIImage.swift */,
-				CE645B4B2469280F00728066 /* UINavigationBar.swift */,
-				CE645B4A2469280F00728066 /* UIView.swift */,
-				CE645B4C2469281000728066 /* UIViewController.swift */,
-				FAB3EC4C24D403B100D94DC6 /* CheckBox.swift */,
-				FA1B63E124D926EE003BE28B /* Int.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -561,6 +554,13 @@
 			isa = PBXGroup;
 			children = (
 				FAB3EC2324D0AD1400D94DC6 /* UIImageView.swift */,
+				CE645B4D2469281000728066 /* UIColor.swift */,
+				CE645B492469280F00728066 /* UIImage.swift */,
+				CE645B4B2469280F00728066 /* UINavigationBar.swift */,
+				CE645B4A2469280F00728066 /* UIView.swift */,
+				CE645B4C2469281000728066 /* UIViewController.swift */,
+				FAB3EC4C24D403B100D94DC6 /* CheckBox.swift */,
+				FA1B63E124D926EE003BE28B /* Int.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AlamofireImage
+import Alamofire
 
 class VehicleCategoryTableViewCell: UITableViewCell {
     @IBOutlet weak var cardView: UIView!
@@ -30,7 +32,28 @@ class VehicleCategoryTableViewCell: UITableViewCell {
         self.lblBrandDetail.text = brandDetail
         self.lblBrandName.text = brandName
         self.lblAmount.text = "LKR \(amount)"
-        self.imgBrand.downloaded(from: imageUrl)
+//        let dom = Domain()
+//        dom?.loadImage(url: imageUrl, completion: { (bool, jso) in
+//            if bool {
+//                self.imgBrand.image = UIImage(data: jso)
+//            } else {
+//                self.imgBrand.image = UIImage(named: "placeholder")
+//            }
+//
+//        })
+        
+        AF.request(imageUrl).responseImage { (response) in
+            if response.error == nil {
+                self.imgBrand.image = UIImage(data: response.data!)
+            } else {
+                self.imgBrand.image = UIImage(named: "placeholder")
+            }
+        }
+        
+//        self.imgBrand.af_setImage(withURL: URL(string: imageUrl)!)
+//        self.imgBrand.downloaded(from: imageUrl)
+//        self.imgBrand.load(url: URL(string: imageUrl)!)
+//        self.imgBrand.downloadImage(from: URL(string: imageUrl)!)
         self.viewFeature1.lblFeature.text = fuelType
         self.viewFeature2.lblFeature.text = engine
         self.viewFeature3.lblFeature.text = transmission

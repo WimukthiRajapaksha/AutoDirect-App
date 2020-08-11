@@ -28,7 +28,7 @@ class ModelFeatureItem: UIView {
         Bundle.main.loadNibNamed("ModelFeatureItem", owner: self, options: nil)
         addSubview(cardView)
         
-        imgItem.layer.cornerRadius = 23
+        imgItem.layer.cornerRadius = 25
         cardView.frame = self.bounds
         cardView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }

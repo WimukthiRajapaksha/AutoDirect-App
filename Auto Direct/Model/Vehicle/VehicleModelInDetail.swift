@@ -35,8 +35,10 @@ class VehicleModelInDetail {
     private let downPayment: String
     private let imageURL: String
     private let stockNumber: String
+    private let permalink: String
+    private let video: String
     
-    init(autoId: Int, id: Int?, title: String, conditions: String, bodies: String, makes: String, models: String, mileages: String, fuelTypes: String, engines: String, years: Int, rentals: String, fuelConsumptions: String, transmission: String, drives: String, fuelEconomy: String, exteriorColors: String, interiorColors: String, availabilities: String, additionalFeatures: String, prominentWords: String, quotation: String, price: Int, downPayment: String, imageURL: String, stockNumber: String) {
+    init(autoId: Int, id: Int?, title: String, conditions: String, bodies: String, makes: String, models: String, mileages: String, fuelTypes: String, engines: String, years: Int, rentals: String, fuelConsumptions: String, transmission: String, drives: String, fuelEconomy: String, exteriorColors: String, interiorColors: String, availabilities: String, additionalFeatures: String, prominentWords: String, quotation: String, price: Int, downPayment: String, imageURL: String, stockNumber: String, permalink: String, video: String) {
         self.autoId = autoId
         self.id = id
         self.title = title
@@ -63,6 +65,8 @@ class VehicleModelInDetail {
         self.downPayment = downPayment
         self.imageURL = imageURL
         self.stockNumber = stockNumber
+        self.permalink = permalink
+        self.video = video
     }
     
     public func getAutoId() -> Int {
@@ -167,5 +171,13 @@ class VehicleModelInDetail {
     
     public func getStockNumber() -> String {
         return self.stockNumber
+    }
+    
+    public func getPermalink() -> String {
+        return self.permalink
+    }
+    
+    public func getVideo() -> String {
+        return self.video
     }
 }

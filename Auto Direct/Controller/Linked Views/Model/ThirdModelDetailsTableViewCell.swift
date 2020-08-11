@@ -13,8 +13,7 @@ class ThirdModelDetailsTableViewCell: UITableViewCell {
     @IBOutlet weak var lblStockNumber: UILabel!
     @IBOutlet weak var lblSendInquire: UILabel!
     
-    private var make: String!
-    private var model: String!
+    private var title: String!
     private var year: String!
     private var stockNumber: String!
     
@@ -24,9 +23,8 @@ class ThirdModelDetailsTableViewCell: UITableViewCell {
         whatsappView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onSendWhatsAppMessage)))
     }
     
-    public func setModelDetailsForWhatsAppInquiry(make: String, model: String, year: String, stockNumber: String) {
-        self.make = make
-        self.model = model
+    public func setModelDetailsForWhatsAppInquiry(title: String, year: String, stockNumber: String) {
+        self.title = title
         self.year = year
         self.stockNumber = stockNumber
     }
@@ -36,7 +34,7 @@ class ThirdModelDetailsTableViewCell: UITableViewCell {
     }
     
     @objc func onSendWhatsAppMessage() {
-        let urlString = "I would like to make an inquire on \(self.make!) \(self.model!) \(self.year!)\nStock No - \(self.stockNumber!)"
+        let urlString = "I would like to know more details about the \(self.title!) \(self.year!)\nStock No - \(self.stockNumber!)"
         let urlStringEncoded = urlString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
         let url  = NSURL(string: "https://wa.me/+94779033388?text=\(urlStringEncoded!)")
         

@@ -25,10 +25,10 @@ class FifthModelDetailsTableViewCell: UITableViewCell {
              font: UIFont,
              bullet: String = "\u{2022}",
              indentation: CGFloat = 20,
-             lineSpacing: CGFloat = 2,
+             lineSpacing: CGFloat = 10,
              paragraphSpacing: CGFloat = 12,
-             textColor: UIColor = .gray,
-             bulletColor: UIColor = .red) -> NSAttributedString {
+             textColor: UIColor = .white,
+             bulletColor: UIColor = .green) -> NSAttributedString {
 
         let textAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: textColor]
         let bulletAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: bulletColor]
@@ -49,6 +49,7 @@ class FifthModelDetailsTableViewCell: UITableViewCell {
         for string in stringList {
             let formattedString = "\(bullet)\t\(string)\n"
             let attributedString = NSMutableAttributedString(string: formattedString)
+//            let bulletAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.foregroundColor: UIColor.gray]
 
             attributedString.addAttributes(
                 [NSAttributedString.Key.paragraphStyle : paragraphStyle],

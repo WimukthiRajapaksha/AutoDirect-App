@@ -8,15 +8,15 @@
 
 import UIKit
 
-protocol MakeYearDelegate {
-    func selectedMakeYear(makeModelYear: String, identifier: String)
+protocol ConditionMakeYearDelegate {
+    func selectedMakeYear(conditionMakeModelYear: String, identifier: String)
 }
 
-class SecondTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
+class SecondTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var lbl: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var makeYearDelegate: MakeYearDelegate!
+    var conditionMakeYearDelegate: ConditionMakeYearDelegate!
     
     private var data: [String?] = []
     
@@ -45,17 +45,26 @@ class SecondTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print(data.count)
+        print(data)
         return data.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SecondCollectionViewCell", for: indexPath) as! SecondCollectionViewCell
         cell.lbl.text = data[indexPath.row]
+        print(data[indexPath.row])
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return collectionView.auto
+        return CGSize(width: (self.safeAreaLayoutGuide.layoutFrame.width), height: 20);
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        makeYearDelegate.selectedMakeYear(makeModelYear: data[indexPath.row]!, identifier: collectionView.accessibilityIdentifier!)
+        print(collectionView.accessibilityIdentifier)
+        conditionMakeYearDelegate.selectedMakeYear(conditionMakeModelYear: data[indexPath.row]!, identifier: collectionView.accessibilityIdentifier!)
     }
 
 }

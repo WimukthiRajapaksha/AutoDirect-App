@@ -13,7 +13,7 @@ enum ExampleProvider {
     static func customIrregularityStyle(delegate: UITabBarControllerDelegate?) -> ESTabBarController {
         let tabBarController = ESTabBarController()
         tabBarController.delegate = delegate
-        tabBarController.tabBar.backgroundColor = UIColor(rgb: 0x06070A)
+        tabBarController.tabBar.backgroundColor = UIColor(rgb: 0x00081f)
 //        tabBarController.tabBar.barTintColor = color
 //        tabBarController.tabBar.tintColor = color
 //        tabBarController.tabBar.alpha = 1

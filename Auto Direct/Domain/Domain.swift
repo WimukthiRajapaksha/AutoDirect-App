@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import AlamofireImage
 
 class Domain {
     private let getSearch: String
@@ -298,6 +299,16 @@ class Domain {
                     completion(respo.getFormattedResponse().0, respo.getFormattedResponse().1)
                 case .failure(_):
                     completion(false, self.errorMsgJson())
+            }
+        }
+    }
+    
+    public func loadImage(url: String, completion: @escaping (Bool, Data) -> ()) {
+        AF.request(url).responseImage { (response) in
+            if response.error == nil {
+                completion(true, response.data!)
+            } else {
+                completion(false, Data())
             }
         }
     }

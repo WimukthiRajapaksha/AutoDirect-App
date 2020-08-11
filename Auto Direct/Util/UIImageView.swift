@@ -28,7 +28,37 @@ extension UIImageView {
         
     }
     func downloaded(from link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit) {  // for swift 4.2 syntax just use ===> mode: UIView.ContentMode
-        guard let url = URL(string: link) else { return }
-        downloaded(from: url, contentMode: mode)
+        let url = URL(string: link)
+        do {
+            let data = try Data(contentsOf: url!)
+            self.image = UIImage(data: data)
+        } catch {
+            self.image = UIImage(named: "call")
+        }
+        
+        
+    }
+    
+    private func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
+    
+    func downloadImage(from url: URL) {
+        print("Download Started")
+        getData(from: url) { data, response, error in
+            print(data)
+            print(response)
+            print(error)
+            if error == nil {
+                print(response?.suggestedFilename ?? url.lastPathComponent)
+                print("Download Finished")
+                DispatchQueue.main.async() { [weak self] in
+                    self?.image = UIImage(data: data!)
+                }
+            } else {
+                self.image = UIImage(named: "call")
+            }
+            
+        }
     }
 }

@@ -26,6 +26,7 @@ class ReserveVehicleViewController: BaseViewController, UITableViewDelegate, UIT
     private var blurEffectView: UIVisualEffectView?
     
     private var selectedVehicleModel: VehicleModelInDetail!
+    private var springStillShowing: Bool
     
     var count = 10
     var timer: Timer?
@@ -50,6 +51,7 @@ class ReserveVehicleViewController: BaseViewController, UITableViewDelegate, UIT
     
     required init?(coder aDecoder: NSCoder) {
         shownIndexes = []
+        springStillShowing = false
         viewIndicator = UIView(frame: CGRect(x: UIScreen.main.bounds.width/2-30, y: UIScreen.main.bounds.height*2/3-30, width: 60, height: 60))
         springIndicator = SpringIndicator(frame: CGRect(x: 20, y: 20, width: 20, height: 20))
         lblLoading = UILabel(frame: CGRect(x: UIScreen.main.bounds.width/2-60, y: UIScreen.main.bounds.height*2/3+40, width: 120, height: 30))
@@ -105,6 +107,20 @@ class ReserveVehicleViewController: BaseViewController, UITableViewDelegate, UIT
         shownIndexes = []
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        if self.springStillShowing {
+            self.viewIndicator.alpha = 1
+            UIView.animate(withDuration: 1, delay: 0, options: .curveLinear, animations: {
+                self.viewIndicator.alpha = 0
+                self.viewIndicator.frame.origin.y -= 40
+                self.springIndicator.stop()
+            }, completion: { (boolValue) in
+                self.view.isUserInteractionEnabled = true
+                self.springStillShowing = false
+            })
+        }
+    }
+    
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
@@ -120,7 +136,7 @@ class ReserveVehicleViewController: BaseViewController, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 3
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -139,16 +155,16 @@ class ReserveVehicleViewController: BaseViewController, UITableViewDelegate, UIT
             cell.imgVehicle.layer.cornerRadius = 10
             cell.imgVehicle.layer.masksToBounds = true
             let imageList = selectedVehicleModel.getImageUrl().components(separatedBy: "|")
-            cell.setData(imgUrl: imageList[0], make: selectedVehicleModel.getMakes(), model: selectedVehicleModel.getModels(), detail: selectedVehicleModel.getTitle())
+            cell.setData(imgUrl: imageList[0], title: selectedVehicleModel.getTitle(), type: selectedVehicleModel.getFuelTypes())
             return cell
         } else if (indexPath.row == 1) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SecondReserveTableViewCell") as! SecondReserveTableViewCell
             cell.lblStockNo.text = selectedVehicleModel.getStockNumber()
             cell.lblAdvancedPaymentAmount.text = (selectedVehicleModel.getDownPayment() != "") ? selectedVehicleModel.getDownPayment() : "N/A"
             return cell
-        } else if (indexPath.row == 2) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ThirdReserveTableViewCell") as! ThirdReserveTableViewCell
-            return cell
+//        } else if (indexPath.row == 2) {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "ThirdReserveTableViewCell") as! ThirdReserveTableViewCell
+//            return cell
 //            TODO - if progressbar is needed, uncomment and return 5 for cell count
 //        } else if (indexPath.row == 3) {
 //            self.progressBarIndexPath = indexPath
@@ -194,12 +210,12 @@ class ReserveVehicleViewController: BaseViewController, UITableViewDelegate, UIT
 //        customPresentViewController(presenterPayment, viewController: confirmPaymentViewController, animated: true, completion: nil)
 //        let cellProgress = tableView.cellForRow(at: progressBarIndexPath!) as! ForthReserveTableViewCell
 //        cellProgress.progressBarView.currentStep = 1
-        let cell = tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as! FifthReserveTableViewCell
+        let cell = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as! FifthReserveTableViewCell
 //        print(cell.containerView.txtName.text)
 //        print(cell.containerView.txtEmail.text)
 //        print(cell.containerView.txtMobile.text)
         if (cell.containerView.txtName.text != "" && cell.containerView.txtEmail.text != "" && cell.containerView.txtMobile.text != "") {
-            let urlString = "I would like to reserve \(self.selectedVehicleModel.getMakes()) \(self.selectedVehicleModel.getModels()) \(self.selectedVehicleModel.getYears())\nStock No - \(self.selectedVehicleModel.getStockNumber())\nName - \(cell.containerView.txtName.text!)\nEmail -  \(cell.containerView.txtEmail.text!)"
+            let urlString = "I would like to reserve \(self.selectedVehicleModel.getTitle()) \(self.selectedVehicleModel.getYears())\n\nStock No - \(self.selectedVehicleModel.getStockNumber())\nName - \(cell.containerView.txtName.text!)\nEmail -  \(cell.containerView.txtEmail.text!)"
             let urlStringEncoded = urlString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
             let url  = NSURL(string: "https://wa.me/+94779033388?text=\(urlStringEncoded!)")
 
@@ -229,6 +245,7 @@ class ReserveVehicleViewController: BaseViewController, UITableViewDelegate, UIT
         view.addSubview(viewIndicator)
         view.addSubview(lblLoading)
         springIndicator.start()
+        self.springStillShowing = true
         viewIndicator.alpha = 0
         lblLoading.alpha = 0
         viewIndicator.frame.origin.y += 100
@@ -254,7 +271,9 @@ class ReserveVehicleViewController: BaseViewController, UITableViewDelegate, UIT
                 self.springIndicator.stop()
                 self.lblLoading.alpha = 0
                 self.lblLoading.frame.origin.y += 100
-            }, completion: nil)
+            }, completion: { (bool) in
+                self.springStillShowing = false
+            })
             timer = nil
             let cellBottom = tableView.cellForRow(at: bottomIndexPath!) as! FifthReserveTableViewCell
             cellBottom.containerView.paymentDetailsView.alpha = 0

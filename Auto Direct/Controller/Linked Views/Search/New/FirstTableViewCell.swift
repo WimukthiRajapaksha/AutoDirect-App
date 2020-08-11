@@ -46,12 +46,12 @@ class FirstTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FirstCollectionViewCell", for: indexPath) as! FirstCollectionViewCell
-        cell.lbl.text = data[indexPath.row]
-        if selectedIndex.contains(indexPath.row) {
-            cell.lbl.isChecked = true
-        } else {
-            cell.lbl.isChecked = false
-        }
+        cell.lblItem.text = data[indexPath.row]
+//        if selectedIndex.contains(indexPath.row) {
+//            cell.lbl.isChecked = true
+//        } else {
+//            cell.lbl.isChecked = false
+//        }
         return cell
     }
     
@@ -60,18 +60,18 @@ class FirstTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectio
 //    }
   
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedIndex.removeAll()
-        selectedIndex.append(indexPath.row)
-        let cell = collectionView.cellForItem(at: indexPath) as! FirstCollectionViewCell
-        cell.lbl.isChecked = true
+//        selectedIndex.removeAll()
+//        selectedIndex.append(indexPath.row)
+//        let cell = collectionView.cellForItem(at: indexPath) as! FirstCollectionViewCell
+//        cell.lbl.isChecked = true
         conditionDelegate.selectedCondition(condition: indexPath.row)
     }
         
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? FirstCollectionViewCell else {
-            return
-        }
-        cell.lbl.isChecked = false
-    }
+//    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+//        guard let cell = collectionView.cellForItem(at: indexPath) as? FirstCollectionViewCell else {
+//            return
+//        }
+//        cell.lbl.isChecked = false
+//    }
 
 }
