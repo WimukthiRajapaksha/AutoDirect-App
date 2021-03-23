@@ -54,8 +54,16 @@ class SearchViewController: BaseViewController, UICollectionViewDelegate, UIColl
         
 //        self.tabBarController?.tabBar.isHidden = true
         
-        searchBar.searchTextField.textColor = UIColor.blue
-        searchBar.searchTextField.backgroundColor = UIColor.white
+        if #available(iOS 13.0, *) {
+            searchBar.searchTextField.textColor = UIColor.blue
+            searchBar.searchTextField.backgroundColor = UIColor.white
+        } else {
+            if let searchField = searchBar.value(forKey: "searchField") as? UITextField {
+                searchField.textColor = UIColor.blue
+                searchField.backgroundColor = UIColor.white
+            }
+        }
+        
         
 //        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard)))
     }
@@ -74,7 +82,7 @@ class SearchViewController: BaseViewController, UICollectionViewDelegate, UIColl
             print(jsonResponse)
             if boolResponse {
                 for (_, item) in jsonResponse {
-                    self.trendingList.append(VehicleModel(modelId: item["id"].intValue, modelName: item["trendingModel"].stringValue))
+                    self.trendingList.append(VehicleModel(modelId: item["id"].intValue, make: item["make"].stringValue, modelName: item["trendingModel"].stringValue))
                 }
                 self.collectionTrending.reloadData()
             } else {
@@ -117,7 +125,7 @@ class SearchViewController: BaseViewController, UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if (collectionView.accessibilityIdentifier == "trendingCollection") {
             let cell = collectionTrending.dequeueReusableCell(withReuseIdentifier: "SearchCollectionViewCell", for: indexPath) as! SearchCollectionViewCell
-            cell.lblText.text = self.trendingList[indexPath.row]?.getModelName()
+            cell.lblText.text = "\(self.trendingList[indexPath.row]!.getMake()) \(self.trendingList[indexPath.row]!.getModelName())"
             cell.isSelected = false
             return cell
         } else {

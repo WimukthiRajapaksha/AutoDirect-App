@@ -41,7 +41,7 @@ class VehicleCategoryTableViewCell: UITableViewCell {
 //            }
 //
 //        })
-        
+        self.imgBrand.image = UIImage(named: "placeholder")
         AF.request(imageUrl).responseImage { (response) in
             if response.error == nil {
                 self.imgBrand.image = UIImage(data: response.data!)

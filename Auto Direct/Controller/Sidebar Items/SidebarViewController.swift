@@ -15,6 +15,7 @@ protocol SidebarInventoryDelegate {
 class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var containerSidebarView: UIView!
+    @IBOutlet weak var leadingSpace: NSLayoutConstraint!
     
     private let sidebarItemTableViewCell: String
     private let sidebarItemTableViewHeaderCell: String
@@ -47,60 +48,64 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
 //        tableView.estimatedRowHeight = 44
 //        tableView.rowHeight = UITableView.automaticDimension
         
+        self.leadingSpace.constant = self.view.bounds.width/3.6
+        self.view.backgroundColor = UIColor(rgb: 0x1b1f2a)
+//        self.leadingSpace.constant = 0
+        
         tableView.register(UINib(nibName: sidebarItemTableViewCell, bundle: nil), forCellReuseIdentifier: sidebarItemTableViewCell)
         tableView.register(UINib(nibName: sidebarItemTableViewHeaderCell, bundle: nil), forCellReuseIdentifier: sidebarItemTableViewHeaderCell)
         tableView.register(UINib(nibName: sidebarItemTableViewFooterCell, bundle: nil), forCellReuseIdentifier: sidebarItemTableViewFooterCell)
         tableView.alwaysBounceVertical = false
         
         containerSidebarView.translatesAutoresizingMaskIntoConstraints = false
-        if UIDevice().userInterfaceIdiom == .phone {
-            switch UIScreen.main.nativeBounds.height {
-                case 1136:
-                    print("iPhone 5 or 5S or 5C")
-                    NSLayoutConstraint.activate([
-                        containerSidebarView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 90)
-                    ])
-                case 1334:
-                    print("iPhone 6/6S/7/8")
-                    NSLayoutConstraint.activate([
-                        containerSidebarView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 90)
-                    ])
-                case 1920:
-                    print("iPhone 6+/6S+/7+")
-                    NSLayoutConstraint.activate([
-                        containerSidebarView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 90)
-                    ])
-                case 2208:
-                    print("iPhone 8+")
-                    NSLayoutConstraint.activate([
-                        containerSidebarView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 115)
-                    ])
-                case 2436:
-                    print("iPhone X/XS/11 Pro")
-                    NSLayoutConstraint.activate([
-                        containerSidebarView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 90)
-                    ])
-                case 2688:
-                    print("iPhone XS Max/11 Pro Max")
-                    NSLayoutConstraint.activate([
-                        containerSidebarView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 115)
-                    ])
-                case 1792:
-                    print("iPhone XR/ 11 ")
-                    NSLayoutConstraint.activate([
-                        containerSidebarView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 115)
-                    ])
-                default:
-                    print("Unknown")
-                    NSLayoutConstraint.activate([
-                        containerSidebarView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 115)
-                    ])
-            }
-        } else {
-            NSLayoutConstraint.activate([
-                containerSidebarView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 550)
-            ])
-        }
+//        if UIDevice().userInterfaceIdiom == .phone {
+//            switch UIScreen.main.nativeBounds.height {
+//                case 1136:
+//                    print("iPhone 5 or 5S or 5C")
+//                    NSLayoutConstraint.activate([
+//                        containerSidebarView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 90)
+//                    ])
+//                case 1334:
+//                    print("iPhone 6/6S/7/8")
+//                    NSLayoutConstraint.activate([
+//                        containerSidebarView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 90)
+//                    ])
+//                case 1920:
+//                    print("iPhone 6+/6S+/7+")
+//                    NSLayoutConstraint.activate([
+//                        containerSidebarView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 90)
+//                    ])
+//                case 2208:
+//                    print("iPhone 8+")
+//                    NSLayoutConstraint.activate([
+//                        containerSidebarView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 115)
+//                    ])
+//                case 2436:
+//                    print("iPhone X/XS/11 Pro")
+//                    NSLayoutConstraint.activate([
+//                        containerSidebarView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 90)
+//                    ])
+//                case 2688:
+//                    print("iPhone XS Max/11 Pro Max")
+//                    NSLayoutConstraint.activate([
+//                        containerSidebarView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 115)
+//                    ])
+//                case 1792:
+//                    print("iPhone XR/ 11 ")
+//                    NSLayoutConstraint.activate([
+//                        containerSidebarView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 115)
+//                    ])
+//                default:
+//                    print("Unknown")
+//                    NSLayoutConstraint.activate([
+//                        containerSidebarView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 115)
+//                    ])
+//            }
+//        } else {
+//            NSLayoutConstraint.activate([
+//                containerSidebarView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 550)
+//            ])
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

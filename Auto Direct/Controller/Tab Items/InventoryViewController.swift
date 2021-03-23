@@ -212,7 +212,7 @@ class InventoryViewController: BaseViewController, UICollectionViewDelegate, UIC
             }
             if tableData.count > 0 {
                 self.viewSearchResults.isHidden = false
-                self.lblSearchResultCount.text = (tableData.count == 1) ? "\(tableData.count) \(tableData[0]?.getMakes() ?? "") Vehicle Available" : "\(tableData.count) \(tableData[0]?.getMakes() ?? "") Vehicles Available"
+                self.lblSearchResultCount.text = (tableData.count == 1) ? "\(tableData.count) \(tableData[0]?.getMakes() ?? "") \(tableData[0]?.getModels() ?? "") Vehicle Available" : "\(tableData.count) \(tableData[0]?.getMakes() ?? "") \(tableData[0]?.getModels() ?? "") Vehicles Available"
             } else {
                 self.viewSearchResults.isHidden = true
 //                self.lblSearchResultCount.text = "0 Vehicles Available"
@@ -235,8 +235,9 @@ class InventoryViewController: BaseViewController, UICollectionViewDelegate, UIC
 //                self.viewNoVehiclesAvailable.isHidden = true
 //            }
             if tableData.count > 0 {
+                print(tableData[0])
                 self.viewSearchResults.isHidden = false
-                self.lblSearchResultCount.text = (tableData.count == 1) ? "\(tableData.count) \(tableData[0]?.getMakes() ?? "") Vehicle Available" : "\(tableData.count) \(tableData[0]?.getMakes() ?? "") Vehicles Available"
+                self.lblSearchResultCount.text = (tableData.count == 1) ? "\(tableData.count) \(tableData[0]?.getMakes() ?? "") \(tableData[0]?.getModels() ?? "") Vehicle Available" : "\(tableData.count) \(tableData[0]?.getMakes() ?? "") \(tableData[0]?.getModels() ?? "") Vehicles Available"
             } else {
                 self.viewSearchResults.isHidden = true
 //                self.lblSearchResultCount.text = "0 Vehicles Available"

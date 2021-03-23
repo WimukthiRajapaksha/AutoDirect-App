@@ -215,7 +215,7 @@ class ReserveVehicleViewController: BaseViewController, UITableViewDelegate, UIT
 //        print(cell.containerView.txtEmail.text)
 //        print(cell.containerView.txtMobile.text)
         if (cell.containerView.txtName.text != "" && cell.containerView.txtEmail.text != "" && cell.containerView.txtMobile.text != "") {
-            let urlString = "I would like to reserve \(self.selectedVehicleModel.getTitle()) \(self.selectedVehicleModel.getYears())\n\nStock No - \(self.selectedVehicleModel.getStockNumber())\nName - \(cell.containerView.txtName.text!)\nEmail -  \(cell.containerView.txtEmail.text!)"
+            let urlString = "I would like to reserve \(self.selectedVehicleModel.getTitle()) \(self.selectedVehicleModel.getYears())\n\nStock No - \(self.selectedVehicleModel.getStockNumber())\nName - \(cell.containerView.txtName.text!)\nEmail -  \(cell.containerView.txtEmail.text!)\nContact - \(cell.containerView.txtMobile.text!)"
             let urlStringEncoded = urlString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
             let url  = NSURL(string: "https://wa.me/+94779033388?text=\(urlStringEncoded!)")
 

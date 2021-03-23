@@ -36,7 +36,9 @@ class Domain {
 //            "description": ""
 //        },
 //        "response": []
-        self.getSearch = "http://ec2-52-77-253-201.ap-southeast-1.compute.amazonaws.com:8080/api/search"
+        let baseUrl = "http://ec2-13-212-188-233.ap-southeast-1.compute.amazonaws.com:8080/api"
+        self.getSearch = "\(baseUrl)/search"
+//        "http://ec2-13-212-188-233.ap-southeast-1.compute.amazonaws.com:8080/api/"
         
 //        "name": "find-by-make",
 //        "request": {
@@ -47,7 +49,7 @@ class Domain {
 //            "description": "backend api"
 //        },
 //        "response": []
-        self.getFindByMake = "http://ec2-52-77-253-201.ap-southeast-1.compute.amazonaws.com:8080/api/find-by-make"
+        self.getFindByMake = "\(baseUrl)/find-by-make"
         
 //        "name": "find-by-condition",
 //        "request": {
@@ -58,7 +60,7 @@ class Domain {
 //            "description": "backend api"
 //        },
 //        "response": []
-        self.getFindByCondition = "http://ec2-52-77-253-201.ap-southeast-1.compute.amazonaws.com:8080/api/find-by-condition"
+        self.getFindByCondition = "\(baseUrl)/find-by-condition"
         
 //        "name": "find-by-year",
 //        "request": {
@@ -69,7 +71,7 @@ class Domain {
 //            "description": "backend api"
 //        },
 //        "response": []
-        self.getFindByYear = "http://ec2-52-77-253-201.ap-southeast-1.compute.amazonaws.com:8080/api/find-by-year"
+        self.getFindByYear = "\(baseUrl)/find-by-year"
         
 //        "name": "find-by-model",
 //        "request": {
@@ -80,7 +82,7 @@ class Domain {
 //            "description": "backend api"
 //        },
 //        "response": []
-        self.getFindByModel = "http://ec2-52-77-253-201.ap-southeast-1.compute.amazonaws.com:8080/api/find-by-model"
+        self.getFindByModel = "\(baseUrl)/find-by-model"
         
 //        "name": "get-trending-models",
 //        "request": {
@@ -91,7 +93,7 @@ class Domain {
 //            "description": ""
 //        },
 //        "response": []
-        self.getTrendingModels = "http://ec2-52-77-253-201.ap-southeast-1.compute.amazonaws.com:8080/api/model-list/trending"
+        self.getTrendingModels = "\(baseUrl)/model-list/trending"
         
 //        "name": "get-all-make",
 //        "request": {
@@ -102,7 +104,7 @@ class Domain {
 //            "description": ""
 //        },
 //        "response": []
-        self.getAllMake = "http://ec2-52-77-253-201.ap-southeast-1.compute.amazonaws.com:8080/api/make-list/get"
+        self.getAllMake = "\(baseUrl)/make-list/get"
         
 //        "name": "get-models-by-make",
 //        "request": {
@@ -113,7 +115,7 @@ class Domain {
 //            "description": ""
 //        },
 //        "response": []
-        self.getModelByMake = "http://ec2-52-77-253-201.ap-southeast-1.compute.amazonaws.com:8080/api/model-by-make/get"
+        self.getModelByMake = "\(baseUrl)/model-by-make/get"
         
 //        "name": "text-search",
 //        "request": {
@@ -124,9 +126,9 @@ class Domain {
 //            "description": ""
 //        },
 //        "response": []
-        self.getTextSearch = "http://ec2-52-77-253-201.ap-southeast-1.compute.amazonaws.com:8080/api/text-search"
+        self.getTextSearch = "\(baseUrl)/text-search"
         
-        self.getAllVehicles = "http://ec2-52-77-253-201.ap-southeast-1.compute.amazonaws.com:8080/api/vehicle-all/get"
+        self.getAllVehicles = "\(baseUrl)/vehicle-all/get"
     }
     
     public func errorMsgJson() -> JSON {

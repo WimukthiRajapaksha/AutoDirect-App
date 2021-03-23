@@ -95,7 +95,7 @@ class HomeViewController: BaseViewController, UICollectionViewDelegate, UICollec
                 for (_, item) in jsonResponse {
                     print(item["id"].intValue)
                     print(item["trendingModel"].stringValue)
-                    self.trendingItems.append(VehicleModel(modelId: item["id"].intValue, modelName: item["trendingModel"].stringValue))
+                    self.trendingItems.append(VehicleModel(modelId: item["id"].intValue, make: item["make"].stringValue, modelName: item["trendingModel"].stringValue))
                 }
             } else {
                 self.view!.makeToast(jsonResponse["message"].stringValue, duration: 3, position: .bottom, title: "Sorry!", completion: nil)
@@ -248,7 +248,7 @@ class HomeViewController: BaseViewController, UICollectionViewDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = trendingCollectionView.dequeueReusableCell(withReuseIdentifier: trendingCollectionViewCell, for: indexPath) as! TrendingCollectionViewCell
-        cell.lblItemName.text = trendingItems[indexPath.row]!.getModelName()
+        cell.lblItemName.text = "\(trendingItems[indexPath.row]!.getMake()) \(trendingItems[indexPath.row]!.getModelName())"
         return cell
     }
     
