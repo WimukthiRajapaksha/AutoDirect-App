@@ -48,7 +48,7 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
 //        tableView.estimatedRowHeight = 44
 //        tableView.rowHeight = UITableView.automaticDimension
         
-        self.leadingSpace.constant = self.view.bounds.width/3.6
+        self.leadingSpace.constant = self.view.bounds.width/4.4
         self.view.backgroundColor = UIColor(rgb: 0x1b1f2a)
 //        self.leadingSpace.constant = 0
         

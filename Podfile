@@ -21,5 +21,6 @@ target 'Auto Direct' do
   pod 'ImageLoader'
   pod 'AlamofireImage'
   pod 'youtube-ios-player-helper'
-
+  pod "ImageSlideshow/Alamofire"
+  
 end

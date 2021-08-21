@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B7704E455240402064E3B7FE /* Pods_Auto_Direct.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF8D735D69849A7F025F1F9 /* Pods_Auto_Direct.framework */; };
 		CE645B4E2469281000728066 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE645B492469280F00728066 /* UIImage.swift */; };
 		CE645B4F2469281000728066 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE645B4A2469280F00728066 /* UIView.swift */; };
 		CE645B502469281000728066 /* UINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE645B4B2469280F00728066 /* UINavigationBar.swift */; };
@@ -91,6 +92,7 @@
 		FA1B63E224D926EE003BE28B /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B63E124D926EE003BE28B /* Int.swift */; };
 		FA1B63E424D92F39003BE28B /* CallUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B63E324D92F39003BE28B /* CallUsViewController.swift */; };
 		FA1B63E624D9C7B0003BE28B /* RootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B63E524D9C7AF003BE28B /* RootNavigationController.swift */; };
+		FA3D29C22609F7DA00BCFF30 /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FAB3EC0B24D0107200D94DC6 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB3EC0A24D0107200D94DC6 /* AboutUsViewController.swift */; };
 		FAB3EC1124D01E7300D94DC6 /* WhatIsPcpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB3EC1024D01E7300D94DC6 /* WhatIsPcpViewController.swift */; };
 		FAB3EC1324D01E8700D94DC6 /* InventorySidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB3EC1224D01E8700D94DC6 /* InventorySidebarViewController.swift */; };
@@ -118,8 +120,25 @@
 		FAEAC7A224D5A339005B6364 /* ImageSliderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEAC7A124D5A339005B6364 /* ImageSliderCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		FA3D29C32609F7DA00BCFF30 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FA3D29C22609F7DA00BCFF30 /* (null) in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		CE01F7AC243A477F00C658F8 /* Auto Direct.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Auto Direct.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FD7379712B4E23D6DD75A29 /* Pods-Auto Direct.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Auto Direct.debug.xcconfig"; path = "Target Support Files/Pods-Auto Direct/Pods-Auto Direct.debug.xcconfig"; sourceTree = "<group>"; };
+		9BF8D735D69849A7F025F1F9 /* Pods_Auto_Direct.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Auto_Direct.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B673CC68468EFC0C112EC163 /* Pods-Auto Direct.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Auto Direct.release.xcconfig"; path = "Target Support Files/Pods-Auto Direct/Pods-Auto Direct.release.xcconfig"; sourceTree = "<group>"; };
+		CE01F7AC243A477F00C658F8 /* Autodirect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Autodirect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE01F7BD243A478600C658F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE645B492469280F00728066 /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		CE645B4A2469280F00728066 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
@@ -215,6 +234,23 @@
 		FA1B63E124D926EE003BE28B /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		FA1B63E324D92F39003BE28B /* CallUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallUsViewController.swift; sourceTree = "<group>"; };
 		FA1B63E524D9C7AF003BE28B /* RootNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
+		FA3D298A2609F63200BCFF30 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA3D298B2609F63200BCFF30 /* AlamofireImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AlamofireImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA3D298C2609F63200BCFF30 /* DLRadioButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DLRadioButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA3D298D2609F63200BCFF30 /* ESTabBarController_swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ESTabBarController_swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA3D298E2609F63200BCFF30 /* ImageLoader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ImageLoader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA3D298F2609F63200BCFF30 /* ImageSlideshow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ImageSlideshow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA3D29912609F63200BCFF30 /* Presentr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Presentr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA3D29922609F63200BCFF30 /* RangeSeekSlider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RangeSeekSlider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA3D29932609F63200BCFF30 /* Shimmer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Shimmer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA3D29942609F63200BCFF30 /* SideMenuSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SideMenuSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA3D29952609F63200BCFF30 /* SpringIndicator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SpringIndicator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA3D29962609F63200BCFF30 /* StepIndicator.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = StepIndicator.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA3D29972609F63200BCFF30 /* StepIndicator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = StepIndicator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA3D29982609F63200BCFF30 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA3D29992609F63200BCFF30 /* Toast_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Toast_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA3D299A2609F63200BCFF30 /* youtube_ios_player_helper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = youtube_ios_player_helper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA3D29BE2609F76300BCFF30 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB3EC0A24D0107200D94DC6 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
 		FAB3EC1024D01E7300D94DC6 /* WhatIsPcpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsPcpViewController.swift; sourceTree = "<group>"; };
 		FAB3EC1224D01E8700D94DC6 /* InventorySidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventorySidebarViewController.swift; sourceTree = "<group>"; };
@@ -247,6 +283,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7704E455240402064E3B7FE /* Pods_Auto_Direct.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,13 +296,14 @@
 				CE01F7AE243A477F00C658F8 /* Auto Direct */,
 				CE01F7AD243A477F00C658F8 /* Products */,
 				ED7F0CAB82E40622FC28012A /* Pods */,
+				E1A013C6985111C5845D9C86 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		CE01F7AD243A477F00C658F8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CE01F7AC243A477F00C658F8 /* Auto Direct.app */,
+				CE01F7AC243A477F00C658F8 /* Autodirect.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -299,6 +337,7 @@
 			children = (
 				CE9A00B424692A9C000F35B9 /* Main.storyboard */,
 				CE9A00A1246929EA000F35B9 /* LaunchScreen.storyboard */,
+				CE645B84246928A200728066 /* BottomView.xib */,
 				CE9A009C246929E9000F35B9 /* CarItemFeature.xib */,
 				CE9A009F246929EA000F35B9 /* HomeCategoryItemView.xib */,
 				CE9A009B246929E9000F35B9 /* ModelFeatureItem.xib */,
@@ -394,7 +433,6 @@
 			isa = PBXGroup;
 			children = (
 				CE645B87246928A300728066 /* BottomView.swift */,
-				CE645B84246928A200728066 /* BottomView.xib */,
 				CE645B82246928A200728066 /* FirstReserveTableViewCell.swift */,
 				CE645B86246928A200728066 /* SecondReserveTableViewCell.swift */,
 				CE645B85246928A200728066 /* ThirdReserveTableViewCell.swift */,
@@ -447,9 +485,36 @@
 			path = Sidebar;
 			sourceTree = "<group>";
 		};
+		E1A013C6985111C5845D9C86 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FA3D29BE2609F76300BCFF30 /* Alamofire.framework */,
+				FA3D298A2609F63200BCFF30 /* Alamofire.framework */,
+				FA3D298B2609F63200BCFF30 /* AlamofireImage.framework */,
+				FA3D298C2609F63200BCFF30 /* DLRadioButton.framework */,
+				FA3D298D2609F63200BCFF30 /* ESTabBarController_swift.framework */,
+				FA3D298E2609F63200BCFF30 /* ImageLoader.framework */,
+				FA3D298F2609F63200BCFF30 /* ImageSlideshow.framework */,
+				FA3D29912609F63200BCFF30 /* Presentr.framework */,
+				FA3D29922609F63200BCFF30 /* RangeSeekSlider.framework */,
+				FA3D29932609F63200BCFF30 /* Shimmer.framework */,
+				FA3D29942609F63200BCFF30 /* SideMenuSwift.framework */,
+				FA3D29952609F63200BCFF30 /* SpringIndicator.framework */,
+				FA3D29962609F63200BCFF30 /* StepIndicator.bundle */,
+				FA3D29972609F63200BCFF30 /* StepIndicator.framework */,
+				FA3D29982609F63200BCFF30 /* SwiftyJSON.framework */,
+				FA3D29992609F63200BCFF30 /* Toast_Swift.framework */,
+				FA3D299A2609F63200BCFF30 /* youtube_ios_player_helper.framework */,
+				9BF8D735D69849A7F025F1F9 /* Pods_Auto_Direct.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		ED7F0CAB82E40622FC28012A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				5FD7379712B4E23D6DD75A29 /* Pods-Auto Direct.debug.xcconfig */,
+				B673CC68468EFC0C112EC163 /* Pods-Auto Direct.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -571,9 +636,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE01F7C0243A478600C658F8 /* Build configuration list for PBXNativeTarget "Auto Direct" */;
 			buildPhases = (
+				E36711EF1FA314EBAD8BA352 /* [CP] Check Pods Manifest.lock */,
 				CE01F7A8243A477F00C658F8 /* Sources */,
 				CE01F7A9243A477F00C658F8 /* Frameworks */,
 				CE01F7AA243A477F00C658F8 /* Resources */,
+				FA3D29C32609F7DA00BCFF30 /* Embed Frameworks */,
+				206F27E41F886306A35F63C5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -581,7 +649,7 @@
 			);
 			name = "Auto Direct";
 			productName = "Auto Direct";
-			productReference = CE01F7AC243A477F00C658F8 /* Auto Direct.app */;
+			productReference = CE01F7AC243A477F00C658F8 /* Autodirect.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -641,6 +709,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		206F27E41F886306A35F63C5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Auto Direct/Pods-Auto Direct-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Auto Direct/Pods-Auto Direct-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Auto Direct/Pods-Auto Direct-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E36711EF1FA314EBAD8BA352 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Auto Direct-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CE01F7A8243A477F00C658F8 /* Sources */ = {
@@ -863,43 +973,41 @@
 		};
 		CE01F7C1243A478600C658F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5FD7379712B4E23D6DD75A29 /* Pods-Auto Direct.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2N4YDGL5K9;
-				"EXCLUDED_ARCHS[sdk=*]" = arm64;
 				INFOPLIST_FILE = "Auto Direct/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.elysiancrest.autodirect.ios;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.elysiancrest.autodirect;
+				PRODUCT_NAME = Autodirect;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "arm64 arm64e armv7 armv7s x86_64";
 			};
 			name = Debug;
 		};
 		CE01F7C2243A478600C658F8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B673CC68468EFC0C112EC163 /* Pods-Auto Direct.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2N4YDGL5K9;
-				"EXCLUDED_ARCHS[sdk=*]" = arm64;
 				INFOPLIST_FILE = "Auto Direct/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.elysiancrest.autodirect.ios;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.elysiancrest.autodirect;
+				PRODUCT_NAME = Autodirect;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "arm64 arm64e armv7 armv7s x86_64";
 			};
 			name = Release;
 		};

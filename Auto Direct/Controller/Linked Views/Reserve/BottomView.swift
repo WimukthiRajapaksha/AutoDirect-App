@@ -8,15 +8,36 @@
 
 import UIKit
 
-class BottomView: UIView {
+class BottomView: UIView, UITextFieldDelegate {
     @IBOutlet var cardView: UIView!
     @IBOutlet weak var personalDetailsView: UIView!
     @IBOutlet weak var paymentDetailsView: UIView!
     @IBOutlet weak var btnNext: UIButton!
     @IBOutlet weak var btnSubmit: UIButton!
-    @IBOutlet weak var txtEmail: UITextField!
-    @IBOutlet weak var txtMobile: UITextField!
-    @IBOutlet weak var txtName: UITextField!
+    @IBOutlet weak var txtEmail: UITextField! {
+        didSet {
+            let placeholderText = NSAttributedString(string: "Enter your email",
+                                                        attributes: [NSAttributedString.Key.foregroundColor: UIColor(rgb: 0x565E77)])
+            
+            txtEmail.attributedPlaceholder = placeholderText
+        }
+    }
+    @IBOutlet weak var txtMobile: UITextField! {
+        didSet {
+            let placeholderText = NSAttributedString(string: "Enter your mobile",
+                                                        attributes: [NSAttributedString.Key.foregroundColor: UIColor(rgb: 0x565E77)])
+            
+            txtMobile.attributedPlaceholder = placeholderText
+        }
+    }
+    @IBOutlet weak var txtName: UITextField! {
+        didSet {
+            let placeholderText = NSAttributedString(string: "Enter your name",
+                                                        attributes: [NSAttributedString.Key.foregroundColor: UIColor(rgb: 0x565E77)])
+            
+            txtName.attributedPlaceholder = placeholderText
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,6 +54,10 @@ class BottomView: UIView {
         btnNext.layer.cornerRadius = btnNext.bounds.height/2
         btnSubmit.layer.cornerRadius = btnSubmit.bounds.height/2
         
+        self.txtName.delegate = self
+        self.txtEmail.delegate = self
+        self.txtMobile.delegate = self
+        
 //        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
 //        self.cardView.addGestureRecognizer(tapGesture)
         
@@ -40,6 +65,11 @@ class BottomView: UIView {
         addSubview(cardView)
         cardView.frame = self.bounds
         cardView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
     }
     
 //    @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {

@@ -9,6 +9,7 @@
 import UIKit
 import ImageSlideshow
 import Toast_Swift
+import AlamofireImage
 
 class HomeViewController: BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     @IBOutlet var takeItView: UIView!
@@ -46,17 +47,12 @@ class HomeViewController: BaseViewController, UICollectionViewDelegate, UICollec
         setCardItems()
         
 //        navigationItem.rightBarButtonItem = setCallButton()
-                
-        imgSlideShow.setImageInputs([
-            ImageSource(image: UIImage(named: "car-1")!),
-            ImageSource(image: UIImage(named: "car-2")!),
-            ImageSource(image: UIImage(named: "car-3")!),
-            ImageSource(image: UIImage(named: "car-4")!),
-            ImageSource(image: UIImage(named: "car-5")!),
-            ImageSource(image: UIImage(named: "car-6")!),
-            ImageSource(image: UIImage(named: "car-7")!)
-        ])
         
+        imgSlideShow.setImageInputs([
+            AlamofireSource(urlString: "https://firebasestorage.googleapis.com/v0/b/findndine-d07c9.appspot.com/o/Test%2F001.jpg?alt=media&token=61b0bc4b-70c9-4ac2-8df0-1701f0ba41ab", placeholder: UIImage(named: "dummy-1"))!,
+            AlamofireSource(urlString: "https://firebasestorage.googleapis.com/v0/b/findndine-d07c9.appspot.com/o/Test%2F1920x1080_desktop_AQ2_161020.jpg?alt=media&token=7dd0888e-792f-473f-b7cc-239493e382fd", placeholder: UIImage(named: "dummy-2"))!,
+            AlamofireSource(urlString: "https://firebasestorage.googleapis.com/v0/b/findndine-d07c9.appspot.com/o/Test%2F2020-bmwi8-mmp-1-1573836896.jpg?alt=media&token=39984110-5f7b-49ec-b1f7-3bb74c458498", placeholder: UIImage(named: "dummy-3")!)!
+        ])
         imgSlideShow.pageIndicatorPosition = PageIndicatorPosition(horizontal: .center, vertical: .customBottom(padding: 30))
         imgSlideShow.slideshowInterval = 2
         imgSlideShow.contentScaleMode = .scaleAspectFill

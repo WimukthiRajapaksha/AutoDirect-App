@@ -16,6 +16,10 @@ class ExampleBackgroundContentView: ExampleBasicContentView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        self.initColors()
+    }
+    
+    private func initColors() {
         textColor = .green// UIColor(rgb: 0x6f7587)
         highlightTextColor = UIColor(rgb: 0xffffff)
         iconColor = .blue // UIColor(rgb: 0x6f7587)
@@ -26,12 +30,13 @@ class ExampleBackgroundContentView: ExampleBasicContentView {
     
     public convenience init(specialWithAutoImplies implies: Bool) {
         self.init(frame: CGRect.zero)
-        textColor = .green// UIColor(rgb: 0x6f7587)
-        highlightTextColor = UIColor(rgb: 0xffffff)
-        iconColor = . blue // UIColor(rgb: 0x6f7587)
-        highlightIconColor = UIColor(rgb: 0xffffff)
-        backdropColor = UIColor(rgb: 0x161923)
-        highlightBackdropColor = UIColor(rgb: 0x161923)
+//        textColor = .green// UIColor(rgb: 0x6f7587)
+//        highlightTextColor = UIColor(rgb: 0xffffff)
+//        iconColor = . blue // UIColor(rgb: 0x6f7587)
+//        highlightIconColor = UIColor(rgb: 0xffffff)
+//        backdropColor = UIColor(rgb: 0x161923)
+//        highlightBackdropColor = UIColor(rgb: 0x161923)
+        initColors()
         if implies {
             let timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(ExampleBackgroundContentView.playImpliesAnimation(_:)), userInfo: nil, repeats: true)
             RunLoop.current.add(timer, forMode: RunLoop.Mode.common)

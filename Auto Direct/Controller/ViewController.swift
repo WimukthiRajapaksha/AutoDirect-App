@@ -14,11 +14,14 @@ class ViewController: BaseViewController {
     private var vc: ESTabBarController!
     
     override func viewDidLoad() {
-        super.viewDidLoad()        
+        super.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.vc = ExampleProvider.customIrregularityStyle(delegate: nil)
+        if let tabBar = self.vc.tabBar as? ESTabBar {
+            tabBar.barTintColor = UIColor(rgb: 0x070714)
+        }
         self.navigationController?.pushViewController(vc, animated: true)
         NotificationCenter.default.addObserver(self, selector: #selector(onSelectInventory(_:)), name: .inventoryName, object: nil)
     }

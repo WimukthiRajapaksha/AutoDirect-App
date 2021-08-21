@@ -244,7 +244,7 @@ open class SideMenuController: UIViewController {
                                       shouldCallDelegate: Bool = true,
                                       shouldChangeStatusBar: Bool = true,
                                       completion: ((Bool) -> Void)? = nil) {
-        menuViewController.beginAppearanceTransition(true, animated: true)
+        menuViewController.beginAppearanceTransition(reveal, animated: animated)
 
         if shouldCallDelegate {
             reveal ? delegate?.sideMenuControllerWillRevealMenu(self) : delegate?.sideMenuControllerWillHideMenu(self)
@@ -792,6 +792,6 @@ extension SideMenuController: UIGestureRecognizerDelegate {
         guard velocity.x * factor > 0 else {
             return false
         }
-        return abs(velocity.y / velocity.x) < 0.25
+        return abs(velocity.y / velocity.x) < preferences.basic.panGestureSensitivity
     }
 }
